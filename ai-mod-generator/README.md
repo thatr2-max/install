@@ -118,6 +118,25 @@ Options:
 - `--max-iterations N`: Override max iteration limit (default: 10)
 - `--output-dir PATH`: Custom output directory
 
+### `refine [game] [mod_path] "[feedback]"`
+Refine an existing mod based on feedback.
+
+```bash
+python cli.py refine cdda output/cdda/my_mod "Make the weapon more balanced"
+```
+
+This allows iterative development:
+1. Generate initial mod
+2. Test it
+3. Provide feedback
+4. AI improves based on feedback
+5. Repeat until perfect
+
+Options:
+- `--verbose`: Show detailed agent reasoning
+- `--max-iterations N`: Override max iteration limit (default: 10)
+- `--output-dir PATH`: Custom output directory (default: [original]_refined)
+
 ### `list`
 List all learned games and their details.
 
@@ -209,6 +228,11 @@ ai-mod-generator/
 ├── output/                # Generated mods
 ├── plans/                 # Saved planning phases
 ├── logs/                  # Agent logs and cost tracking
+├── prompts/               # AI prompts (EDITABLE!)
+│   ├── system_prompt.txt         # Main generation prompt
+│   ├── refinement_prompt.txt     # Refinement prompt
+│   ├── game_notes.json           # Game-specific rules
+│   └── README.md                 # Customization guide
 ├── src/
 │   ├── agent/            # Agentic orchestration
 │   ├── learner/          # Schema learning
@@ -236,6 +260,60 @@ Edit `config.json` to customize:
   }
 }
 ```
+
+## Customization & Iteration
+
+### Customize AI Behavior
+
+All AI prompts are **editable text files** in the `prompts/` directory:
+
+```bash
+# Edit how the AI generates mods
+nano prompts/system_prompt.txt
+
+# Edit how the AI refines mods
+nano prompts/refinement_prompt.txt
+
+# Add/edit game-specific rules
+nano prompts/game_notes.json
+```
+
+**Changes take effect immediately!** No code changes needed.
+
+See `prompts/README.md` for detailed customization guide.
+
+**Common customizations:**
+- Adjust research phase limits (default: 3-6 tool calls)
+- Change planning requirements
+- Add custom validation rules
+- Modify AI personality/approach
+- Add game-specific guidelines
+
+### Iterative Development
+
+The `refine` command enables iteration:
+
+```bash
+# 1. Generate initial version
+python cli.py create cdda "mutation path to chicken"
+
+# 2. Test and identify issues
+# (test in game, find problems)
+
+# 3. Refine based on feedback
+python cli.py refine cdda output/cdda/mutation_path "Make progression slower, add 3 intermediate stages"
+
+# 4. Keep refining
+python cli.py refine cdda output/cdda/mutation_path_refined "Fix balance, reduce feather weight penalty"
+
+# 5. Repeat until perfect!
+```
+
+Each refinement:
+- Loads existing mod files
+- Understands what works
+- Applies only the requested changes
+- Preserves what's already good
 
 ## Examples
 

@@ -1,82 +1,52 @@
 """System prompt builder for the AI modding agent."""
 
+import json
 from typing import Dict, Any
+from pathlib import Path
 
 
-SYSTEM_PROMPT_TEMPLATE = """You are an expert {game} modder with access to powerful tools that make you exceptional at your craft.
+def _get_prompts_dir() -> Path:
+    """Get the prompts directory path."""
+    # Assuming this file is in src/agent/, go up to project root
+    return Path(__file__).parent.parent.parent / "prompts"
 
-YOUR AGENTIC WORKFLOW FOR CREATING MODS:
 
-1. UNDERSTAND THE REQUEST
-   - Parse what the user wants
-   - Identify key requirements and constraints
+def load_prompt_template(template_name: str = "system_prompt.txt") -> str:
+    """Load a prompt template from file.
 
-2. RESEARCH PHASE (Use tools liberally)
-   - search_documentation: Find relevant modding info about mechanics mentioned
-   - list_examples: See what example mods are available
-   - read_example_mod: Study best practices from examples
-   - view_schema_file: Understand required data structures
-   - get_template: Get templates for content types you need
-   - list_template_types: See all available template types
+    Args:
+        template_name: Name of the template file
 
-3. SELF-ASSESSMENT & PLANNING (ALWAYS DO THIS)
-   - Assess complexity: Is this simple (value tweak), medium (new content using templates), or complex (new systems)?
-   - Write your plan based on complexity:
-     * SIMPLE: 3-5 line plan with key steps
-     * MEDIUM: Structured plan covering files, balance, dependencies
-     * COMPLEX: Detailed plan with edge cases, interactions, testing
-   - Think: "How long will this take to implement correctly?" Plan accordingly
-   - Save plan using save_draft with name "plan"
+    Returns:
+        Template content as string
+    """
+    prompts_dir = _get_prompts_dir()
+    template_path = prompts_dir / template_name
 
-4. GENERATION PHASE
-   - Create mod files following your plan
-   - Use patterns from your research
-   - Maintain consistent naming and structure
-   - Reference your plan if you get stuck
+    if template_path.exists():
+        with open(template_path, 'r', encoding='utf-8') as f:
+            return f.read()
+    else:
+        # Fallback to default if file doesn't exist
+        return _get_default_system_prompt()
 
-5. VALIDATION PHASE (CRITICAL - Always validate)
-   - validate_json: Check syntax
-   - Review your work for consistency
-   - Ensure all references are correct
 
-6. REFINEMENT PHASE (If validation fails or you see issues)
-   - Analyze validation errors
-   - Use tools to understand what went wrong
-   - Fix issues systematically
-   - Re-validate until clean
+def _get_default_system_prompt() -> str:
+    """Fallback default system prompt if file not found."""
+    return """You are an expert {game} modder with access to powerful tools.
 
-7. FINALIZATION
-   - Output all files with delimiters: --- FILE: path/to/file.ext ---
-   - Include installation instructions in README.txt
-   - Note warnings or compatibility concerns
+YOUR WORKFLOW:
+1. Research using tools (3-6 tool calls max)
+2. Plan the mod (save_draft with name "plan")
+3. Generate mod files
+4. Validate using validate_json
+5. Output files with format: --- FILE: path/to/file.ext ---
 
-CRITICAL RULES:
-- ALWAYS research before generating (especially for complex mods)
-- ALWAYS create a plan (no exceptions, even for simple mods)
-- ALWAYS validate before finalizing
-- If stuck, use read_example_mod or search_documentation
-- Tool calls are cheap compared to regenerating broken mods - use them liberally
-- Iterate until the mod is actually good, not just "good enough"
-
-PHILOSOPHY:
-You're not a text generator - you're an AI modder. Think like a human expert would:
-research unfamiliar concepts, plan before coding, validate your work, and iterate
-until excellent. Your tools are your superpowers - use them.
-
-Remember: Quality > Speed. A working mod after 8 tool calls beats a broken mod in 1.
+CRITICAL: Don't get stuck researching. After 6 tool calls, START GENERATING.
 
 FILE OUTPUT FORMAT:
-When you're ready to output files, use this exact format:
-
 --- FILE: path/to/file.json ---
-{{
-  "content": "here"
-}}
-
---- FILE: another/file.txt ---
-Text content here
-
-Make sure each file path is relative to the mod root directory.
+{{"content": "here"}}
 """
 
 
@@ -90,7 +60,8 @@ def build_system_prompt(game: str, additional_context: str = "") -> str:
     Returns:
         Complete system prompt
     """
-    prompt = SYSTEM_PROMPT_TEMPLATE.format(game=game.upper())
+    template = load_prompt_template("system_prompt.txt")
+    prompt = template.format(game=game.upper())
 
     if additional_context:
         prompt += f"\n\nGAME-SPECIFIC NOTES:\n{additional_context}"
@@ -98,8 +69,41 @@ def build_system_prompt(game: str, additional_context: str = "") -> str:
     return prompt
 
 
+def build_refinement_prompt(game: str, current_files: Dict[str, str], feedback: str) -> str:
+    """Build prompt for refining an existing mod.
+
+    Args:
+        game: Game identifier
+        current_files: Dictionary of current mod files
+        feedback: User feedback for refinement
+
+    Returns:
+        Refinement prompt
+    """
+    template = load_prompt_template("refinement_prompt.txt")
+
+    # Format current files nicely
+    files_display = "\n".join([
+        f"--- FILE: {path} ---\n{content[:200]}{'...' if len(content) > 200 else ''}\n"
+        for path, content in current_files.items()
+    ])
+
+    game_notes = get_game_specific_notes(game)
+
+    prompt = template.format(
+        game=game.upper(),
+        current_files=files_display,
+        feedback=feedback
+    )
+
+    if game_notes:
+        prompt += f"\n\nGAME-SPECIFIC NOTES:\n{game_notes}"
+
+    return prompt
+
+
 def get_game_specific_notes(game: str) -> str:
-    """Get game-specific modding notes.
+    """Get game-specific modding notes from file.
 
     Args:
         game: Game identifier
@@ -107,28 +111,16 @@ def get_game_specific_notes(game: str) -> str:
     Returns:
         Game-specific notes to include in system prompt
     """
-    notes = {
-        "cdda": """
-- CDDA uses JSON format for mods
-- All IDs must be unique across the entire mod
-- modinfo.json is required in the mod root
-- Pay attention to units: volume (ml), weight (grams), damage (integer)
-- Use consistent naming: lowercase with underscores (e.g., "my_cool_item")
-""",
-        "rimworld": """
-- RimWorld uses XML format
-- Def names must be unique and use PascalCase
-- All mods need an About.xml file
-- Patches use XPath for modifications
-- Balance is critical - compare to vanilla values
-""",
-        "factorio": """
-- Factorio uses Lua for logic and data definitions
-- Prototypes define items, recipes, entities
-- info.json is required in mod root
-- Recipe ratios should maintain game balance
-- Use snake_case for internal names
-"""
-    }
+    prompts_dir = _get_prompts_dir()
+    notes_path = prompts_dir / "game_notes.json"
 
-    return notes.get(game, "")
+    if notes_path.exists():
+        with open(notes_path, 'r', encoding='utf-8') as f:
+            all_notes = json.load(f)
+            game_data = all_notes.get(game, {})
+            notes_list = game_data.get("notes", [])
+            if notes_list:
+                return "\n".join(f"- {note}" for note in notes_list)
+
+    # Fallback to empty if not found
+    return ""
