@@ -9,7 +9,7 @@ from datetime import datetime
 
 from ..openrouter_client import OpenRouterClient
 from .tool_executor import ToolExecutor
-from .system_prompt import build_system_prompt, get_game_specific_notes
+from .system_prompt import build_system_prompt, build_refinement_prompt, get_game_specific_notes
 
 logger = logging.getLogger(__name__)
 
@@ -211,6 +211,212 @@ class ModdingAgent:
                 "tool_calls": tool_call_log,
                 "iterations": iteration
             }
+
+    def refine_mod(
+        self,
+        game: str,
+        mod_path: Path,
+        feedback: str,
+        max_iterations: int = 10,
+        verbose: bool = False
+    ) -> Dict[str, Any]:
+        """Refine an existing mod based on user feedback.
+
+        Args:
+            game: Game identifier
+            mod_path: Path to the mod directory to refine
+            feedback: User feedback describing desired changes
+            max_iterations: Maximum number of iterations
+            verbose: Whether to log verbose output
+
+        Returns:
+            Dictionary containing refinement results
+        """
+        logger.info(f"Starting mod refinement for {mod_path}")
+        self._log_decision(f"Starting refinement: {feedback}")
+
+        # Load existing mod files
+        mod_path = Path(mod_path)
+        if not mod_path.exists():
+            return {
+                "success": False,
+                "error": f"Mod directory not found: {mod_path}"
+            }
+
+        current_files = self._load_mod_files(mod_path)
+        if not current_files:
+            return {
+                "success": False,
+                "error": f"No mod files found in {mod_path}"
+            }
+
+        self._log_decision(f"Loaded {len(current_files)} files from existing mod")
+
+        # Build refinement prompt
+        system_prompt = build_refinement_prompt(game, current_files, feedback)
+
+        # Initialize conversation
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": f"Please refine the mod based on this feedback: {feedback}"}
+        ]
+
+        iteration = 0
+        tool_call_log = []
+
+        try:
+            while iteration < max_iterations:
+                iteration += 1
+                self._log_decision(f"Refinement iteration {iteration}/{max_iterations}")
+
+                if verbose:
+                    logger.info(f"Iteration {iteration}/{max_iterations}")
+
+                # Call AI with tools
+                response = self.client.chat(
+                    messages=messages,
+                    tools=self.tool_executor.get_tool_definitions(),
+                    temperature=0.7,
+                    max_tokens=4000
+                )
+
+                # Check if AI wants to use tools
+                if response.has_tool_calls():
+                    tool_names = [tc.name for tc in response.tool_calls]
+                    self._log_decision(f"AI requested {len(response.tool_calls)} tool calls: {', '.join(tool_names)}")
+
+                    # Add assistant message with tool calls
+                    messages.append({
+                        "role": "assistant",
+                        "content": response.content,
+                        "tool_calls": [tc.to_dict() for tc in response.tool_calls]
+                    })
+
+                    # Execute each tool call
+                    for tool_call in response.tool_calls:
+                        if verbose:
+                            logger.info(f"Executing tool: {tool_call.name}")
+
+                        # Execute tool
+                        result = self.tool_executor.execute_tool(
+                            tool_call.name,
+                            tool_call.arguments
+                        )
+
+                        # Log tool call with result summary
+                        success = result.get("success", False)
+                        status = "✓" if success else "✗"
+                        result_summary = ""
+                        if success and result.get("data"):
+                            data = result["data"]
+                            if isinstance(data, dict):
+                                result_summary = f" -> {len(data)} items" if data else " -> empty"
+                            elif isinstance(data, list):
+                                result_summary = f" -> {len(data)} results"
+                        elif not success:
+                            result_summary = f" -> Error: {result.get('error', 'unknown')}"
+
+                        self._log_decision(f"  {status} {tool_call.name}{result_summary}")
+
+                        tool_call_log.append({
+                            "iteration": iteration,
+                            "tool": tool_call.name,
+                            "arguments": tool_call.arguments,
+                            "success": success
+                        })
+
+                        # Add tool result to messages
+                        messages.append({
+                            "role": "tool",
+                            "tool_call_id": tool_call.id,
+                            "content": json.dumps(result)
+                        })
+
+                    continue
+
+                # AI has final answer
+                if response.is_final():
+                    self._log_decision("AI provided refined output")
+                    return self._parse_final_output(
+                        response.content,
+                        tool_call_log,
+                        game,
+                        f"Refinement: {feedback}",
+                        iteration
+                    )
+
+                # If neither tool calls nor final content, something went wrong
+                logger.warning("Response has neither tool calls nor final content")
+                iteration += 1
+
+            # Max iterations exceeded - force output
+            self._log_decision(f"Max iterations ({max_iterations}) reached - requesting final output")
+
+            messages.append({
+                "role": "user",
+                "content": (
+                    "You have reached the maximum iteration limit. Please provide your refined mod output NOW. "
+                    "Output all files using the format:\n"
+                    "--- FILE: path/to/file.ext ---\n"
+                    "file content\n\n"
+                    "Even if incomplete, provide what you have."
+                )
+            })
+
+            final_response = self.client.chat(
+                messages=messages,
+                tools=None,
+                temperature=0.7,
+                max_tokens=4000
+            )
+
+            if final_response.content:
+                return self._parse_final_output(
+                    final_response.content,
+                    tool_call_log,
+                    game,
+                    f"Refinement: {feedback}",
+                    max_iterations + 1
+                )
+            else:
+                return {
+                    "success": False,
+                    "error": f"Refinement exhausted max iterations ({max_iterations}) without output.",
+                    "tool_calls": tool_call_log,
+                    "iterations": max_iterations
+                }
+
+        except Exception as e:
+            logger.error(f"Error during refinement: {e}")
+            return {
+                "success": False,
+                "error": str(e),
+                "tool_calls": tool_call_log,
+                "iterations": iteration
+            }
+
+    def _load_mod_files(self, mod_path: Path) -> Dict[str, str]:
+        """Load all files from a mod directory.
+
+        Args:
+            mod_path: Path to mod directory
+
+        Returns:
+            Dictionary mapping file paths to content
+        """
+        files = {}
+        for file_path in mod_path.rglob("*"):
+            if file_path.is_file():
+                # Skip binary files and common non-mod files
+                if file_path.suffix in ['.json', '.xml', '.lua', '.txt', '.md']:
+                    try:
+                        with open(file_path, 'r', encoding='utf-8') as f:
+                            content = f.read()
+                            rel_path = str(file_path.relative_to(mod_path))
+                            files[rel_path] = content
+                    except Exception as e:
+                        logger.warning(f"Could not read {file_path}: {e}")
+        return files
 
     def _parse_final_output(
         self,

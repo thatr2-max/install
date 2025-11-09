@@ -243,6 +243,142 @@ def create(game: str, description: str, output_dir: str, verbose: bool, max_iter
 
 
 @cli.command()
+@click.argument('game')
+@click.argument('mod_path', type=click.Path(exists=True))
+@click.argument('feedback')
+@click.option('--output-dir', default=None, help='Custom output directory')
+@click.option('--verbose', is_flag=True, help='Show detailed agent reasoning')
+@click.option('--max-iterations', default=10, help='Maximum iterations for agent')
+def refine(game: str, mod_path: str, feedback: str, output_dir: str, verbose: bool, max_iterations: int):
+    """Refine an existing mod based on feedback.
+
+    GAME: Game identifier (e.g., cdda, rimworld, factorio)
+    MOD_PATH: Path to the mod directory to refine
+    FEEDBACK: Description of desired changes
+    """
+    console.print(f"\n[bold blue]Refining mod for {game.upper()}[/bold blue]\n")
+    console.print(f"Mod: [cyan]{mod_path}[/cyan]")
+    console.print(f"Feedback: [italic]{feedback}[/italic]\n")
+
+    try:
+        # Load config
+        config = Config()
+
+        # Initialize client and agent
+        project_root = Path(__file__).parent
+        client = OpenRouterClient(
+            api_key=config.api_key,
+            base_url=config.base_url,
+            model=config.model,
+            log_dir=str(project_root / "logs"),
+            input_cost_per_1m=config.cost_tracking.get("input_cost_per_1m_tokens", 0.15),
+            output_cost_per_1m=config.cost_tracking.get("output_cost_per_1m_tokens", 1.50)
+        )
+
+        agent = ModdingAgent(
+            client=client,
+            project_root=project_root,
+            log_dir=project_root / "logs"
+        )
+
+        # Refine mod with progress
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            console=console
+        ) as progress:
+            task = progress.add_task("Refining mod...", total=None)
+
+            result = agent.refine_mod(
+                game=game,
+                mod_path=Path(mod_path),
+                feedback=feedback,
+                max_iterations=max_iterations,
+                verbose=verbose
+            )
+
+        # Check if successful
+        if not result.get("success"):
+            console.print(f"[red]✗ Refinement failed:[/red] {result.get('error')}")
+
+            # Show tool call summary even on failure
+            tool_calls = result.get("tool_calls", [])
+            if tool_calls:
+                console.print(f"\n[yellow]Tool calls made ({len(tool_calls)}):[/yellow]")
+                from collections import Counter
+                tool_counts = Counter(tc["tool"] for tc in tool_calls)
+                for tool_name, count in tool_counts.most_common():
+                    console.print(f"  • {tool_name}: {count}x")
+
+            console.print(f"\n[dim]Check logs/agent_decisions.log for details[/dim]")
+            return
+
+        # Display results
+        console.print("\n[green]✓ Mod refined successfully![/green]\n")
+
+        # Show files
+        files = result.get("files", {})
+        console.print(Panel(
+            f"[bold]Generated {len(files)} file(s)[/bold]",
+            style="green"
+        ))
+
+        for file_path in files.keys():
+            console.print(f"  📄 {file_path}")
+
+        # Save files
+        if output_dir is None:
+            # Save to same location with _refined suffix
+            original_path = Path(mod_path)
+            output_dir = original_path.parent / f"{original_path.name}_refined"
+        else:
+            output_dir = Path(output_dir)
+
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+        for file_path, content in files.items():
+            full_path = output_dir / file_path
+            full_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(full_path, 'w', encoding='utf-8') as f:
+                f.write(content)
+
+        console.print(f"\n[cyan]Refined mod saved to:[/cyan] {output_dir}")
+
+        # Show metadata
+        metadata = result.get("metadata", {})
+        console.print(f"\nIterations: [cyan]{metadata.get('iterations', 0)}[/cyan]")
+        console.print(f"Tool calls: [cyan]{metadata.get('tool_calls_count', 0)}[/cyan]")
+
+        # Show tool call breakdown if verbose
+        if verbose and metadata.get('tool_calls'):
+            from collections import Counter
+            tool_counts = Counter(tc["tool"] for tc in metadata['tool_calls'])
+            console.print("\n[dim]Tool breakdown:[/dim]")
+            for tool_name, count in tool_counts.most_common():
+                console.print(f"  [dim]• {tool_name}: {count}x[/dim]")
+
+        # Show cost
+        cost = client.get_total_cost()
+        console.print(f"\nTotal cost: [cyan]${cost:.4f}[/cyan]")
+
+        # Show warnings
+        warnings = result.get("warnings", [])
+        if warnings:
+            console.print("\n[yellow]Warnings:[/yellow]")
+            for warning in warnings:
+                console.print(f"  ⚠️  {warning}")
+
+        console.print("\n[green]Done![/green] 🎉\n")
+
+    except ValueError as e:
+        console.print(f"[red]Configuration Error:[/red] {str(e)}")
+        console.print("\nPlease check your config.json file.")
+    except Exception as e:
+        console.print(f"[red]Error:[/red] {str(e)}")
+        logger.exception("Refinement failed")
+
+
+@cli.command()
 def list():
     """List all learned games and their details."""
     project_root = Path(__file__).parent
