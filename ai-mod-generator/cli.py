@@ -163,6 +163,20 @@ def create(game: str, description: str, output_dir: str, verbose: bool, max_iter
         # Check if successful
         if not result.get("success"):
             console.print(f"[red]✗ Generation failed:[/red] {result.get('error')}")
+
+            # Show tool call summary even on failure
+            tool_calls = result.get("tool_calls", [])
+            if tool_calls:
+                console.print(f"\n[yellow]Tool calls made ({len(tool_calls)}):[/yellow]")
+                from collections import Counter
+                tool_counts = Counter(tc["tool"] for tc in tool_calls)
+                for tool_name, count in tool_counts.most_common():
+                    console.print(f"  • {tool_name}: {count}x")
+
+                if result.get("hint"):
+                    console.print(f"\n[cyan]Hint:[/cyan] {result['hint']}")
+
+            console.print(f"\n[dim]Check logs/agent_decisions.log for details[/dim]")
             return
 
         # Display results
@@ -199,9 +213,17 @@ def create(game: str, description: str, output_dir: str, verbose: bool, max_iter
         console.print(f"\nIterations: [cyan]{metadata.get('iterations', 0)}[/cyan]")
         console.print(f"Tool calls: [cyan]{metadata.get('tool_calls_count', 0)}[/cyan]")
 
+        # Show tool call breakdown if verbose
+        if verbose and metadata.get('tool_calls'):
+            from collections import Counter
+            tool_counts = Counter(tc["tool"] for tc in metadata['tool_calls'])
+            console.print("\n[dim]Tool breakdown:[/dim]")
+            for tool_name, count in tool_counts.most_common():
+                console.print(f"  [dim]• {tool_name}: {count}x[/dim]")
+
         # Show cost
         cost = client.get_total_cost()
-        console.print(f"Total cost: [cyan]${cost:.4f}[/cyan]")
+        console.print(f"\nTotal cost: [cyan]${cost:.4f}[/cyan]")
 
         # Show warnings
         warnings = result.get("warnings", [])

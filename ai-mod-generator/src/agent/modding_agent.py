@@ -85,7 +85,8 @@ class ModdingAgent:
 
                 # Check if AI wants to use tools
                 if response.has_tool_calls():
-                    self._log_decision(f"AI requested {len(response.tool_calls)} tool calls")
+                    tool_names = [tc.name for tc in response.tool_calls]
+                    self._log_decision(f"AI requested {len(response.tool_calls)} tool calls: {', '.join(tool_names)}")
 
                     # Add assistant message with tool calls
                     messages.append({
@@ -105,12 +106,26 @@ class ModdingAgent:
                             tool_call.arguments
                         )
 
-                        # Log tool call
+                        # Log tool call with result summary
+                        success = result.get("success", False)
+                        status = "✓" if success else "✗"
+                        result_summary = ""
+                        if success and result.get("data"):
+                            data = result["data"]
+                            if isinstance(data, dict):
+                                result_summary = f" -> {len(data)} items" if data else " -> empty"
+                            elif isinstance(data, list):
+                                result_summary = f" -> {len(data)} results"
+                        elif not success:
+                            result_summary = f" -> Error: {result.get('error', 'unknown')}"
+
+                        self._log_decision(f"  {status} {tool_call.name}{result_summary}")
+
                         tool_call_log.append({
                             "iteration": iteration,
                             "tool": tool_call.name,
                             "arguments": tool_call.arguments,
-                            "success": result.get("success", False)
+                            "success": success
                         })
 
                         # Add tool result to messages
@@ -137,11 +152,56 @@ class ModdingAgent:
                 logger.warning("Response has neither tool calls nor final content")
                 iteration += 1
 
-            # Max iterations exceeded
-            raise Exception(
-                f"Max iterations ({max_iterations}) exceeded. "
-                f"The mod may be incomplete. Consider increasing max_iterations."
+            # Max iterations exceeded - make one final attempt to get output
+            self._log_decision(f"Max iterations ({max_iterations}) reached - requesting final output")
+            logger.warning(f"Max iterations reached, forcing final output")
+
+            # Add a strong prompt to generate NOW
+            messages.append({
+                "role": "user",
+                "content": (
+                    "You have reached the maximum iteration limit. Please provide your final mod output NOW. "
+                    "Output all files using the format:\n"
+                    "--- FILE: path/to/file.ext ---\n"
+                    "file content\n\n"
+                    "Even if the mod is incomplete, provide what you have created so far. "
+                    "Do NOT call any more tools - just output the files."
+                )
+            })
+
+            # Make final call without tools to force text output
+            final_response = self.client.chat(
+                messages=messages,
+                tools=None,  # No tools available - must respond with text
+                temperature=0.7,
+                max_tokens=4000
             )
+
+            self._log_decision("Received forced final output")
+
+            if final_response.content:
+                return self._parse_final_output(
+                    final_response.content,
+                    tool_call_log,
+                    game,
+                    description,
+                    max_iterations + 1
+                )
+            else:
+                # Still no output - return error with tool history
+                self._log_decision("No output even after forcing - returning error")
+                return {
+                    "success": False,
+                    "error": (
+                        f"Agent exhausted max iterations ({max_iterations}) and did not produce output. "
+                        f"The agent made {len(tool_call_log)} tool calls but never moved to generation phase. "
+                        "Try: (1) Increasing max_iterations, (2) Simplifying the request, or "
+                        "(3) Checking if the schema/examples are properly set up."
+                    ),
+                    "tool_calls": tool_call_log,
+                    "iterations": max_iterations,
+                    "hint": "Agent may be stuck in research phase. Check logs to see what tools it's repeatedly calling."
+                }
 
         except Exception as e:
             logger.error(f"Error during generation: {e}")
