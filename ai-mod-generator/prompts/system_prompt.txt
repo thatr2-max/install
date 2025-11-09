@@ -69,9 +69,9 @@ FILE OUTPUT FORMAT:
 When you're ready to output files, use this exact format:
 
 --- FILE: path/to/file.json ---
-{
+{{
   "content": "here"
-}
+}}
 
 --- FILE: another/file.txt ---
 Text content here
