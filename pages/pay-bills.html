@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pay city bills, property taxes, utility bills, and parking tickets online">
+    <title>Pay Bills & Taxes - City Government Portal</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
+        <div class="header-container">
+            <h1 class="site-title">City Government Portal</h1>
+            <p class="site-tagline">Accessible Services for All Citizens</p>
+        </div>
+    </header>
+
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="accessibility.html">Accessibility</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main-content" role="main">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a> &gt; Pay Bills & Taxes
+        </nav>
+
+        <h1>Pay Bills & Taxes</h1>
+
+        <div class="alert alert-info" role="status">
+            <strong>Secure Payments:</strong> All online payments are processed through a secure, encrypted connection.
+        </div>
+
+        <section class="card">
+            <h2>Quick Payment</h2>
+            <p>Enter your account number to pay your bill online:</p>
+
+            <form action="#" method="post" aria-label="Quick payment form">
+                <div class="form-group">
+                    <label for="bill-type">Bill Type <span class="required" aria-label="required">*</span></label>
+                    <select id="bill-type" name="bill-type" required aria-required="true">
+                        <option value="">Select bill type</option>
+                        <option value="property-tax">Property Tax</option>
+                        <option value="water">Water & Sewer</option>
+                        <option value="parking">Parking Citation</option>
+                        <option value="business-tax">Business Tax</option>
+                        <option value="permit">Permit Fees</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="account-number">Account Number <span class="required" aria-label="required">*</span></label>
+                    <input type="text" id="account-number" name="account-number" required aria-required="true" placeholder="e.g., 123456789">
+                </div>
+
+                <button type="submit" class="btn">Continue to Payment</button>
+            </form>
+        </section>
+
+        <section class="card">
+            <h2>Payment Options</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Property Taxes</h3>
+                    <p>Pay your annual property taxes online, by mail, or in person.</p>
+                    <ul>
+                        <li>Annual tax bills</li>
+                        <li>Installment plans available</li>
+                        <li>Tax year: January 1 - December 31</li>
+                        <li>Due dates: April 1 & October 1</li>
+                    </ul>
+                    <p><strong>Payment Methods:</strong> Credit/Debit, eCheck, Mail, In-Person</p>
+                    <a href="#" class="btn">Pay Property Tax</a>
+                </div>
+
+                <div class="card">
+                    <h3>Water & Sewer Bills</h3>
+                    <p>Pay your monthly water and sewer utility bills.</p>
+                    <ul>
+                        <li>Monthly billing cycle</li>
+                        <li>Auto-pay enrollment</li>
+                        <li>Usage history</li>
+                        <li>Leak detection alerts</li>
+                    </ul>
+                    <p><strong>Payment Methods:</strong> Credit/Debit, eCheck, Auto-Pay</p>
+                    <a href="#" class="btn">Pay Water Bill</a>
+                </div>
+
+                <div class="card">
+                    <h3>Parking Citations</h3>
+                    <p>Pay parking tickets and view citation details.</p>
+                    <ul>
+                        <li>Pay by citation number</li>
+                        <li>View violation details</li>
+                        <li>Contest citation</li>
+                        <li>Payment plans for multiple tickets</li>
+                    </ul>
+                    <p><strong>Payment Methods:</strong> Credit/Debit, eCheck</p>
+                    <a href="#" class="btn">Pay Parking Ticket</a>
+                </div>
+
+                <div class="card">
+                    <h3>Business Taxes</h3>
+                    <p>Pay business license fees and commercial taxes.</p>
+                    <ul>
+                        <li>Annual business license</li>
+                        <li>Quarterly tax payments</li>
+                        <li>Penalty & interest calculator</li>
+                        <li>Business tax forms</li>
+                    </ul>
+                    <p><strong>Payment Methods:</strong> Credit/Debit, eCheck, Wire Transfer</p>
+                    <a href="#" class="btn">Pay Business Tax</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Payment Methods Accepted</h2>
+            <table>
+                <caption class="sr-only">Accepted payment methods by bill type</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Payment Method</th>
+                        <th scope="col">Processing Fee</th>
+                        <th scope="col">Processing Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Credit/Debit Card</th>
+                        <td>2.5% ($1.50 minimum)</td>
+                        <td>Immediate</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">eCheck (ACH)</th>
+                        <td>$0.50</td>
+                        <td>2-3 business days</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Auto-Pay</th>
+                        <td>Free</td>
+                        <td>On due date</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Check by Mail</th>
+                        <td>Free</td>
+                        <td>Allow 7-10 days</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">In-Person (Cash/Check)</th>
+                        <td>Free</td>
+                        <td>Immediate</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2>Set Up Auto-Pay</h2>
+            <p>Never miss a payment! Enroll in automatic payments for your water bill or property taxes.</p>
+            <h3>Benefits of Auto-Pay:</h3>
+            <ul>
+                <li>No late fees</li>
+                <li>No processing fees</li>
+                <li>Email confirmation for each payment</li>
+                <li>Cancel anytime</li>
+            </ul>
+            <a href="#" class="btn">Enroll in Auto-Pay</a>
+        </section>
+
+        <section class="card">
+            <h2>Payment Assistance Programs</h2>
+            <p>Financial assistance may be available for eligible residents:</p>
+            <ul>
+                <li><strong>Senior Citizen Property Tax Exemption:</strong> Residents 65+ may qualify for reduced property taxes</li>
+                <li><strong>Low-Income Utility Assistance:</strong> Help with water and sewer bills for qualifying households</li>
+                <li><strong>Payment Plans:</strong> Installment plans available for property taxes and large balances</li>
+                <li><strong>Hardship Programs:</strong> Special programs for residents facing financial difficulties</li>
+            </ul>
+            <p><a href="contact.html">Contact our Finance Department</a> to learn more about assistance programs.</p>
+        </section>
+
+        <section class="card">
+            <h2>Frequently Asked Questions</h2>
+            <h3>When are property taxes due?</h3>
+            <p>Property taxes are due in two installments: April 1 and October 1. Late payments incur a 1.5% monthly penalty.</p>
+
+            <h3>Can I view my payment history?</h3>
+            <p>Yes! Create an online account to view payment history, download receipts, and manage your accounts.</p>
+
+            <h3>What if I can't pay my bill in full?</h3>
+            <p>Contact us at (555) 123-4520 to discuss payment plan options.</p>
+
+            <h3>How do I dispute a charge?</h3>
+            <p>Submit a dispute form online or call the appropriate department listed on your bill.</p>
+        </section>
+
+        <section class="card">
+            <h2>Contact Billing Department</h2>
+            <p><strong>Phone:</strong> (555) 123-4520</p>
+            <p><strong>Email:</strong> billing@citygovernment.gov</p>
+            <p><strong>Office Hours:</strong> Monday-Friday, 8:00 AM - 5:00 PM</p>
+            <p><strong>Mailing Address:</strong> City Finance Department, 123 Main Street, Anytown, USA 12345</p>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 City Government. All rights reserved. | <a href="accessibility.html">Accessibility Statement</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

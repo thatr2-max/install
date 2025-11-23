@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Report potholes, streetlight outages, graffiti, and other municipal issues">
+    <title>Report an Issue - City Government Portal</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
+        <div class="header-container">
+            <h1 class="site-title">City Government Portal</h1>
+            <p class="site-tagline">Accessible Services for All Citizens</p>
+        </div>
+    </header>
+
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="accessibility.html">Accessibility</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main-content" role="main">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a> &gt; Report an Issue
+        </nav>
+
+        <h1>Report an Issue</h1>
+
+        <div class="alert alert-warning" role="alert">
+            <strong>Emergency?</strong> For emergencies, call 911 immediately. This form is for non-emergency issues only.
+        </div>
+
+        <section class="card">
+            <h2>Submit a Service Request</h2>
+            <p>Use this form to report non-emergency issues in your neighborhood. All fields marked with <span class="required" aria-label="required">*</span> are required.</p>
+
+            <form action="#" method="post" aria-label="Issue reporting form">
+                <div class="form-group">
+                    <label for="issue-type">Issue Type <span class="required" aria-label="required">*</span></label>
+                    <select id="issue-type" name="issue-type" required aria-required="true">
+                        <option value="">Select an issue type</option>
+                        <option value="pothole">Pothole</option>
+                        <option value="streetlight">Streetlight Outage</option>
+                        <option value="graffiti">Graffiti</option>
+                        <option value="trash">Missed Trash Pickup</option>
+                        <option value="sidewalk">Sidewalk Damage</option>
+                        <option value="tree">Tree Issue</option>
+                        <option value="drainage">Drainage Problem</option>
+                        <option value="sign">Traffic Sign Issue</option>
+                        <option value="noise">Noise Complaint</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location/Address <span class="required" aria-label="required">*</span></label>
+                    <input type="text" id="location" name="location" required aria-required="true" placeholder="Street address or intersection">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description <span class="required" aria-label="required">*</span></label>
+                    <textarea id="description" name="description" required aria-required="true" aria-describedby="description-help"></textarea>
+                    <small id="description-help">Please provide as much detail as possible about the issue</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="reporter-name">Your Name</label>
+                    <input type="text" id="reporter-name" name="reporter-name">
+                    <small>Optional - Anonymous reports are accepted</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="reporter-email">Email Address</label>
+                    <input type="email" id="reporter-email" name="reporter-email">
+                    <small>Optional - Receive status updates about your report</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="reporter-phone">Phone Number</label>
+                    <input type="tel" id="reporter-phone" name="reporter-phone">
+                    <small>Optional</small>
+                </div>
+
+                <button type="submit" class="btn">Submit Report</button>
+            </form>
+        </section>
+
+        <section class="card">
+            <h2>Common Issues We Handle</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Street & Road Issues</h3>
+                    <ul>
+                        <li>Potholes</li>
+                        <li>Damaged road surface</li>
+                        <li>Missing or faded pavement markings</li>
+                        <li>Debris in roadway</li>
+                        <li>Traffic signal problems</li>
+                    </ul>
+                    <p><strong>Response Time:</strong> 2-5 business days</p>
+                </div>
+
+                <div class="card">
+                    <h3>Streetlights & Signs</h3>
+                    <ul>
+                        <li>Streetlight outages</li>
+                        <li>Flickering lights</li>
+                        <li>Missing street signs</li>
+                        <li>Damaged traffic signs</li>
+                        <li>Graffiti on signs</li>
+                    </ul>
+                    <p><strong>Response Time:</strong> 1-3 business days</p>
+                </div>
+
+                <div class="card">
+                    <h3>Sidewalks & Trees</h3>
+                    <ul>
+                        <li>Damaged sidewalks</li>
+                        <li>Tree trimming needed</li>
+                        <li>Fallen branches</li>
+                        <li>Overgrown vegetation</li>
+                        <li>Accessibility barriers</li>
+                    </ul>
+                    <p><strong>Response Time:</strong> 3-7 business days</p>
+                </div>
+
+                <div class="card">
+                    <h3>Sanitation Issues</h3>
+                    <ul>
+                        <li>Missed trash pickup</li>
+                        <li>Damaged trash containers</li>
+                        <li>Illegal dumping</li>
+                        <li>Graffiti removal</li>
+                        <li>Litter accumulation</li>
+                    </ul>
+                    <p><strong>Response Time:</strong> 1-2 business days</p>
+                </div>
+
+                <div class="card">
+                    <h3>Water & Drainage</h3>
+                    <ul>
+                        <li>Water main breaks</li>
+                        <li>Sewer issues</li>
+                        <li>Clogged storm drains</li>
+                        <li>Standing water</li>
+                        <li>Drainage problems</li>
+                    </ul>
+                    <p><strong>Response Time:</strong> Emergency: immediate; Non-emergency: 1-3 days</p>
+                </div>
+
+                <div class="card">
+                    <h3>Code Violations</h3>
+                    <ul>
+                        <li>Property maintenance</li>
+                        <li>Tall grass/weeds</li>
+                        <li>Abandoned vehicles</li>
+                        <li>Illegal construction</li>
+                        <li>Zoning violations</li>
+                    </ul>
+                    <p><strong>Response Time:</strong> 5-10 business days</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Track Your Request</h2>
+            <p>Check the status of your service request:</p>
+            <form action="#" method="get" style="max-width: 500px;">
+                <div class="form-group">
+                    <label for="request-number">Request Number</label>
+                    <input type="text" id="request-number" name="request-number" placeholder="e.g., SR-2025-12345">
+                </div>
+                <button type="submit" class="btn">Check Status</button>
+            </form>
+        </section>
+
+        <section class="card">
+            <h2>What Happens After You Report?</h2>
+            <ol>
+                <li><strong>Submission:</strong> Your report is received and assigned a tracking number</li>
+                <li><strong>Review:</strong> City staff reviews your report and assigns it to the appropriate department</li>
+                <li><strong>Assessment:</strong> Field staff assesses the issue and determines the required action</li>
+                <li><strong>Resolution:</strong> Work is scheduled and completed</li>
+                <li><strong>Notification:</strong> If you provided contact information, you'll receive updates via email</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2>Frequently Asked Questions</h2>
+            <h3>Do I need to provide my name?</h3>
+            <p>No, anonymous reports are accepted. However, providing contact information allows us to update you on the status of your report.</p>
+
+            <h3>How long does it take to fix issues?</h3>
+            <p>Response times vary by issue type and severity. Emergency issues are addressed immediately, while routine maintenance may take several days.</p>
+
+            <h3>Can I attach photos?</h3>
+            <p>Yes! Photos help our staff better understand and address the issue. You can upload photos when submitting your report.</p>
+
+            <h3>What if the issue isn't resolved?</h3>
+            <p>Contact us at (555) 123-4530 with your request number, and we'll investigate the status.</p>
+        </section>
+
+        <section class="card">
+            <h2>Contact Information</h2>
+            <p><strong>Public Works Department</strong></p>
+            <p><strong>Phone:</strong> (555) 123-4530</p>
+            <p><strong>Email:</strong> publicworks@citygovernment.gov</p>
+            <p><strong>Office Hours:</strong> Monday-Friday, 7:00 AM - 4:00 PM</p>
+            <p><strong>24-Hour Emergency Line:</strong> (555) 123-9999</p>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 City Government. All rights reserved. | <a href="accessibility.html">Accessibility Statement</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
