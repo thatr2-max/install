@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Code enforcement, property maintenance, violations, and compliance">
+    <title>Code Enforcement - City Government Portal</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
+        <div class="header-container">
+            <h1 class="site-title">City Government Portal</h1>
+            <p class="site-tagline">Accessible Services for All Citizens</p>
+        </div>
+    </header>
+
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="accessibility.html">Accessibility</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main-content" role="main">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a> &gt; Code Enforcement
+        </nav>
+
+        <h1>Code Enforcement</h1>
+
+        <section class="card">
+            <h2>Our Mission</h2>
+            <p>The Code Enforcement Division works to maintain property standards and ensure compliance with city ordinances, protecting property values and quality of life for all residents.</p>
+        </section>
+
+        <section class="card">
+            <h2>Common Code Violations</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Property Maintenance</h3>
+                    <ul>
+                        <li>Overgrown grass/weeds (over 10 inches)</li>
+                        <li>Peeling paint or deteriorated structures</li>
+                        <li>Broken windows or doors</li>
+                        <li>Damaged roofs or siding</li>
+                        <li>Junk or debris accumulation</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Vehicles</h3>
+                    <ul>
+                        <li>Inoperable vehicles on property</li>
+                        <li>Unlicensed vehicles parked on street</li>
+                        <li>Commercial vehicles in residential areas</li>
+                        <li>Abandoned vehicles</li>
+                        <li>Parking on lawn or unpaved surfaces</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Zoning Violations</h3>
+                    <ul>
+                        <li>Unpermitted structures</li>
+                        <li>Home businesses without permits</li>
+                        <li>Illegal signs</li>
+                        <li>Setback violations</li>
+                        <li>Improper land use</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Nuisances</h3>
+                    <ul>
+                        <li>Excessive noise</li>
+                        <li>Outdoor storage violations</li>
+                        <li>Drainage problems</li>
+                        <li>Unsanitary conditions</li>
+                        <li>Rodent/pest infestations</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Report a Code Violation</h2>
+            <form action="#" method="post" aria-label="Code violation report form">
+                <div class="form-group">
+                    <label for="violation-type">Violation Type <span class="required" aria-label="required">*</span></label>
+                    <select id="violation-type" name="violation-type" required aria-required="true">
+                        <option value="">Select violation type</option>
+                        <option value="grass">Tall Grass/Weeds</option>
+                        <option value="vehicle">Inoperable Vehicle</option>
+                        <option value="junk">Junk/Debris</option>
+                        <option value="maintenance">Property Maintenance</option>
+                        <option value="zoning">Zoning Violation</option>
+                        <option value="sign">Illegal Sign</option>
+                        <option value="noise">Noise Violation</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="violation-address">Property Address <span class="required" aria-label="required">*</span></label>
+                    <input type="text" id="violation-address" name="violation-address" required aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="violation-description">Description <span class="required" aria-label="required">*</span></label>
+                    <textarea id="violation-description" name="violation-description" required aria-required="true"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="reporter-name">Your Name (Optional)</label>
+                    <input type="text" id="reporter-name" name="reporter-name">
+                    <small>Anonymous reports accepted</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="reporter-email">Email (Optional)</label>
+                    <input type="email" id="reporter-email" name="reporter-email">
+                    <small>Receive status updates</small>
+                </div>
+
+                <button type="submit" class="btn">Submit Report</button>
+            </form>
+        </section>
+
+        <section class="card">
+            <h2>Enforcement Process</h2>
+            <ol>
+                <li><strong>Complaint Received:</strong> Violation reported or observed during inspection</li>
+                <li><strong>Investigation:</strong> Code officer investigates complaint within 3-5 business days</li>
+                <li><strong>Notice of Violation:</strong> If violation confirmed, notice sent to property owner</li>
+                <li><strong>Compliance Period:</strong> Owner given time to correct violation (7-30 days depending on severity)</li>
+                <li><strong>Re-Inspection:</strong> Code officer verifies compliance</li>
+                <li><strong>Citation:</strong> If not corrected, citation issued with fines</li>
+                <li><strong>Legal Action:</strong> Continued non-compliance may result in court action</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2>Property Maintenance Standards</h2>
+            <h3>Lawn Care</h3>
+            <ul>
+                <li>Grass and weeds must be kept below 10 inches</li>
+                <li>Property must be free of noxious weeds</li>
+                <li>Trees and shrubs must not obstruct sidewalks or streets</li>
+            </ul>
+
+            <h3>Exterior Maintenance</h3>
+            <ul>
+                <li>Paint must be maintained in good condition</li>
+                <li>Roofs must be weather-tight and in good repair</li>
+                <li>Windows and doors must be intact and functional</li>
+                <li>Foundations and walls must be structurally sound</li>
+            </ul>
+
+            <h3>Storage</h3>
+            <ul>
+                <li>No outdoor storage of junk or inoperable equipment</li>
+                <li>Trash containers must be properly stored when not at curb</li>
+                <li>Construction materials must be properly stored</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Vehicle Regulations</h2>
+            <h3>Inoperable Vehicles</h3>
+            <p>Vehicles must be operable and currently licensed. Inoperable vehicles include those:</p>
+            <ul>
+                <li>Without current license plates</li>
+                <li>With flat tires or missing wheels</li>
+                <li>Obviously incapable of being driven</li>
+                <li>Damaged or wrecked</li>
+            </ul>
+
+            <h3>Parking Regulations</h3>
+            <ul>
+                <li>Vehicles must be parked on improved surfaces (not grass)</li>
+                <li>Commercial vehicles over 1 ton prohibited in residential zones</li>
+                <li>No parking in required setbacks</li>
+                <li>Maximum of 2 recreational vehicles per property</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Penalties & Fines</h2>
+            <table>
+                <caption class="sr-only">Code violation fines</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Violation Type</th>
+                        <th scope="col">Fine Amount</th>
+                        <th scope="col">Compliance Period</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Tall Grass/Weeds</th>
+                        <td>$100 + abatement costs</td>
+                        <td>7 days</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Inoperable Vehicle</th>
+                        <td>$150 per vehicle</td>
+                        <td>14 days</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Junk/Debris</th>
+                        <td>$100-$500</td>
+                        <td>14 days</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Property Maintenance</th>
+                        <td>$100-$500</td>
+                        <td>30 days</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Zoning Violation</th>
+                        <td>$200-$1,000</td>
+                        <td>30 days</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><em>Fines increase for repeat violations. Each day of continued violation may constitute a separate offense.</em></p>
+        </section>
+
+        <section class="card">
+            <h2>Appeals Process</h2>
+            <p>If you disagree with a code violation notice:</p>
+            <ol>
+                <li>File written appeal within 10 days of notice</li>
+                <li>Include your reasons for appeal and supporting documentation</li>
+                <li>Appeal will be reviewed by Code Enforcement Supervisor</li>
+                <li>You will receive written decision within 15 days</li>
+                <li>If appeal denied, you may request hearing before Board of Appeals</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2>Frequently Asked Questions</h2>
+            <h3>Can I report a violation anonymously?</h3>
+            <p>Yes, anonymous reports are accepted. However, providing contact information allows us to update you on the case status.</p>
+
+            <h3>How long does the property owner have to fix a violation?</h3>
+            <p>Compliance periods range from 7-30 days depending on the type and severity of violation.</p>
+
+            <h3>What if my neighbor doesn't comply?</h3>
+            <p>If violations are not corrected within the compliance period, we will issue citations and may pursue legal action.</p>
+
+            <h3>Can code enforcement enter my property?</h3>
+            <p>Code officers may observe violations visible from public areas. Entry onto private property requires permission or a warrant.</p>
+        </section>
+
+        <section class="card">
+            <h2>Contact Code Enforcement</h2>
+            <p><strong>Phone:</strong> (555) 123-4585</p>
+            <p><strong>Email:</strong> code@citygovernment.gov</p>
+            <p><strong>Office Hours:</strong> Monday-Friday, 8:00 AM - 5:00 PM</p>
+            <p><strong>Location:</strong> City Hall, 123 Main Street, 1st Floor</p>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 City Government. All rights reserved. | <a href="accessibility.html">Accessibility Statement</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
