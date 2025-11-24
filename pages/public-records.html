@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Request public records, meeting minutes, ordinances, and city documents">
+    <title>Public Records - City Government Portal</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
+        <div class="header-container">
+            <h1 class="site-title">City Government Portal</h1>
+            <p class="site-tagline">Accessible Services for All Citizens</p>
+        </div>
+    </header>
+
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="accessibility.html">Accessibility</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main-content" role="main">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a> &gt; Public Records
+        </nav>
+
+        <h1>Public Records Request</h1>
+
+        <div class="alert alert-info" role="status">
+            <strong>Public Access:</strong> Under state law, most city records are public and available for inspection or copying.
+        </div>
+
+        <section class="card">
+            <h2>Submit a Public Records Request</h2>
+            <p>Request access to public documents, meeting minutes, and city records. All fields marked with <span class="required" aria-label="required">*</span> are required.</p>
+
+            <form action="#" method="post" aria-label="Public records request form">
+                <div class="form-group">
+                    <label for="requester-name">Your Name <span class="required" aria-label="required">*</span></label>
+                    <input type="text" id="requester-name" name="requester-name" required aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required" aria-label="required">*</span></label>
+                    <input type="email" id="email" name="email" required aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="record-type">Type of Records <span class="required" aria-label="required">*</span></label>
+                    <select id="record-type" name="record-type" required aria-required="true">
+                        <option value="">Select record type</option>
+                        <option value="meeting-minutes">Meeting Minutes</option>
+                        <option value="ordinances">Ordinances & Resolutions</option>
+                        <option value="budget">Budget Documents</option>
+                        <option value="contracts">Contracts</option>
+                        <option value="permits">Permit Records</option>
+                        <option value="police">Police Reports</option>
+                        <option value="property">Property Records</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description of Records <span class="required" aria-label="required">*</span></label>
+                    <textarea id="description" name="description" required aria-required="true" aria-describedby="description-help"></textarea>
+                    <small id="description-help">Please be as specific as possible. Include dates, names, or other identifying information.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="date-range">Date Range</label>
+                    <input type="text" id="date-range" name="date-range" placeholder="e.g., January 2024 - December 2024">
+                </div>
+
+                <div class="form-group">
+                    <label for="format">Preferred Format</label>
+                    <select id="format" name="format">
+                        <option value="digital">Digital (PDF/Email)</option>
+                        <option value="paper">Paper Copies</option>
+                        <option value="inspection">In-Person Inspection</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn">Submit Request</button>
+            </form>
+        </section>
+
+        <section class="card">
+            <h2>Commonly Requested Records</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Meeting Minutes</h3>
+                    <p>Access official minutes from city council, planning commission, and board meetings.</p>
+                    <ul>
+                        <li>City Council minutes</li>
+                        <li>Planning Commission minutes</li>
+                        <li>Board & committee minutes</li>
+                        <li>Public hearing records</li>
+                    </ul>
+                    <p><strong>Availability:</strong> Immediate for approved minutes</p>
+                </div>
+
+                <div class="card">
+                    <h3>Ordinances & Resolutions</h3>
+                    <p>View city ordinances, resolutions, and municipal code.</p>
+                    <ul>
+                        <li>Municipal code</li>
+                        <li>Current ordinances</li>
+                        <li>Council resolutions</li>
+                        <li>Administrative regulations</li>
+                    </ul>
+                    <p><strong>Availability:</strong> Immediate online access</p>
+                </div>
+
+                <div class="card">
+                    <h3>Budget & Financial</h3>
+                    <p>Access city budget documents, financial reports, and audit reports.</p>
+                    <ul>
+                        <li>Annual budgets</li>
+                        <li>Financial statements</li>
+                        <li>Audit reports</li>
+                        <li>Expenditure reports</li>
+                    </ul>
+                    <p><strong>Availability:</strong> 1-3 business days</p>
+                </div>
+
+                <div class="card">
+                    <h3>Property Records</h3>
+                    <p>Access property tax assessments, zoning information, and permits.</p>
+                    <ul>
+                        <li>Property assessments</li>
+                        <li>Zoning information</li>
+                        <li>Building permits</li>
+                        <li>Code violations</li>
+                    </ul>
+                    <p><strong>Availability:</strong> 1-2 business days</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Public Records Fee Schedule</h2>
+            <table>
+                <caption class="sr-only">Fees for public records requests</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Service</th>
+                        <th scope="col">Fee</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Digital Records (Email/PDF)</th>
+                        <td>Free</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Paper Copies (Black & White)</th>
+                        <td>$0.10 per page</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Paper Copies (Color)</th>
+                        <td>$0.25 per page</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Certified Copies</th>
+                        <td>$5.00 per document</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Research Time (over 1 hour)</th>
+                        <td>$25.00 per hour</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CD/DVD</th>
+                        <td>$2.00</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><em>First hour of research time is free. Fees may be waived for requests in the public interest.</em></p>
+        </section>
+
+        <section class="card">
+            <h2>Response Timeline</h2>
+            <p>The city will respond to your public records request within the following timeframes:</p>
+            <ul>
+                <li><strong>Initial Response:</strong> Within 5 business days</li>
+                <li><strong>Simple Requests:</strong> Fulfilled within 10 business days</li>
+                <li><strong>Complex Requests:</strong> May require additional time; you will be notified of expected completion date</li>
+                <li><strong>Exempt Records:</strong> If records are exempt, you'll receive written explanation within 10 business days</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Exempt Records</h2>
+            <p>Certain records may be exempt from disclosure under state law, including:</p>
+            <ul>
+                <li>Ongoing criminal investigations</li>
+                <li>Personnel records and employee evaluations</li>
+                <li>Attorney-client privileged communications</li>
+                <li>Trade secrets and proprietary information</li>
+                <li>Student education records</li>
+                <li>Medical records</li>
+                <li>Ongoing litigation materials</li>
+            </ul>
+            <p>If your request includes exempt records, we will provide all non-exempt portions and explain any exemptions.</p>
+        </section>
+
+        <section class="card">
+            <h2>Frequently Asked Questions</h2>
+            <h3>How much do public records cost?</h3>
+            <p>Digital records are free. Paper copies cost $0.10 per page. Research time over one hour is charged at $25/hour.</p>
+
+            <h3>How long does it take to receive records?</h3>
+            <p>Simple requests are typically fulfilled within 10 business days. Complex requests may take longer.</p>
+
+            <h3>Can I inspect records in person?</h3>
+            <p>Yes! You can schedule an appointment to inspect records at City Hall during business hours at no charge.</p>
+
+            <h3>What if my request is denied?</h3>
+            <p>You will receive written explanation of any denial. You may appeal denials through the process outlined in the denial letter.</p>
+        </section>
+
+        <section class="card">
+            <h2>Contact Public Records Office</h2>
+            <p><strong>Phone:</strong> (555) 123-4575</p>
+            <p><strong>Email:</strong> records@citygovernment.gov</p>
+            <p><strong>Office Hours:</strong> Monday-Friday, 8:00 AM - 5:00 PM</p>
+            <p><strong>Location:</strong> City Hall, 123 Main Street, 1st Floor</p>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 City Government. All rights reserved. | <a href="accessibility.html">Accessibility Statement</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

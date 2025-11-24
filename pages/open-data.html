@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Open data portal, transparency, and public datasets">
+    <title>Open Data & Transparency - City Government Portal</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header role="banner">
+        <div class="header-container">
+            <h1 class="site-title">City Government Portal</h1>
+            <p class="site-tagline">Accessible Services for All Citizens</p>
+        </div>
+    </header>
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="accessibility.html">Accessibility</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main id="main-content" role="main">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a> &gt; Open Data & Transparency
+        </nav>
+        <h1>Open Data & Transparency</h1>
+        <section class="card">
+            <h2>Our Commitment</h2>
+            <p>The City is committed to transparency and making government data accessible to all citizens, researchers, and businesses.</p>
+        </section>
+        <section class="card">
+            <h2>Available Datasets</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Budget & Finance</h3>
+                    <ul>
+                        <li>Annual budgets (CSV, PDF)</li>
+                        <li>Expenditure data (CSV)</li>
+                        <li>Revenue data (CSV)</li>
+                        <li>Salary data (CSV)</li>
+                        <li>Contract data (CSV)</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary">Download</a>
+                </div>
+                <div class="card">
+                    <h3>Public Safety</h3>
+                    <ul>
+                        <li>Crime statistics (CSV)</li>
+                        <li>Traffic accidents (CSV)</li>
+                        <li>Fire incidents (CSV)</li>
+                        <li>EMS calls (CSV)</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary">Download</a>
+                </div>
+                <div class="card">
+                    <h3>City Services</h3>
+                    <ul>
+                        <li>311 service requests (CSV)</li>
+                        <li>Permits issued (CSV)</li>
+                        <li>Code violations (CSV)</li>
+                        <li>Inspections (CSV)</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary">Download</a>
+                </div>
+                <div class="card">
+                    <h3>Infrastructure</h3>
+                    <ul>
+                        <li>Street conditions (GeoJSON)</li>
+                        <li>Water quality (CSV)</li>
+                        <li>Park locations (GeoJSON)</li>
+                        <li>Capital projects (CSV)</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary">Download</a>
+                </div>
+            </div>
+        </section>
+        <section class="card">
+            <h2>Popular Datasets</h2>
+            <ol>
+                <li><a href="#">City Budget Data (FY 2025)</a> - 1,245 downloads</li>
+                <li><a href="#">Crime Statistics (2024)</a> - 987 downloads</li>
+                <li><a href="#">311 Service Requests</a> - 756 downloads</li>
+                <li><a href="#">Building Permits</a> - 654 downloads</li>
+                <li><a href="#">Employee Salaries</a> - 543 downloads</li>
+            </ol>
+        </section>
+        <section class="card">
+            <h2>Interactive Dashboards</h2>
+            <ul>
+                <li><a href="#">Budget Dashboard</a> - Explore city spending</li>
+                <li><a href="#">Crime Map</a> - View crime data by neighborhood</li>
+                <li><a href="#">Performance Metrics</a> - City service performance</li>
+                <li><a href="#">Development Map</a> - Current development projects</li>
+            </ul>
+        </section>
+        <section class="card">
+            <h2>Transparency Initiatives</h2>
+            <h3>Financial Transparency</h3>
+            <ul>
+                <li>Online checkbook - View all city expenditures</li>
+                <li>Contract database - Search all city contracts</li>
+                <li>Salary database - Employee compensation data</li>
+                <li>Vendor payments - Track payments to vendors</li>
+            </ul>
+            <h3>Performance Transparency</h3>
+            <ul>
+                <li>Department performance metrics</li>
+                <li>Service level agreements</li>
+                <li>Response time data</li>
+                <li>Customer satisfaction scores</li>
+            </ul>
+        </section>
+        <section class="card">
+            <h2>API Access</h2>
+            <p>Developers can access city data through our RESTful API:</p>
+            <ul>
+                <li><strong>API Documentation:</strong> <a href="#">developer.citygovernment.gov</a></li>
+                <li><strong>API Key:</strong> Free registration required</li>
+                <li><strong>Rate Limits:</strong> 1,000 requests/hour</li>
+                <li><strong>Formats:</strong> JSON, XML, CSV</li>
+            </ul>
+            <a href="#" class="btn">Get API Key</a>
+        </section>
+        <section class="card">
+            <h2>Data Request</h2>
+            <p>Don't see the data you need? Request a dataset:</p>
+            <form action="#" method="post" style="max-width: 600px;">
+                <div class="form-group">
+                    <label for="dataset-name">Your Name</label>
+                    <input type="text" id="dataset-name" name="dataset-name">
+                </div>
+                <div class="form-group">
+                    <label for="dataset-email">Email <span class="required">*</span></label>
+                    <input type="email" id="dataset-email" name="dataset-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="dataset-request">Dataset Request <span class="required">*</span></label>
+                    <textarea id="dataset-request" name="dataset-request" required></textarea>
+                </div>
+                <button type="submit" class="btn">Submit Request</button>
+            </form>
+        </section>
+        <section class="card">
+            <h2>Data Policy</h2>
+            <p>All datasets are provided under Creative Commons CC0 1.0 Universal license unless otherwise specified.</p>
+            <ul>
+                <li>Data is provided "as is"</li>
+                <li>Updated monthly (unless noted)</li>
+                <li>Privacy protected - no personal information</li>
+                <li>Attribution appreciated but not required</li>
+            </ul>
+        </section>
+        <section class="card">
+            <h2>Contact Open Data Team</h2>
+            <p><strong>Email:</strong> opendata@citygovernment.gov</p>
+            <p><strong>Phone:</strong> (555) 123-4590</p>
+        </section>
+    </main>
+    <footer role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 City Government. All rights reserved. | <a href="accessibility.html">Accessibility Statement</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

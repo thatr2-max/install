@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Apply for city permits and licenses online - building permits, business licenses, special events, and more">
+    <title>Permits & Licenses - City Government Portal</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
+        <div class="header-container">
+            <h1 class="site-title">City Government Portal</h1>
+            <p class="site-tagline">Accessible Services for All Citizens</p>
+        </div>
+    </header>
+
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="accessibility.html">Accessibility</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main-content" role="main">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a> &gt; Permits & Licenses
+        </nav>
+
+        <h1>Permits & Licenses</h1>
+
+        <div class="alert alert-info" role="status">
+            <strong>Need Help?</strong> Call our Permit Services Office at (555) 123-4570 or email permits@citygovernment.gov
+        </div>
+
+        <section class="card">
+            <h2>Apply for a Permit Online</h2>
+            <p>Complete the form below to submit your permit application. All fields marked with <span class="required" aria-label="required">*</span> are required.</p>
+
+            <form action="#" method="post" aria-label="Permit application form">
+                <div class="form-group">
+                    <label for="permit-type">Permit Type <span class="required" aria-label="required">*</span></label>
+                    <select id="permit-type" name="permit-type" required aria-required="true">
+                        <option value="">Select a permit type</option>
+                        <option value="building">Building Permit</option>
+                        <option value="business">Business License</option>
+                        <option value="event">Special Event Permit</option>
+                        <option value="pet">Pet License</option>
+                        <option value="parking">Parking Permit</option>
+                        <option value="sign">Sign Permit</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="applicant-name">Full Name <span class="required" aria-label="required">*</span></label>
+                    <input type="text" id="applicant-name" name="applicant-name" required aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required" aria-label="required">*</span></label>
+                    <input type="email" id="email" name="email" required aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number <span class="required" aria-label="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" required aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Property/Business Address <span class="required" aria-label="required">*</span></label>
+                    <input type="text" id="address" name="address" required aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Project Description <span class="required" aria-label="required">*</span></label>
+                    <textarea id="description" name="description" required aria-required="true" aria-describedby="description-help"></textarea>
+                    <small id="description-help">Please provide a detailed description of your project or permit request</small>
+                </div>
+
+                <button type="submit" class="btn">Submit Application</button>
+            </form>
+        </section>
+
+        <section class="card">
+            <h2>Permit Types & Requirements</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Building Permits</h3>
+                    <p>Required for construction, renovation, or structural changes.</p>
+                    <ul>
+                        <li>New construction</li>
+                        <li>Additions & renovations</li>
+                        <li>Electrical work</li>
+                        <li>Plumbing work</li>
+                        <li>HVAC installation</li>
+                    </ul>
+                    <p><strong>Processing Time:</strong> 5-10 business days</p>
+                    <p><strong>Fee:</strong> Varies by project scope</p>
+                </div>
+
+                <div class="card">
+                    <h3>Business Licenses</h3>
+                    <p>Required to operate a business within city limits.</p>
+                    <ul>
+                        <li>New business registration</li>
+                        <li>License renewal</li>
+                        <li>Home-based business</li>
+                        <li>Food service license</li>
+                        <li>Professional services</li>
+                    </ul>
+                    <p><strong>Processing Time:</strong> 3-5 business days</p>
+                    <p><strong>Fee:</strong> $50-$500 annually</p>
+                </div>
+
+                <div class="card">
+                    <h3>Special Event Permits</h3>
+                    <p>Required for public events and gatherings.</p>
+                    <ul>
+                        <li>Street festivals</li>
+                        <li>Parades</li>
+                        <li>Block parties</li>
+                        <li>Outdoor concerts</li>
+                        <li>Farmers markets</li>
+                    </ul>
+                    <p><strong>Processing Time:</strong> 30 days minimum</p>
+                    <p><strong>Fee:</strong> $100-$1,000</p>
+                </div>
+
+                <div class="card">
+                    <h3>Pet Licenses</h3>
+                    <p>Required for all dogs and cats within city limits.</p>
+                    <ul>
+                        <li>Dog licenses</li>
+                        <li>Cat licenses</li>
+                        <li>Rabies vaccination required</li>
+                        <li>Annual renewal</li>
+                        <li>Senior citizen discounts</li>
+                    </ul>
+                    <p><strong>Processing Time:</strong> Same day</p>
+                    <p><strong>Fee:</strong> $10-$25 annually</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Application Status</h2>
+            <p>Check the status of your existing permit application by entering your application number below:</p>
+            <form action="#" method="get" style="max-width: 500px;">
+                <div class="form-group">
+                    <label for="app-number">Application Number</label>
+                    <input type="text" id="app-number" name="app-number" placeholder="e.g., PRM-2025-12345">
+                </div>
+                <button type="submit" class="btn">Check Status</button>
+            </form>
+        </section>
+
+        <section class="card">
+            <h2>Frequently Asked Questions</h2>
+            <h3>How long does it take to process a permit?</h3>
+            <p>Processing times vary by permit type. Simple permits may be approved same-day, while complex building permits can take 5-10 business days.</p>
+
+            <h3>Can I track my application status online?</h3>
+            <p>Yes! Use the application status checker above with your application number to track progress.</p>
+
+            <h3>What payment methods are accepted?</h3>
+            <p>We accept credit/debit cards, checks, money orders, and cash (in person only).</p>
+
+            <h3>Do I need an inspection?</h3>
+            <p>Most building, electrical, and plumbing permits require inspections. Our office will contact you to schedule inspections after permit approval.</p>
+        </section>
+
+        <section class="card">
+            <h2>Contact Permit Services</h2>
+            <p><strong>Phone:</strong> (555) 123-4570</p>
+            <p><strong>Email:</strong> permits@citygovernment.gov</p>
+            <p><strong>Office Hours:</strong> Monday-Friday, 8:00 AM - 5:00 PM</p>
+            <p><strong>Location:</strong> City Hall, 123 Main Street, 2nd Floor</p>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 City Government. All rights reserved. | <a href="accessibility.html">Accessibility Statement</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

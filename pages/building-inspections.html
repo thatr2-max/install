@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Building inspections, code compliance, permit inspections, and safety standards">
+    <title>Building Inspections - City Government Portal</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
+        <div class="header-container">
+            <h1 class="site-title">City Government Portal</h1>
+            <p class="site-tagline">Accessible Services for All Citizens</p>
+        </div>
+    </header>
+
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="accessibility.html">Accessibility</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main-content" role="main">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a> &gt; Building Inspections
+        </nav>
+
+        <h1>Building Inspections</h1>
+
+        <section class="card">
+            <h2>Inspection Services</h2>
+            <p>The Building Inspections Division ensures construction compliance with building codes and safety standards.</p>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Building Inspections</h3>
+                    <ul>
+                        <li>New construction</li>
+                        <li>Additions & renovations</li>
+                        <li>Structural inspections</li>
+                        <li>Final inspections</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Electrical Inspections</h3>
+                    <ul>
+                        <li>Electrical service upgrades</li>
+                        <li>New wiring</li>
+                        <li>Panel replacements</li>
+                        <li>Commercial electrical</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Plumbing Inspections</h3>
+                    <ul>
+                        <li>New plumbing installations</li>
+                        <li>Water heater replacements</li>
+                        <li>Sewer connections</li>
+                        <li>Gas line inspections</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Mechanical Inspections</h3>
+                    <ul>
+                        <li>HVAC installations</li>
+                        <li>Furnace replacements</li>
+                        <li>Ductwork</li>
+                        <li>Commercial systems</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Schedule an Inspection</h2>
+            <p>Inspections must be requested at least 24 hours in advance.</p>
+
+            <h3>Request Inspection</h3>
+            <form action="#" method="post" aria-label="Inspection request form">
+                <div class="form-group">
+                    <label for="permit-number">Permit Number <span class="required" aria-label="required">*</span></label>
+                    <input type="text" id="permit-number" name="permit-number" required aria-required="true" placeholder="e.g., BP-2025-12345">
+                </div>
+
+                <div class="form-group">
+                    <label for="inspection-type">Inspection Type <span class="required" aria-label="required">*</span></label>
+                    <select id="inspection-type" name="inspection-type" required aria-required="true">
+                        <option value="">Select inspection type</option>
+                        <option value="foundation">Foundation</option>
+                        <option value="framing">Framing</option>
+                        <option value="plumbing-rough">Plumbing Rough-In</option>
+                        <option value="electrical-rough">Electrical Rough-In</option>
+                        <option value="mechanical">Mechanical</option>
+                        <option value="insulation">Insulation</option>
+                        <option value="drywall">Drywall</option>
+                        <option value="final">Final Inspection</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="inspection-date">Requested Date <span class="required" aria-label="required">*</span></label>
+                    <input type="date" id="inspection-date" name="inspection-date" required aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="property-address">Property Address <span class="required" aria-label="required">*</span></label>
+                    <input type="text" id="property-address" name="property-address" required aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-name">Contact Name <span class="required" aria-label="required">*</span></label>
+                    <input type="text" id="contact-name" name="contact-name" required aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-phone">Contact Phone <span class="required" aria-label="required">*</span></label>
+                    <input type="tel" id="contact-phone" name="contact-phone" required aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">Special Instructions</label>
+                    <textarea id="notes" name="notes"></textarea>
+                </div>
+
+                <button type="submit" class="btn">Request Inspection</button>
+            </form>
+
+            <h3>Alternative Methods</h3>
+            <ul>
+                <li><strong>Phone:</strong> (555) 123-4575</li>
+                <li><strong>Email:</strong> inspections@citygovernment.gov</li>
+                <li><strong>Automated Line:</strong> (555) 123-4576 (24/7)</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Inspection Process</h2>
+            <ol>
+                <li><strong>Request Inspection:</strong> Submit request at least 24 hours in advance</li>
+                <li><strong>Confirmation:</strong> Receive confirmation of inspection date</li>
+                <li><strong>Prepare Site:</strong> Ensure work area is accessible and ready</li>
+                <li><strong>Inspector Arrival:</strong> Inspector visits between 8:00 AM - 4:00 PM</li>
+                <li><strong>Inspection:</strong> Inspector examines work and documents findings</li>
+                <li><strong>Results:</strong> Pass/fail notice posted on-site and emailed</li>
+                <li><strong>Corrections:</strong> If failed, make corrections and request re-inspection</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2>Required Inspections</h2>
+            <table>
+                <caption class="sr-only">Required building inspections by project type</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Project Type</th>
+                        <th scope="col">Required Inspections</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">New Home Construction</th>
+                        <td>Foundation, Framing, Plumbing Rough, Electrical Rough, Mechanical, Insulation, Final</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Addition</th>
+                        <td>Foundation, Framing, Applicable Trade Inspections, Final</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Remodel</th>
+                        <td>Applicable Trade Inspections (electrical, plumbing, etc.), Final</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Electrical Service</th>
+                        <td>Electrical Rough-In (if applicable), Final Electrical</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Plumbing Work</th>
+                        <td>Plumbing Rough-In, Final Plumbing</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">HVAC Installation</th>
+                        <td>Mechanical Rough-In, Final Mechanical</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2>Inspection Results</h2>
+            <h3>Check Inspection Status</h3>
+            <form action="#" method="get" style="max-width: 500px;">
+                <div class="form-group">
+                    <label for="permit-lookup">Permit Number</label>
+                    <input type="text" id="permit-lookup" name="permit-lookup" placeholder="BP-2025-12345">
+                </div>
+                <button type="submit" class="btn">Check Status</button>
+            </form>
+
+            <h3>Result Types</h3>
+            <ul>
+                <li><strong>Approved:</strong> Work meets code requirements, proceed to next phase</li>
+                <li><strong>Approved with Conditions:</strong> Minor items noted, may proceed with corrections</li>
+                <li><strong>Failed:</strong> Corrections required before re-inspection</li>
+                <li><strong>Canceled:</strong> Inspection canceled (not ready, access issues, etc.)</li>
+            </ul>
+
+            <h3>Re-Inspections</h3>
+            <p>If inspection fails:</p>
+            <ul>
+                <li>Make all required corrections</li>
+                <li>Request re-inspection (no additional fee for first re-inspection)</li>
+                <li>Additional re-inspections: $75 fee</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Building Codes</h2>
+            <p>The City enforces the following codes:</p>
+            <ul>
+                <li><strong>International Building Code (IBC)</strong> - 2021 Edition</li>
+                <li><strong>International Residential Code (IRC)</strong> - 2021 Edition</li>
+                <li><strong>National Electrical Code (NEC)</strong> - 2020 Edition</li>
+                <li><strong>International Plumbing Code (IPC)</strong> - 2021 Edition</li>
+                <li><strong>International Mechanical Code (IMC)</strong> - 2021 Edition</li>
+                <li><strong>International Energy Conservation Code (IECC)</strong> - 2021 Edition</li>
+            </ul>
+            <a href="#" class="btn btn-secondary">View Code References</a>
+        </section>
+
+        <section class="card">
+            <h2>Frequently Asked Questions</h2>
+            <h3>When should I call for an inspection?</h3>
+            <p>Call when work is complete and ready for inspection, but before it's covered up. For example, call for framing inspection before installing drywall.</p>
+
+            <h3>Do I need to be present for the inspection?</h3>
+            <p>Not required, but recommended. Ensure the inspector has access to the work area.</p>
+
+            <h3>What if I fail an inspection?</h3>
+            <p>The inspector will note required corrections. Make corrections and request a re-inspection.</p>
+
+            <h3>How long is an inspection good for?</h3>
+            <p>Approved inspections remain valid for the life of the permit (typically 6-12 months).</p>
+        </section>
+
+        <section class="card">
+            <h2>Contact Building Inspections</h2>
+            <p><strong>Phone:</strong> (555) 123-4575</p>
+            <p><strong>Email:</strong> inspections@citygovernment.gov</p>
+            <p><strong>Office Hours:</strong> Monday-Friday, 8:00 AM - 4:30 PM</p>
+            <p><strong>Location:</strong> City Hall, 123 Main Street, 2nd Floor</p>
+            <p><strong>Automated Inspection Line:</strong> (555) 123-4576 (24/7)</p>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 City Government. All rights reserved. | <a href="accessibility.html">Accessibility Statement</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

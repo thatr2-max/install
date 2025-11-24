@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact city government departments, submit feedback, and find office locations">
+    <title>Contact Us - City Government Portal</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
+        <div class="header-container">
+            <h1 class="site-title">City Government Portal</h1>
+            <p class="site-tagline">Accessible Services for All Citizens</p>
+        </div>
+    </header>
+
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="accessibility.html">Accessibility</a></li>
+                <li><a href="contact.html" aria-current="page">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main-content" role="main">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a> &gt; Contact Us
+        </nav>
+
+        <h1>Contact Us</h1>
+
+        <section class="card">
+            <h2>General Contact Information</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div>
+                    <h3>City Hall</h3>
+                    <p><strong>Address:</strong><br>
+                    123 Main Street<br>
+                    Anytown, USA 12345</p>
+                    <p><strong>Phone:</strong> (555) 123-4567</p>
+                    <p><strong>Email:</strong> info@citygovernment.gov</p>
+                </div>
+                <div>
+                    <h3>Office Hours</h3>
+                    <p><strong>Monday - Friday:</strong><br>
+                    8:00 AM - 5:00 PM</p>
+                    <p><strong>Saturday - Sunday:</strong><br>
+                    Closed</p>
+                    <p><em>Closed on federal holidays</em></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Send Us a Message</h2>
+            <p>Have a question or feedback? Fill out the form below and we'll get back to you within 2 business days.</p>
+
+            <form action="#" method="post" aria-label="Contact form">
+                <div class="form-group">
+                    <label for="contact-name">Your Name <span class="required" aria-label="required">*</span></label>
+                    <input type="text" id="contact-name" name="contact-name" required aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-email">Email Address <span class="required" aria-label="required">*</span></label>
+                    <input type="email" id="contact-email" name="contact-email" required aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-phone">Phone Number</label>
+                    <input type="tel" id="contact-phone" name="contact-phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="department">Department <span class="required" aria-label="required">*</span></label>
+                    <select id="department" name="department" required aria-required="true">
+                        <option value="">Select a department</option>
+                        <option value="general">General Inquiry</option>
+                        <option value="mayor">Mayor's Office</option>
+                        <option value="finance">Finance</option>
+                        <option value="public-works">Public Works</option>
+                        <option value="police">Police</option>
+                        <option value="fire">Fire Department</option>
+                        <option value="parks">Parks & Recreation</option>
+                        <option value="planning">Planning & Zoning</option>
+                        <option value="hr">Human Resources</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject <span class="required" aria-label="required">*</span></label>
+                    <input type="text" id="subject" name="subject" required aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message <span class="required" aria-label="required">*</span></label>
+                    <textarea id="message" name="message" required aria-required="true" rows="6"></textarea>
+                </div>
+
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </section>
+
+        <section class="card">
+            <h2>Department Directory</h2>
+            <table>
+                <caption class="sr-only">City department contact information</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Department</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Mayor's Office</th>
+                        <td>(555) 123-4500</td>
+                        <td><a href="mailto:mayor@citygovernment.gov">mayor@citygovernment.gov</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">City Manager</th>
+                        <td>(555) 123-4510</td>
+                        <td><a href="mailto:citymanager@citygovernment.gov">citymanager@citygovernment.gov</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Finance</th>
+                        <td>(555) 123-4520</td>
+                        <td><a href="mailto:finance@citygovernment.gov">finance@citygovernment.gov</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Public Works</th>
+                        <td>(555) 123-4530</td>
+                        <td><a href="mailto:publicworks@citygovernment.gov">publicworks@citygovernment.gov</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Police (Non-Emergency)</th>
+                        <td>(555) 123-4540</td>
+                        <td><a href="mailto:police@citygovernment.gov">police@citygovernment.gov</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Fire Department</th>
+                        <td>(555) 123-4550</td>
+                        <td><a href="mailto:fire@citygovernment.gov">fire@citygovernment.gov</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Parks & Recreation</th>
+                        <td>(555) 123-4560</td>
+                        <td><a href="mailto:parks@citygovernment.gov">parks@citygovernment.gov</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Planning & Zoning</th>
+                        <td>(555) 123-4570</td>
+                        <td><a href="mailto:planning@citygovernment.gov">planning@citygovernment.gov</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Human Resources</th>
+                        <td>(555) 123-4580</td>
+                        <td><a href="mailto:hr@citygovernment.gov">hr@citygovernment.gov</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">IT Support</th>
+                        <td>(555) 123-4590</td>
+                        <td><a href="mailto:it@citygovernment.gov">it@citygovernment.gov</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>For a complete staff directory, visit our <a href="staff-directory.html">Staff Directory page</a>.</p>
+        </section>
+
+        <section class="card">
+            <h2>Emergency Contacts</h2>
+            <div class="alert alert-error" role="alert">
+                <strong>For All Emergencies:</strong> Dial 911
+            </div>
+            <table>
+                <caption class="sr-only">Emergency contact numbers</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Service</th>
+                        <th scope="col">Phone Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Police Emergency</th>
+                        <td>911</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Fire Emergency</th>
+                        <td>911</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Medical Emergency</th>
+                        <td>911</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Police Non-Emergency</th>
+                        <td>(555) 123-4540</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">After-Hours Public Works</th>
+                        <td>(555) 123-9999</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Poison Control</th>
+                        <td>1-800-222-1222</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2>City Hall Location</h2>
+            <p><strong>Address:</strong> 123 Main Street, Anytown, USA 12345</p>
+            <div class="alert alert-info">
+                <strong>Accessibility:</strong> City Hall is fully wheelchair accessible with:
+                <ul style="margin: 0.5rem 0 0 1.5rem;">
+                    <li>Accessible parking spaces</li>
+                    <li>Elevator to all floors</li>
+                    <li>Accessible restrooms</li>
+                    <li>Assistive listening devices</li>
+                    <li>Service animal friendly</li>
+                </ul>
+            </div>
+            <h3>Parking Information</h3>
+            <ul>
+                <li>Free parking in City Hall lot (200 spaces)</li>
+                <li>10 accessible parking spaces near entrance</li>
+                <li>Street parking available (2-hour limit)</li>
+                <li>Public parking garage 1 block away</li>
+            </ul>
+            <h3>Public Transportation</h3>
+            <ul>
+                <li>Bus Routes 5, 12, and 18 stop at City Hall</li>
+                <li>Bus stop is wheelchair accessible</li>
+                <li>Metro station 2 blocks away</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Social Media</h2>
+            <p>Stay connected with city news and updates:</p>
+            <ul>
+                <li><strong>Facebook:</strong> @CityGovernment</li>
+                <li><strong>Twitter:</strong> @OurCity</li>
+                <li><strong>Instagram:</strong> @CityOfAnytown</li>
+                <li><strong>YouTube:</strong> City Government Channel</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Accessibility Support</h2>
+            <p>We are committed to providing accessible services. If you need assistance:</p>
+            <ul>
+                <li>Sign language interpreters (48-hour notice requested)</li>
+                <li>Large print or braille materials</li>
+                <li>Assistive listening devices</li>
+                <li>Alternative formats for documents</li>
+            </ul>
+            <p>Contact our <a href="accessibility.html">Accessibility Coordinator</a> at (555) 123-4567 or <a href="mailto:accessibility@citygovernment.gov">accessibility@citygovernment.gov</a></p>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 City Government. All rights reserved. | <a href="accessibility.html">Accessibility Statement</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
