@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Weather updates, emergency alerts, severe weather information, and seasonal preparedness">
+    <title>Weather Alerts - City Government Portal</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
+        <div class="header-container">
+            <h1 class="site-title">City Government Portal</h1>
+            <p class="site-tagline">Accessible Services for All Citizens</p>
+        </div>
+    </header>
+
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="accessibility.html">Accessibility</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main-content" role="main">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a> &gt; Weather Alerts
+        </nav>
+
+        <h1>Weather Alerts</h1>
+
+        <div class="alert alert-success" role="alert">
+            <strong>Current Status:</strong> No active weather alerts<br>
+            Last updated: November 26, 2025 at 2:00 PM
+        </div>
+
+        <section class="card">
+            <h2>Current Weather Conditions</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Temperature</h3>
+                    <p style="font-size: 2em; margin: 0;">65°F</p>
+                    <p>Feels like: 63°F</p>
+                </div>
+
+                <div class="card">
+                    <h3>Conditions</h3>
+                    <p style="font-size: 1.5em; margin: 0;">Partly Cloudy</p>
+                    <p>Humidity: 55%</p>
+                </div>
+
+                <div class="card">
+                    <h3>Wind</h3>
+                    <p style="font-size: 1.5em; margin: 0;">10 mph</p>
+                    <p>Direction: NW</p>
+                </div>
+
+                <div class="card">
+                    <h3>Forecast</h3>
+                    <p>High: 68°F</p>
+                    <p>Low: 52°F</p>
+                    <p>Chance of rain: 20%</p>
+                </div>
+            </div>
+
+            <a href="#" class="btn btn-secondary">7-Day Forecast</a>
+        </section>
+
+        <section class="card">
+            <h2>Sign Up for Weather Alerts</h2>
+            <p>Receive severe weather warnings and emergency notifications via text, email, and phone.</p>
+
+            <form action="#" method="post" style="max-width: 500px;">
+                <div class="form-group">
+                    <label for="phone">Mobile Phone <span class="required" aria-label="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" required aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="language">Preferred Language</label>
+                    <select id="language" name="language">
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Alert Types:</label>
+                    <label><input type="checkbox" name="severe" checked> Severe Weather Warnings</label><br>
+                    <label><input type="checkbox" name="watches" checked> Weather Watches</label><br>
+                    <label><input type="checkbox" name="winter" checked> Winter Weather</label><br>
+                    <label><input type="checkbox" name="flood" checked> Flood Warnings</label><br>
+                    <label><input type="checkbox" name="heat" checked> Heat Advisories</label>
+                </div>
+
+                <button type="submit" class="btn">Subscribe to Alerts</button>
+            </form>
+        </section>
+
+        <section class="card">
+            <h2>Severe Weather Preparedness</h2>
+
+            <h3>Tornado Safety</h3>
+            <p><strong>Warning Signs:</strong> Dark greenish sky, large hail, loud roar</p>
+            <p><strong>What to Do:</strong></p>
+            <ul>
+                <li>Go to lowest level of building</li>
+                <li>Stay away from windows</li>
+                <li>Get under sturdy furniture</li>
+                <li>Cover head and neck</li>
+                <li>Stay in shelter until all clear</li>
+            </ul>
+
+            <h3>Severe Thunderstorm Safety</h3>
+            <ul>
+                <li>Go indoors immediately</li>
+                <li>Stay away from windows</li>
+                <li>Avoid electrical equipment and plumbing</li>
+                <li>Do not take a shower or bath</li>
+                <li>Unplug sensitive electronics</li>
+            </ul>
+
+            <h3>Lightning Safety</h3>
+            <p><strong>When Thunder Roars, Go Indoors!</strong></p>
+            <ul>
+                <li>Seek shelter in substantial building or hard-topped vehicle</li>
+                <li>Stay inside for 30 minutes after last thunder</li>
+                <li>If caught outside: crouch low, minimize contact with ground</li>
+                <li>Never shelter under trees</li>
+            </ul>
+
+            <a href="#" class="btn btn-secondary">Download Weather Safety Guide</a>
+        </section>
+
+        <section class="card">
+            <h2>Winter Weather Preparedness</h2>
+
+            <h3>Before Winter Weather</h3>
+            <ul>
+                <li>Service snow removal equipment</li>
+                <li>Stock up on salt/sand for walkways</li>
+                <li>Have generators serviced</li>
+                <li>Prepare emergency kit (flashlights, batteries, blankets)</li>
+                <li>Check heating system</li>
+                <li>Insulate pipes</li>
+            </ul>
+
+            <h3>During Winter Storms</h3>
+            <ul>
+                <li>Stay indoors if possible</li>
+                <li>Dress in layers if going outside</li>
+                <li>Avoid overexertion when shoveling</li>
+                <li>Keep dry and change wet clothing promptly</li>
+                <li>Drive only if necessary</li>
+            </ul>
+
+            <h3>Winter Weather Terms</h3>
+            <table>
+                <caption>Understanding winter weather alerts</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Alert Type</th>
+                        <th scope="col">Meaning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Winter Storm Watch</th>
+                        <td>Conditions are favorable for significant winter weather</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Winter Storm Warning</th>
+                        <td>Significant winter weather is occurring or imminent</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Blizzard Warning</th>
+                        <td>Sustained winds 35+ mph with heavy snow and low visibility</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Ice Storm Warning</th>
+                        <td>Significant ice accumulation expected</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a href="streets-traffic.html" class="btn btn-secondary">Snow Removal Information</a>
+        </section>
+
+        <section class="card">
+            <h2>Extreme Heat Preparedness</h2>
+
+            <h3>Heat Safety Tips</h3>
+            <ul>
+                <li>Stay in air-conditioned buildings</li>
+                <li>Drink plenty of water (even if not thirsty)</li>
+                <li>Avoid strenuous activity during hottest hours</li>
+                <li>Wear lightweight, light-colored clothing</li>
+                <li>Never leave children or pets in vehicles</li>
+                <li>Check on elderly neighbors</li>
+            </ul>
+
+            <h3>Heat-Related Illness</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>Heat Exhaustion</h4>
+                    <p><strong>Symptoms:</strong> Heavy sweating, weakness, nausea, headache</p>
+                    <p><strong>Treatment:</strong> Move to cool place, drink water, apply cool cloths</p>
+                </div>
+
+                <div class="card">
+                    <h4>Heat Stroke</h4>
+                    <p><strong>Symptoms:</strong> High body temp, confusion, loss of consciousness</p>
+                    <p><strong>Treatment:</strong> Call 911 immediately, move to cool place, cool body rapidly</p>
+                </div>
+            </div>
+
+            <h3>Cooling Centers</h3>
+            <p>When extreme heat warnings are issued, the city opens cooling centers at:</p>
+            <ul>
+                <li>Community Center - 500 Park Avenue</li>
+                <li>Public Library - 200 Library Lane</li>
+                <li>Senior Center - 300 Elder Street</li>
+            </ul>
+            <p><strong>Hours:</strong> 10:00 AM - 8:00 PM during heat emergencies</p>
+        </section>
+
+        <section class="card">
+            <h2>Flooding Preparedness</h2>
+
+            <h3>Flash Flood Safety</h3>
+            <ul>
+                <li>Never drive through flooded roadways</li>
+                <li>Move to higher ground immediately</li>
+                <li>Stay out of flood-prone areas</li>
+                <li>Monitor weather updates</li>
+                <li>Be prepared to evacuate</li>
+            </ul>
+
+            <h3>Flood Terms</h3>
+            <p><strong>Flood Watch:</strong> Flooding is possible</p>
+            <p><strong>Flood Warning:</strong> Flooding is occurring or imminent</p>
+            <p><strong>Flash Flood Warning:</strong> Rapid flooding in small creeks, streets, or low areas</p>
+
+            <h3>Flood Maps</h3>
+            <p>View flood risk maps and determine if your property is in a flood zone.</p>
+            <a href="#" class="btn btn-secondary">View Flood Maps</a>
+        </section>
+
+        <section class="card">
+            <h2>Emergency Supplies Kit</h2>
+            <p>Be prepared for severe weather with an emergency supplies kit containing:</p>
+
+            <h3>Basic Supplies</h3>
+            <ul>
+                <li>Water (1 gallon per person per day for 3 days)</li>
+                <li>Non-perishable food (3-day supply)</li>
+                <li>Battery or hand-crank radio (NOAA Weather Radio)</li>
+                <li>Flashlight and extra batteries</li>
+                <li>First aid kit</li>
+                <li>Medications (7-day supply)</li>
+                <li>Cell phone with chargers and backup battery</li>
+            </ul>
+
+            <h3>Additional Items</h3>
+            <ul>
+                <li>Important documents in waterproof container</li>
+                <li>Cash and credit cards</li>
+                <li>Blankets or sleeping bags</li>
+                <li>Change of clothing</li>
+                <li>Fire extinguisher</li>
+                <li>Matches in waterproof container</li>
+                <li>Pet supplies if applicable</li>
+            </ul>
+
+            <a href="#" class="btn btn-secondary">Download Preparedness Checklist</a>
+        </section>
+
+        <section class="card">
+            <h2>Weather Resources</h2>
+            <ul>
+                <li><a href="#">National Weather Service Forecast</a></li>
+                <li><a href="#">Radar & Satellite Images</a></li>
+                <li><a href="#">Current Conditions at Local Airport</a></li>
+                <li><a href="#">Historical Weather Data</a></li>
+                <li><a href="#">Climate Information</a></li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Report Weather Damage</h2>
+            <p>Report weather-related damage to city property or infrastructure.</p>
+            <p><strong>Emergency (life-threatening):</strong> Call 911</p>
+            <p><strong>Non-emergency damage:</strong> (555) 123-4500 or use the link below</p>
+            <a href="report-issue.html" class="btn">Report Non-Emergency Damage</a>
+        </section>
+
+        <section class="card">
+            <h2>Contact Emergency Management</h2>
+            <p><strong>Office:</strong> (555) 123-4580</p>
+            <p><strong>Email:</strong> emergency@citygovernment.gov</p>
+            <p><strong>Emergency:</strong> Call 911</p>
+            <p><strong>Non-Emergency:</strong> Call 311</p>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 City Government. All rights reserved. | <a href="accessibility.html">Accessibility Statement</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

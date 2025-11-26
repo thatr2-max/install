@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Street repairs, pothole reporting, snow removal, street sweeping, and road maintenance">
+    <title>Street Maintenance - City Government Portal</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
+        <div class="header-container">
+            <h1 class="site-title">City Government Portal</h1>
+            <p class="site-tagline">Accessible Services for All Citizens</p>
+        </div>
+    </header>
+
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="accessibility.html">Accessibility</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main-content" role="main">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a> &gt; Street Maintenance
+        </nav>
+
+        <h1>Street Maintenance</h1>
+
+        <section class="card">
+            <h2>Report a Pothole</h2>
+            <p>Help us keep our streets safe by reporting potholes and road damage.</p>
+
+            <form action="#" method="post" style="max-width: 500px;">
+                <div class="form-group">
+                    <label for="location">Location <span class="required" aria-label="required">*</span></label>
+                    <input type="text" id="location" name="location" required aria-required="true" placeholder="Street address or intersection">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description <span class="required" aria-label="required">*</span></label>
+                    <textarea id="description" name="description" rows="4" required aria-required="true" placeholder="Size and location of pothole"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="severity">Severity</label>
+                    <select id="severity" name="severity">
+                        <option value="minor">Minor (less than 3 inches deep)</option>
+                        <option value="moderate">Moderate (3-6 inches deep)</option>
+                        <option value="severe">Severe (more than 6 inches deep or hazardous)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="reporter-name">Your Name</label>
+                    <input type="text" id="reporter-name" name="reporter-name">
+                </div>
+
+                <div class="form-group">
+                    <label for="reporter-phone">Phone Number</label>
+                    <input type="tel" id="reporter-phone" name="reporter-phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="reporter-email">Email</label>
+                    <input type="email" id="reporter-email" name="reporter-email">
+                </div>
+
+                <button type="submit" class="btn">Submit Report</button>
+            </form>
+
+            <h3>Response Times</h3>
+            <ul>
+                <li><strong>Severe (hazardous):</strong> Within 24 hours</li>
+                <li><strong>Moderate:</strong> Within 3-5 business days</li>
+                <li><strong>Minor:</strong> Within 2 weeks</li>
+            </ul>
+
+            <p><strong>Emergency (immediate hazard):</strong> Call (555) 123-4500</p>
+        </section>
+
+        <section class="card">
+            <h2>Street Repair & Resurfacing</h2>
+            <p>The city maintains over 500 miles of streets and roads.</p>
+
+            <h3>Ongoing Maintenance Activities</h3>
+            <ul>
+                <li>Pothole patching</li>
+                <li>Crack sealing</li>
+                <li>Street resurfacing</li>
+                <li>Pavement marking</li>
+                <li>Sign installation and repair</li>
+                <li>Traffic signal maintenance</li>
+            </ul>
+
+            <h3>Current Street Projects</h3>
+            <p>View active street maintenance and construction projects in your area.</p>
+            <a href="public-works-projects.html" class="btn">View Current Projects</a>
+
+            <h3>Request Street Repair</h3>
+            <p>Report street damage, faded pavement markings, or damaged street signs.</p>
+            <a href="report-issue.html" class="btn btn-secondary">Report Street Issue</a>
+        </section>
+
+        <section class="card">
+            <h2>Snow Removal</h2>
+            <p>The city's snow removal operations keep roads safe and passable during winter weather.</p>
+
+            <h3>Snow Removal Priority Routes</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>Priority 1</h4>
+                    <p><strong>Major arterials, highways, emergency routes</strong></p>
+                    <p>Cleared first during snow events</p>
+                </div>
+
+                <div class="card">
+                    <h4>Priority 2</h4>
+                    <p><strong>Collector streets, bus routes, hills</strong></p>
+                    <p>Cleared after Priority 1 routes</p>
+                </div>
+
+                <div class="card">
+                    <h4>Priority 3</h4>
+                    <p><strong>Residential streets</strong></p>
+                    <p>Cleared after Priority 1 and 2</p>
+                </div>
+            </div>
+
+            <a href="#" class="btn btn-secondary">View Snow Route Map</a>
+
+            <h3>Snow Removal Operations</h3>
+            <p>Snow plowing begins when accumulation reaches 2 inches. Crews work 24/7 during snow events.</p>
+
+            <h4>What We Do</h4>
+            <ul>
+                <li>Plow and salt main roads first</li>
+                <li>Clear residential streets after main roads</li>
+                <li>Remove snow from downtown business district</li>
+                <li>Clear snow from fire hydrants and catch basins</li>
+            </ul>
+
+            <h4>What Residents Can Do</h4>
+            <ul>
+                <li>Park cars off streets during snow events</li>
+                <li>Do not push snow into streets</li>
+                <li>Clear sidewalks adjacent to your property</li>
+                <li>Keep fire hydrants clear of snow</li>
+                <li>Be patient - crews work as quickly as safely possible</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Sidewalk Maintenance</h2>
+            <p>Property owners are responsible for maintaining sidewalks adjacent to their property.</p>
+
+            <h3>Property Owner Responsibilities</h3>
+            <ul>
+                <li>Keep sidewalks in good repair</li>
+                <li>Remove snow and ice within 24 hours of snowfall</li>
+                <li>Trim vegetation encroaching on sidewalks</li>
+                <li>Repair damaged sidewalks</li>
+            </ul>
+
+            <h3>Report Sidewalk Issues</h3>
+            <p>Report damaged, uneven, or hazardous sidewalks.</p>
+            <a href="report-issue.html" class="btn btn-secondary">Report Sidewalk Problem</a>
+
+            <h3>Sidewalk Repair Program</h3>
+            <p>The city offers a cost-share program for sidewalk repairs. Eligible property owners pay 50% of repair costs.</p>
+            <a href="#" class="btn btn-secondary">Learn About Cost-Share Program</a>
+        </section>
+
+        <section class="card">
+            <h2>Street Sweeping</h2>
+            <p>Regular street sweeping keeps our streets clean and storm drains clear.</p>
+
+            <h3>Sweeping Schedule</h3>
+            <p><strong>Season:</strong> April through October</p>
+            <p><strong>Frequency:</strong> Each street swept monthly</p>
+
+            <h3>Find Your Sweeping Day</h3>
+            <form action="#" method="get" style="max-width: 500px;">
+                <div class="form-group">
+                    <label for="sweep-address">Enter Your Address <span class="required" aria-label="required">*</span></label>
+                    <input type="text" id="sweep-address" name="sweep-address" required aria-required="true">
+                </div>
+                <button type="submit" class="btn">Find Sweeping Schedule</button>
+            </form>
+
+            <h3>Parking During Street Sweeping</h3>
+            <ul>
+                <li>Move vehicles off streets on sweeping days</li>
+                <li>Sweeping occurs between 7:00 AM - 3:00 PM</li>
+                <li>Vehicles may be ticketed if not moved</li>
+                <li>Help us keep streets clean by moving your car</li>
+            </ul>
+
+            <a href="#" class="btn btn-secondary">View Full Sweeping Map</a>
+        </section>
+
+        <section class="card">
+            <h2>Alley Maintenance</h2>
+            <p>The city maintains public alleys for vehicle access.</p>
+
+            <h3>Alley Services</h3>
+            <ul>
+                <li>Grading and leveling</li>
+                <li>Pothole repair</li>
+                <li>Snow removal (emergency routes only)</li>
+                <li>Weed control</li>
+            </ul>
+
+            <h3>Report Alley Problems</h3>
+            <p>Report alley maintenance issues such as potholes, drainage problems, or overgrown vegetation.</p>
+            <a href="report-issue.html" class="btn btn-secondary">Report Alley Issue</a>
+        </section>
+
+        <section class="card">
+            <h2>Traffic Signs & Signals</h2>
+            <p>Report damaged, missing, or malfunctioning traffic control devices.</p>
+
+            <h3>Common Issues</h3>
+            <ul>
+                <li>Missing or damaged street signs</li>
+                <li>Faded or missing pavement markings</li>
+                <li>Malfunctioning traffic signals</li>
+                <li>Damaged guardrails</li>
+                <li>Broken streetlights</li>
+            </ul>
+
+            <h3>Report Traffic Device Issues</h3>
+            <p><strong>Malfunctioning signals:</strong> Call (555) 123-4500 immediately</p>
+            <p><strong>Other issues:</strong> Use online reporting system</p>
+            <a href="report-issue.html" class="btn">Report Traffic Device Issue</a>
+
+            <h3>Request New Signs</h3>
+            <p>Request installation of new traffic signs such as stop signs, speed limit signs, or street name signs.</p>
+            <a href="#" class="btn btn-secondary">Submit Sign Request</a>
+        </section>
+
+        <section class="card">
+            <h2>Street Light Outages</h2>
+            <p>Report non-working street lights to help keep neighborhoods safe and well-lit.</p>
+
+            <h3>Report Outage</h3>
+            <form action="#" method="post" style="max-width: 500px;">
+                <div class="form-group">
+                    <label for="light-location">Nearest Address or Pole Number <span class="required" aria-label="required">*</span></label>
+                    <input type="text" id="light-location" name="light-location" required aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="light-issue">Problem</label>
+                    <select id="light-issue" name="light-issue">
+                        <option value="out">Light is out</option>
+                        <option value="flickering">Light is flickering</option>
+                        <option value="on-all-day">Light stays on during day</option>
+                        <option value="damaged">Pole or fixture is damaged</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn">Submit Report</button>
+            </form>
+
+            <p><strong>Response Time:</strong> Most repairs completed within 3-5 business days</p>
+        </section>
+
+        <section class="card">
+            <h2>Right-of-Way Permits</h2>
+            <p>Permits required for work in public right-of-way.</p>
+
+            <h3>Activities Requiring Permits</h3>
+            <ul>
+                <li>Driveway installation or modification</li>
+                <li>Utility work in streets</li>
+                <li>Street cuts or excavation</li>
+                <li>Installation of signs or structures</li>
+                <li>Special events affecting streets</li>
+            </ul>
+
+            <a href="permits.html" class="btn">Apply for ROW Permit</a>
+        </section>
+
+        <section class="card">
+            <h2>Street Maintenance Statistics</h2>
+            <h3>FY 2025 Accomplishments</h3>
+            <ul>
+                <li><strong>Potholes Repaired:</strong> 5,234</li>
+                <li><strong>Streets Resurfaced:</strong> 45 miles</li>
+                <li><strong>Snow Events:</strong> 18 (532 hours of operations)</li>
+                <li><strong>Salt Applied:</strong> 2,400 tons</li>
+                <li><strong>Streets Swept:</strong> 500 miles (monthly)</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Contact Street Maintenance</h2>
+            <p><strong>Phone:</strong> (555) 123-4500</p>
+            <p><strong>Email:</strong> streets@citygovernment.gov</p>
+            <p><strong>Emergency (after hours):</strong> (555) 123-4501</p>
+            <p><strong>Address:</strong> Public Works Department, 400 Service Drive</p>
+            <p><strong>Hours:</strong> Monday - Friday, 7:00 AM - 3:30 PM</p>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 City Government. All rights reserved. | <a href="accessibility.html">Accessibility Statement</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
