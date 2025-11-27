@@ -7,6 +7,7 @@
     <title>Springfield City Government Portal - Accessible Services</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/accessibility-widget.css">
+    <script src="assets/js/config-loader.js"></script>
 </head>
 <body>
     <!-- Skip to Main Content Link for Accessibility -->
@@ -55,7 +56,13 @@
 
     <!-- Main Content -->
     <main id="main-content" role="main">
-        <h1>Welcome to Springfield City Government Portal</h1>
+        <!-- Municipality Banner -->
+        <div class="municipality-banner-container">
+            <img id="municipality-banner"
+                 src="assets/images/banner.svg"
+                 alt="Welcome to Springfield City Government Portal"
+                 class="municipality-banner">
+        </div>
 
         <div class="alert alert-info" role="status">
             <strong>Accessibility First:</strong> This website is designed to be accessible to all users, including those using assistive technologies. Use the accessibility widget in the bottom-right corner to customize your experience. If you encounter any accessibility barriers, please <a href="pages/contact.html">contact us</a>.
