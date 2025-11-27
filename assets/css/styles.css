@@ -494,6 +494,41 @@ a:hover {
   text-decoration: underline;
 }
 
+/* Buttons in Combined Banner Navigation */
+.main-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-top: 0.25rem;
+}
+
+.main-navigation button {
+  background: none;
+  border: none;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  transition: background-color 0.2s;
+  font-weight: 500;
+  border-radius: 4px;
+  margin: 0 0.125rem 0.125rem 0;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: block;
+}
+
+.main-navigation button:hover,
+.main-navigation button:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+  text-decoration: underline;
+}
+
+/* Active button styling */
+.main-navigation button[aria-current="page"] {
+  background-color: rgba(255, 255, 255, 0.2);
+  font-weight: bold;
+}
+
 /* Quick Links Section - Small Buttons at Top */
 .quick-links-section-top {
   background: transparent;
