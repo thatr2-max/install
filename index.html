@@ -13,24 +13,25 @@
     <!-- Skip to Main Content Link for Accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- Header -->
-    <header role="banner">
-        <div class="header-container">
-            <h1 class="site-title">Springfield City Government Portal</h1>
+    <!-- Combined Banner with Navigation -->
+    <div class="combined-banner">
+        <div class="banner-content">
+            <h1 class="site-title">City Government Portal</h1>
             <p class="site-tagline">Accessible Services for All Citizens</p>
+            <div class="main-navigation" role="navigation" aria-label="Main navigation">
+                <button onclick="window.location.href='index.html'" aria-current="page">Home</button>
+                <button onclick="window.location.href='pages/accessibility.html'">Accessibility</button>
+                <button onclick="window.location.href='pages/contact.html'">Contact Us</button>
+                <button onclick="window.location.href='pages/permits.html'">Permits</button>
+                <button onclick="window.location.href='pages/pay-bills.html'">Pay Bills</button>
+                <button onclick="window.location.href='pages/report-issue.html'">Report Issue</button>
+                <button onclick="window.location.href='pages/public-records.html'">Public Records</button>
+                <button onclick="window.location.href='pages/events.html'">Events</button>
+                <button onclick="window.location.href='pages/council-meetings.html'">City Council</button>
+                <button onclick="window.location.href='pages/staff-directory.html'">Staff Directory</button>
+            </div>
         </div>
-    </header>
-
-    <!-- Main Navigation -->
-    <nav role="navigation" aria-label="Main navigation">
-        <div class="nav-container">
-            <ul>
-                <li><a href="index.html" aria-current="page">Home</a></li>
-                <li><a href="pages/accessibility.html">Accessibility</a></li>
-                <li><a href="pages/contact.html">Contact Us</a></li>
-            </ul>
-        </div>
-    </nav>
+    </div>
 
     <!-- Quick Action Buttons -->
     <div class="quick-actions-bar">
@@ -56,17 +57,7 @@
 
     <!-- Main Content -->
     <main id="main-content" role="main">
-        <!-- Municipality Banner -->
-        <div class="municipality-banner-container">
-            <img id="municipality-banner"
-                 src="assets/images/banner.svg"
-                 alt="Welcome to Springfield City Government Portal"
-                 class="municipality-banner">
-        </div>
-
-        <div class="alert alert-info" role="status">
-            <strong>Accessibility First:</strong> This website is designed to be accessible to all users, including those using assistive technologies. Use the accessibility widget in the bottom-right corner to customize your experience. If you encounter any accessibility barriers, please <a href="pages/contact.html">contact us</a>.
-        </div>
+        <h1>Welcome to Our Demo Site!</h1>
 
         <!-- Services Grid -->
         <h2>All Services</h2>
@@ -324,12 +315,7 @@
             </div>
         </div>
 
-        <!-- Accessibility Statement Link -->
-        <section class="card" style="margin-top: 2rem; background-color: #f7fafc;">
-            <h2>Commitment to Accessibility</h2>
-            <p>We are committed to ensuring digital accessibility for all people, including those with disabilities. We are continually improving the user experience and applying relevant accessibility standards.</p>
-            <p><a href="pages/accessibility.html" class="btn">View Our Accessibility Statement</a></p>
-        </section>
+        
     </main>
 
     <!-- Footer -->
