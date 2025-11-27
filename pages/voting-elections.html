@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Voter registration, polling locations, election dates, and voting information">
+    <title>Voting & Elections - City Government Portal</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
+        <div class="header-container">
+            <h1 class="site-title">City Government Portal</h1>
+            <p class="site-tagline">Accessible Services for All Citizens</p>
+        </div>
+    </header>
+
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="accessibility.html">Accessibility</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main-content" role="main">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a> &gt; Voting & Elections
+        </nav>
+
+        <h1>Voting & Elections</h1>
+
+        <div class="alert alert-info" role="alert">
+            <strong>Next Election:</strong> General Election - November 5, 2025<br>
+            Early voting begins October 20, 2025
+        </div>
+
+        <section class="card">
+            <h2>Voter Registration</h2>
+            <p>Register to vote or update your voter registration information.</p>
+
+            <h3>Eligibility Requirements</h3>
+            <p>To register to vote, you must:</p>
+            <ul>
+                <li>Be a U.S. citizen</li>
+                <li>Be at least 18 years old by election day</li>
+                <li>Be a resident of the county</li>
+                <li>Not be a convicted felon (unless rights restored)</li>
+                <li>Not be declared mentally incapacitated by a court</li>
+            </ul>
+
+            <h3>How to Register</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>Online Registration</h4>
+                    <p>Register online with a valid driver's license or state ID.</p>
+                    <a href="#" class="btn">Register Online</a>
+                </div>
+
+                <div class="card">
+                    <h4>By Mail</h4>
+                    <p>Download, complete, and mail the voter registration form.</p>
+                    <a href="#" class="btn btn-secondary">Download Form</a>
+                </div>
+
+                <div class="card">
+                    <h4>In Person</h4>
+                    <p>Visit the Elections Office during business hours.</p>
+                    <p><strong>Hours:</strong> Mon-Fri, 8:00 AM - 5:00 PM</p>
+                </div>
+            </div>
+
+            <h3>Registration Deadlines</h3>
+            <p><strong>General Election:</strong> October 6, 2025</p>
+            <p>You must register at least 30 days before an election.</p>
+
+            <a href="#" class="btn">Check Registration Status</a>
+        </section>
+
+        <section class="card">
+            <h2>Polling Locations</h2>
+            <p>Find your polling place based on your residential address.</p>
+
+            <form action="#" method="get" style="max-width: 500px;">
+                <div class="form-group">
+                    <label for="address">Enter Your Address <span class="required" aria-label="required">*</span></label>
+                    <input type="text" id="address" name="address" required aria-required="true" placeholder="123 Main St">
+                </div>
+
+                <div class="form-group">
+                    <label for="zip">ZIP Code <span class="required" aria-label="required">*</span></label>
+                    <input type="text" id="zip" name="zip" required aria-required="true" pattern="[0-9]{5}" placeholder="12345">
+                </div>
+
+                <button type="submit" class="btn">Find My Polling Place</button>
+            </form>
+
+            <h3>All Polling Locations</h3>
+            <p>Polling places are open from 7:00 AM to 7:00 PM on election day.</p>
+            <a href="#" class="btn btn-secondary">View All Locations</a>
+        </section>
+
+        <section class="card">
+            <h2>Early Voting</h2>
+            <p>Vote early at any designated early voting location in the county.</p>
+
+            <h3>Early Voting Period</h3>
+            <p><strong>Dates:</strong> October 20 - November 1, 2025</p>
+
+            <h3>Early Voting Locations & Hours</h3>
+            <table>
+                <caption>Early voting sites and operating hours</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Location</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Hours</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">City Hall</th>
+                        <td>100 Main Street</td>
+                        <td>Mon-Sat: 8 AM - 6 PM, Sun: 12 PM - 5 PM</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Community Center</th>
+                        <td>500 Park Avenue</td>
+                        <td>Mon-Sat: 8 AM - 6 PM, Sun: 12 PM - 5 PM</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Public Library</th>
+                        <td>200 Library Lane</td>
+                        <td>Mon-Fri: 9 AM - 5 PM</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2>Absentee Voting</h2>
+            <p>Vote by mail if you cannot vote in person on election day.</p>
+
+            <h3>Who Can Vote Absentee</h3>
+            <ul>
+                <li>Military members and their families</li>
+                <li>Citizens living overseas</li>
+                <li>College students away from home</li>
+                <li>Voters who will be out of county on election day</li>
+                <li>Persons with disabilities</li>
+                <li>Voters age 65 or older</li>
+            </ul>
+
+            <h3>How to Request Absentee Ballot</h3>
+            <ol>
+                <li>Submit absentee ballot application</li>
+                <li>Receive ballot by mail</li>
+                <li>Complete and return ballot by deadline</li>
+            </ol>
+
+            <p><strong>Application Deadline:</strong> October 29, 2025</p>
+            <p><strong>Ballot Return Deadline:</strong> November 5, 2025 at 7:00 PM</p>
+
+            <a href="#" class="btn">Request Absentee Ballot</a>
+        </section>
+
+        <section class="card">
+            <h2>Election Calendar</h2>
+            <table>
+                <caption>Upcoming election dates and deadlines</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Event</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Voter Registration Deadline</th>
+                        <td>October 6, 2025</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Early Voting Begins</th>
+                        <td>October 20, 2025</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Early Voting Ends</th>
+                        <td>November 1, 2025</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Election Day</th>
+                        <td>November 5, 2025</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2>Election Results</h2>
+            <p>View current and past election results.</p>
+            <ul>
+                <li><a href="#">Current Election Results</a></li>
+                <li><a href="#">2024 General Election Results</a></li>
+                <li><a href="#">2024 Primary Election Results</a></li>
+                <li><a href="#">Historical Election Results</a></li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Candidate Information</h2>
+            <p>Learn about candidates running for office.</p>
+            <ul>
+                <li><a href="#">View Candidates on Ballot</a></li>
+                <li><a href="#">Candidate Filing Information</a></li>
+                <li><a href="#">Campaign Finance Reports</a></li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Contact Elections Office</h2>
+            <p><strong>Address:</strong> 100 Main Street, Room 150</p>
+            <p><strong>Phone:</strong> (555) 123-4500</p>
+            <p><strong>Email:</strong> elections@citygovernment.gov</p>
+            <p><strong>Hours:</strong> Monday - Friday, 8:00 AM - 5:00 PM</p>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 City Government. All rights reserved. | <a href="accessibility.html">Accessibility Statement</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
