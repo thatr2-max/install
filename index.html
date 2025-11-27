@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Accessible government services portal - Your gateway to city services, permits, public records, and community resources">
-    <title>City Government Portal - Accessible Services</title>
+    <title>Springfield City Government Portal - Accessible Services</title>
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/accessibility-widget.css">
+    <script src="assets/js/config-loader.js"></script>
 </head>
 <body>
     <!-- Skip to Main Content Link for Accessibility -->
@@ -28,6 +30,28 @@
                 <button onclick="window.location.href='pages/council-meetings.html'">City Council</button>
                 <button onclick="window.location.href='pages/staff-directory.html'">Staff Directory</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Quick Action Buttons -->
+    <div class="quick-actions-bar">
+        <div class="quick-actions-container">
+            <a href="pages/permits.html" class="quick-action-btn">
+                <span class="quick-action-icon">📋</span>
+                <span class="quick-action-text">Get a Permit</span>
+            </a>
+            <a href="pages/pay-bills.html" class="quick-action-btn">
+                <span class="quick-action-icon">💳</span>
+                <span class="quick-action-text">Pay Bills</span>
+            </a>
+            <a href="pages/report-issue.html" class="quick-action-btn">
+                <span class="quick-action-icon">⚠️</span>
+                <span class="quick-action-text">Report Issue</span>
+            </a>
+            <a href="pages/public-records.html" class="quick-action-btn">
+                <span class="quick-action-icon">📄</span>
+                <span class="quick-action-text">Request Records</span>
+            </a>
         </div>
     </div>
 
@@ -340,5 +364,8 @@
             </div>
         </div>
     </footer>
+
+    <!-- Accessibility Widget Script -->
+    <script src="assets/js/accessibility.js"></script>
 </body>
 </html>
