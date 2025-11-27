@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration Builder - Springfield City Government Portal</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        /* Configuration Builder Specific Styles */
+        .config-builder-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .config-builder-header h1 {
+            color: white;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .config-builder-controls {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem auto;
+            max-width: 1200px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .config-builder-controls button {
+            margin: 0.5rem;
+        }
+
+        .config-indicator {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            max-width: 300px;
+            z-index: 999;
+        }
+
+        .config-indicator h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .config-stats {
+            margin: 1rem 0;
+        }
+
+        .config-stat {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: #f7fafc;
+            border-radius: 6px;
+        }
+
+        /* Highlighting for configurable elements */
+        .configurable-element {
+            position: relative;
+            outline: 2px dashed transparent;
+            transition: outline 0.3s ease;
+        }
+
+        .configurable-element:hover {
+            outline: 2px dashed #667eea;
+        }
+
+        .configurable-element.excluded {
+            opacity: 0.4;
+            position: relative;
+        }
+
+        .configurable-element.excluded::after {
+            content: '✕ EXCLUDED';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 0, 0, 0.9);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .exclusion-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: red;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            z-index: 5;
+        }
+
+        .click-hint {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .config-mode-active {
+            border: 3px solid #667eea !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="config-builder-header">
+        <h1>🎨 Configuration Builder</h1>
+        <p>Double-click any element to toggle it for inclusion/exclusion</p>
+        <div class="config-builder-controls">
+            <button onclick="configBuilder.resetAll()" class="btn">Reset All (Include Everything)</button>
+            <button onclick="configBuilder.downloadConfig()" class="btn" style="background: #2f855a;">Download Configuration</button>
+            <button onclick="configBuilder.exitBuilder()" class="btn btn-secondary">Exit Builder Mode</button>
+        </div>
+    </div>
+
+    <div class="config-indicator">
+        <h3>Configuration Status</h3>
+        <div class="config-stats">
+            <div class="config-stat">
+                <span>Quick Actions:</span>
+                <span id="stat-quick-actions">4 / 4</span>
+            </div>
+            <div class="config-stat">
+                <span>Homepage Cards:</span>
+                <span id="stat-cards">18 / 18</span>
+            </div>
+            <div class="config-stat">
+                <span>Footer Links:</span>
+                <span id="stat-footer">12 / 12</span>
+            </div>
+        </div>
+        <p style="font-size: 0.85rem; color: #666; margin-top: 1rem;">
+            <strong>How to use:</strong><br>
+            Double-click any card, button, or footer link to exclude it from your configuration.
+        </p>
+    </div>
+
+    <div class="click-hint">
+        👆 Double-click elements to configure
+    </div>
+
+    <!-- The rest is the normal index.html content -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
+        <div class="header-container">
+            <h1 class="site-title">Springfield City Government Portal</h1>
+            <p class="site-tagline">Accessible Services for All Citizens</p>
+        </div>
+    </header>
+
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="pages/accessibility.html">Accessibility</a></li>
+                <li><a href="pages/contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="quick-actions-bar">
+        <div class="quick-actions-container">
+            <a href="#" class="quick-action-btn configurable-element" data-config-type="quick_actions" data-config-id="permits">
+                <span class="quick-action-icon">📋</span>
+                <span class="quick-action-text">Get a Permit</span>
+            </a>
+            <a href="#" class="quick-action-btn configurable-element" data-config-type="quick_actions" data-config-id="pay_bills">
+                <span class="quick-action-icon">💳</span>
+                <span class="quick-action-text">Pay Bills</span>
+            </a>
+            <a href="#" class="quick-action-btn configurable-element" data-config-type="quick_actions" data-config-id="report_issue">
+                <span class="quick-action-icon">⚠️</span>
+                <span class="quick-action-text">Report Issue</span>
+            </a>
+            <a href="#" class="quick-action-btn configurable-element" data-config-type="quick_actions" data-config-id="public_records">
+                <span class="quick-action-icon">📄</span>
+                <span class="quick-action-text">Request Records</span>
+            </a>
+        </div>
+    </div>
+
+    <main id="main-content" role="main">
+        <div class="municipality-banner-container">
+            <img id="municipality-banner"
+                 src="assets/images/banner.svg"
+                 alt="Welcome to Springfield City Government Portal"
+                 class="municipality-banner">
+        </div>
+
+        <div class="alert alert-info" role="status">
+            <strong>Builder Mode Active:</strong> You are in configuration builder mode. Double-click any card or button to toggle its inclusion in the final configuration.
+        </div>
+
+        <h2>All Services</h2>
+        <div class="grid">
+            <div class="card configurable-element" data-config-type="homepage_cards" data-config-id="permits_licenses">
+                <h3>Permits & Licenses</h3>
+                <p>Apply for building permits, business licenses, and other city permits online.</p>
+            </div>
+
+            <div class="card configurable-element" data-config-type="homepage_cards" data-config-id="pay_bills_taxes">
+                <h3>Pay Bills & Taxes</h3>
+                <p>Pay your property taxes, utility bills, and traffic citations securely online.</p>
+            </div>
+
+            <div class="card configurable-element" data-config-type="homepage_cards" data-config-id="report_issue">
+                <h3>Report an Issue</h3>
+                <p>Report potholes, street light outages, graffiti, and other municipal issues.</p>
+            </div>
+
+            <div class="card configurable-element" data-config-type="homepage_cards" data-config-id="public_records">
+                <h3>Public Records</h3>
+                <p>Request access to public documents, meeting minutes, and city records.</p>
+            </div>
+
+            <div class="card configurable-element" data-config-type="homepage_cards" data-config-id="community_events">
+                <h3>Community Events</h3>
+                <p>Find upcoming community events, festivals, and city-sponsored activities.</p>
+            </div>
+
+            <div class="card configurable-element" data-config-type="homepage_cards" data-config-id="staff_directory">
+                <h3>Staff Directory</h3>
+                <p>Contact city officials, department heads, and municipal staff members.</p>
+            </div>
+
+            <div class="card configurable-element" data-config-type="homepage_cards" data-config-id="careers">
+                <h3>Employment & Careers</h3>
+                <p>Explore job opportunities with the city and submit employment applications.</p>
+            </div>
+
+            <div class="card configurable-element" data-config-type="homepage_cards" data-config-id="city_council">
+                <h3>City Council</h3>
+                <p>View meeting schedules, agendas, and watch live or archived council meetings.</p>
+            </div>
+
+            <div class="card configurable-element" data-config-type="homepage_cards" data-config-id="public_services">
+                <h3>Public Services</h3>
+                <p>Information about water, trash collection, recycling, and other utilities.</p>
+            </div>
+
+            <div class="card configurable-element" data-config-type="homepage_cards" data-config-id="parks_recreation">
+                <h3>Parks & Recreation</h3>
+                <p>Discover parks, trails, recreation programs, and facility reservations.</p>
+            </div>
+
+            <div class="card configurable-element" data-config-type="homepage_cards" data-config-id="public_safety">
+                <h3>Public Safety</h3>
+                <p>Access police and fire department resources, emergency alerts, and safety tips.</p>
+            </div>
+
+            <div class="card configurable-element" data-config-type="homepage_cards" data-config-id="planning_zoning">
+                <h3>Planning & Zoning</h3>
+                <p>View zoning maps, development plans, and planning commission information.</p>
+            </div>
+
+            <div class="card configurable-element" data-config-type="homepage_cards" data-config-id="business_resources">
+                <h3>Business Resources</h3>
+                <p>Resources for starting, operating, and growing a business in our city.</p>
+            </div>
+
+            <div class="card configurable-element" data-config-type="homepage_cards" data-config-id="resident_services">
+                <h3>Resident Services</h3>
+                <p>Services for residents including voter registration, vehicle tags, and more.</p>
+            </div>
+
+            <div class="card configurable-element" data-config-type="homepage_cards" data-config-id="faqs">
+                <h3>FAQs</h3>
+                <p>Find answers to frequently asked questions about city services.</p>
+            </div>
+
+            <div class="card configurable-element" data-config-type="homepage_cards" data-config-id="news">
+                <h3>News & Press Releases</h3>
+                <p>Stay informed with the latest city news and official announcements.</p>
+            </div>
+
+            <div class="card configurable-element" data-config-type="homepage_cards" data-config-id="forms">
+                <h3>Forms & Documents</h3>
+                <p>Download and submit official city forms and documents.</p>
+            </div>
+
+            <div class="card configurable-element" data-config-type="homepage_cards" data-config-id="contact">
+                <h3>Contact Us</h3>
+                <p>Get in touch with city departments and submit feedback or questions.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li class="configurable-element" data-config-type="footer_links" data-config-id="accessibility"><a href="#">Accessibility</a></li>
+                        <li class="configurable-element" data-config-type="footer_links" data-config-id="contact"><a href="#">Contact Us</a></li>
+                        <li class="configurable-element" data-config-type="footer_links" data-config-id="faqs"><a href="#">FAQs</a></li>
+                        <li class="configurable-element" data-config-type="footer_links" data-config-id="careers"><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li class="configurable-element" data-config-type="footer_links" data-config-id="permits"><a href="#">Permits</a></li>
+                        <li class="configurable-element" data-config-type="footer_links" data-config-id="pay_bills"><a href="#">Pay Bills</a></li>
+                        <li class="configurable-element" data-config-type="footer_links" data-config-id="report_issue"><a href="#">Report Issue</a></li>
+                        <li class="configurable-element" data-config-type="footer_links" data-config-id="public_records"><a href="#">Public Records</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Government</h3>
+                    <ul>
+                        <li class="configurable-element" data-config-type="footer_links" data-config-id="council_meetings"><a href="#">City Council</a></li>
+                        <li class="configurable-element" data-config-type="footer_links" data-config-id="staff_directory"><a href="#">Staff Directory</a></li>
+                        <li class="configurable-element" data-config-type="footer_links" data-config-id="news"><a href="#">News</a></li>
+                        <li class="configurable-element" data-config-type="footer_links" data-config-id="forms"><a href="#">Forms</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/config-builder.js"></script>
+</body>
+</html>

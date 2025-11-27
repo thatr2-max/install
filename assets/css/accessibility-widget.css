@@ -70,21 +70,22 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.25rem 1.5rem;
-  background: linear-gradient(135deg, var(--primary-color, #0066cc) 0%, var(--primary-dark, #004080) 100%);
-  color: white;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  background: white;
+  color: var(--text-color, #1a202c);
+  border-bottom: 3px solid var(--primary-color, #0066cc);
 }
 
 .accessibility-panel-header h2 {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 700;
+  color: var(--text-color, #1a202c);
 }
 
 .accessibility-close {
   background: transparent;
   border: none;
-  color: white;
+  color: var(--text-color, #1a202c);
   font-size: 2rem;
   line-height: 1;
   cursor: pointer;
@@ -100,7 +101,7 @@
 
 .accessibility-close:hover,
 .accessibility-close:focus {
-  background: rgba(255, 255, 255, 0.2);
+  background: #f7fafc;
 }
 
 .accessibility-panel-content {
