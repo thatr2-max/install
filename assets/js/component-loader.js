@@ -31,9 +31,20 @@ class ComponentLoader {
     if (!footerElement) return;
 
     let html = this.getFooter();
-    // Fix script path
-    html = html.replace('SCRIPT_PATH_PLACEHOLDER', this.basePath);
     footerElement.innerHTML = html;
+
+    // Load accessibility script (innerHTML doesn't execute scripts, so we add it manually)
+    this.loadAccessibilityScript();
+  }
+
+  loadAccessibilityScript() {
+    // Check if already loaded
+    if (document.getElementById('accessibility-script')) return;
+
+    const script = document.createElement('script');
+    script.id = 'accessibility-script';
+    script.src = `${this.basePath}assets/js/accessibility.js`;
+    document.body.appendChild(script);
   }
 
   getHomeHeader() {
@@ -131,10 +142,7 @@ class ComponentLoader {
             <p>&copy; 2025 City Government. All rights reserved. | <a href="pages/accessibility.html" class="footer-link-accessibility-statement">Accessibility Statement</a></p>
         </div>
     </div>
-</footer>
-
-<!-- Accessibility Widget Script -->
-<script src="SCRIPT_PATH_PLACEHOLDERassets/js/accessibility.js"></script>`;
+</footer>`;
   }
 }
 
