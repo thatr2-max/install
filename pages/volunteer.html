@@ -15,12 +15,7 @@
     <!-- Header will be loaded here -->
     <div id="header"></div>
 
-    <main id="main-content" role="main">
-        <nav class="breadcrumbs" aria-label="Breadcrumb">
-            <a href="../index.html">Home</a> &gt; Volunteer Opportunities
-        </nav>
-
-        <h1>Volunteer Opportunities</h1>
+    <main id="main-content" role="main"><h1>Volunteer Opportunities</h1>
 
         <section class="card">
             <h2>Make a Difference</h2>
@@ -74,7 +69,17 @@
 
         <section class="card">
             <h2>Volunteer Application</h2>
-            <form action="#" method="post">
+            <form action="https://formsubmit.co/volunteer@citygovernment.gov" method="POST">
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Volunteer">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Volunteer">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
                 <div class="form-group">
                     <label for="name">Name <span class="required">*</span></label>
                     <input type="text" id="name" name="name" required>

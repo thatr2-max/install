@@ -15,12 +15,7 @@
     <!-- Header will be loaded here -->
     <div id="header"></div>
 
-    <main id="main-content" role="main">
-        <nav class="breadcrumbs" aria-label="Breadcrumb">
-            <a href="../index.html">Home</a> &gt; Planning & Zoning
-        </nav>
-
-        <h1>Planning & Zoning</h1>
+    <main id="main-content" role="main"><h1>Planning & Zoning</h1>
 
         <section class="card">
             <h2>Zoning Information</h2>
@@ -71,7 +66,17 @@
             </table>
 
             <h3>Check Your Property's Zoning</h3>
-            <form action="#" method="get" style="max-width: 500px;">
+            <form action="https://formsubmit.co/planning@citygovernment.gov" method="POST" style="max-width: 500px;">
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Planning Zoning">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Planning Zoning">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
                 <div class="form-group">
                     <label for="address-lookup">Enter Property Address</label>
                     <input type="text" id="address-lookup" name="address" placeholder="123 Main Street">

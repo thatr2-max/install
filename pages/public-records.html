@@ -15,12 +15,7 @@
     <!-- Header will be loaded here -->
     <div id="header"></div>
 
-    <main id="main-content" role="main">
-        <nav class="breadcrumbs" aria-label="Breadcrumb">
-            <a href="../index.html">Home</a> &gt; Public Records
-        </nav>
-
-        <h1>Public Records Request</h1>
+    <main id="main-content" role="main"><h1>Public Records Request</h1>
 
         <div class="alert alert-info" role="status">
             <strong>Public Access:</strong> Under state law, most city records are public and available for inspection or copying.
@@ -30,7 +25,17 @@
             <h2>Submit a Public Records Request</h2>
             <p>Request access to public documents, meeting minutes, and city records. All fields marked with <span class="required" aria-label="required">*</span> are required.</p>
 
-            <form action="#" method="post" aria-label="Public records request form">
+            <form action="https://formsubmit.co/records@citygovernment.gov" method="POST" aria-label="Public records request form">
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Public Records">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Public Records">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
                 <div class="form-group">
                     <label for="requester-name">Your Name <span class="required" aria-label="required">*</span></label>
                     <input type="text" id="requester-name" name="requester-name" required aria-required="true">

@@ -15,12 +15,7 @@
     <!-- Header will be loaded here -->
     <div id="header"></div>
 
-    <main id="main-content" role="main">
-        <nav class="breadcrumbs" aria-label="Breadcrumb">
-            <a href="../index.html">Home</a> &gt; Animal Control
-        </nav>
-
-        <h1>Animal Control Services</h1>
+    <main id="main-content" role="main"><h1>Animal Control Services</h1>
 
         <div class="alert alert-info" role="status">
             <strong>Emergency Animal Issues:</strong> For aggressive or injured animals, call (555) 123-PETS (7387) 24/7
@@ -168,7 +163,17 @@
 
         <section class="card">
             <h2>Report Animal Issues</h2>
-            <form action="#" method="post" aria-label="Report animal issue">
+            <form action="https://formsubmit.co/animalcontrol@citygovernment.gov" method="POST" aria-label="Report animal issue">
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Animal Control">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Animal Control">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
                 <div class="form-group">
                     <label for="issue-type">Issue Type <span class="required" aria-label="required">*</span></label>
                     <select id="issue-type" name="issue-type" required aria-required="true">

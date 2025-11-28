@@ -15,12 +15,7 @@
     <!-- Header will be loaded here -->
     <div id="header"></div>
 
-    <main id="main-content" role="main">
-        <nav class="breadcrumbs" aria-label="Breadcrumb">
-            <a href="../index.html">Home</a> &gt; Community Events
-        </nav>
-
-        <h1>Community Events</h1>
+    <main id="main-content" role="main"><h1>Community Events</h1>
 
         <div class="alert alert-success" role="status">
             <strong>Accessibility Note:</strong> All city events provide accommodations for attendees with disabilities. Request assistance at least 48 hours in advance.
@@ -214,7 +209,17 @@
         <section class="card">
             <h2>Subscribe to Event Updates</h2>
             <p>Receive notifications about upcoming community events:</p>
-            <form action="#" method="post" style="max-width: 500px;">
+            <form action="https://formsubmit.co/events@citygovernment.gov" method="POST" style="max-width: 500px;">
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Events">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Events">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
                 <div class="form-group">
                     <label for="subscribe-email">Email Address</label>
                     <input type="email" id="subscribe-email" name="subscribe-email" required>

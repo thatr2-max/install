@@ -15,12 +15,7 @@
     <!-- Header will be loaded here -->
     <div id="header"></div>
 
-    <main id="main-content" role="main">
-        <nav class="breadcrumbs" aria-label="Breadcrumb">
-            <a href="../index.html">Home</a> &gt; Weather Alerts
-        </nav>
-
-        <h1>Weather Alerts</h1>
+    <main id="main-content" role="main"><h1>Weather Alerts</h1>
 
         <div class="alert alert-success" role="alert">
             <strong>Current Status:</strong> No active weather alerts<br>
@@ -63,7 +58,17 @@
             <h2>Sign Up for Weather Alerts</h2>
             <p>Receive severe weather warnings and emergency notifications via text, email, and phone.</p>
 
-            <form action="#" method="post" style="max-width: 500px;">
+            <form action="https://formsubmit.co/emergency@citygovernment.gov" method="POST" style="max-width: 500px;">
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Weather Alerts">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Weather Alerts">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
                 <div class="form-group">
                     <label for="phone">Mobile Phone <span class="required" aria-label="required">*</span></label>
                     <input type="tel" id="phone" name="phone" required aria-required="true">

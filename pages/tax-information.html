@@ -15,12 +15,7 @@
     <!-- Header will be loaded here -->
     <div id="header"></div>
 
-    <main id="main-content" role="main">
-        <nav class="breadcrumbs" aria-label="Breadcrumb">
-            <a href="../index.html">Home</a> &gt; Tax Information
-        </nav>
-
-        <h1>Tax Information</h1>
+    <main id="main-content" role="main"><h1>Tax Information</h1>
 
         <div class="alert alert-warning" role="alert">
             <strong>Tax Payment Deadline:</strong> January 31, 2026<br>
@@ -96,7 +91,17 @@
             <h2>Tax Bills & Statements</h2>
             <p>View and download your tax bill online.</p>
 
-            <form action="#" method="get" style="max-width: 500px;">
+            <form action="https://formsubmit.co/tax@citygovernment.gov" method="POST" style="max-width: 500px;">
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Tax Information">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Tax Information">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
                 <div class="form-group">
                     <label for="parcel">Parcel Number <span class="required" aria-label="required">*</span></label>
                     <input type="text" id="parcel" name="parcel" required aria-required="true" placeholder="123-456-789">

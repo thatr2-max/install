@@ -15,12 +15,7 @@
     <!-- Header will be loaded here -->
     <div id="header"></div>
 
-    <main id="main-content" role="main">
-        <nav class="breadcrumbs" aria-label="Breadcrumb">
-            <a href="../index.html">Home</a> &gt; City Council Meetings
-        </nav>
-
-        <h1>City Council Meetings</h1>
+    <main id="main-content" role="main"><h1>City Council Meetings</h1>
 
         <div class="alert alert-info" role="status">
             <strong>Next Meeting:</strong> Tuesday, March 7, 2025 at 7:00 PM | <a href="#livestream">Watch Live</a>
@@ -129,7 +124,17 @@
             </ol>
 
             <h3>Sign Up to Speak</h3>
-            <form action="#" method="post" aria-label="Public comment sign-up form" style="max-width: 600px;">
+            <form action="https://formsubmit.co/council@citygovernment.gov" method="POST" aria-label="Public comment sign-up form" style="max-width: 600px;">
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Council Meetings">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Council Meetings">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
                 <div class="form-group">
                     <label for="speaker-name">Your Name <span class="required" aria-label="required">*</span></label>
                     <input type="text" id="speaker-name" name="speaker-name" required aria-required="true">

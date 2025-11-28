@@ -15,11 +15,7 @@
     <!-- Header will be loaded here -->
     <div id="header"></div>
 
-    <main id="main-content" role="main">
-        <nav class="breadcrumbs" aria-label="Breadcrumb">
-            <a href="../index.html">Home</a> &gt; Open Data & Transparency
-        </nav>
-        <h1>Open Data & Transparency</h1>
+    <main id="main-content" role="main"><h1>Open Data & Transparency</h1>
         <section class="card">
             <h2>Our Commitment</h2>
             <p>The City is committed to transparency and making government data accessible to all citizens, researchers, and businesses.</p>
@@ -120,7 +116,17 @@
         <section class="card">
             <h2>Data Request</h2>
             <p>Don't see the data you need? Request a dataset:</p>
-            <form action="#" method="post" style="max-width: 600px;">
+            <form action="https://formsubmit.co/opendata@citygovernment.gov" method="POST" style="max-width: 600px;">
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Open Data">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Open Data">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
                 <div class="form-group">
                     <label for="dataset-name">Your Name</label>
                     <input type="text" id="dataset-name" name="dataset-name">

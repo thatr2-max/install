@@ -15,12 +15,7 @@
     <!-- Header will be loaded here -->
     <div id="header"></div>
 
-    <main id="main-content" role="main">
-        <nav class="breadcrumbs" aria-label="Breadcrumb">
-            <a href="../index.html">Home</a> &gt; Contact Us
-        </nav>
-
-        <h1>Contact Us</h1>
+    <main id="main-content" role="main"><h1>Contact Us</h1>
 
         <section class="card">
             <h2>General Contact Information</h2>
@@ -48,7 +43,17 @@
             <h2>Send Us a Message</h2>
             <p>Have a question or feedback? Fill out the form below and we'll get back to you within 2 business days.</p>
 
-            <form action="#" method="post" aria-label="Contact form">
+            <form action="https://formsubmit.co/contact@citygovernment.gov" method="POST" aria-label="Contact form">
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Contact">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Contact">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
                 <div class="form-group">
                     <label for="contact-name">Your Name <span class="required" aria-label="required">*</span></label>
                     <input type="text" id="contact-name" name="contact-name" required aria-required="true">

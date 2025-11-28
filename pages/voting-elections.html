@@ -15,12 +15,7 @@
     <!-- Header will be loaded here -->
     <div id="header"></div>
 
-    <main id="main-content" role="main">
-        <nav class="breadcrumbs" aria-label="Breadcrumb">
-            <a href="../index.html">Home</a> &gt; Voting & Elections
-        </nav>
-
-        <h1>Voting & Elections</h1>
+    <main id="main-content" role="main"><h1>Voting & Elections</h1>
 
         <div class="alert alert-info" role="alert">
             <strong>Next Election:</strong> General Election - November 5, 2025<br>
@@ -73,7 +68,17 @@
             <h2>Polling Locations</h2>
             <p>Find your polling place based on your residential address.</p>
 
-            <form action="#" method="get" style="max-width: 500px;">
+            <form action="https://formsubmit.co/elections@citygovernment.gov" method="POST" style="max-width: 500px;">
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Voting Elections">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Voting Elections">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
                 <div class="form-group">
                     <label for="address">Enter Your Address <span class="required" aria-label="required">*</span></label>
                     <input type="text" id="address" name="address" required aria-required="true" placeholder="123 Main St">
