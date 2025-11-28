@@ -1,59 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Accessible government services portal - Your gateway to city services, permits, public records, and community resources">
-    <title>Springfield City Government Portal - Accessible Services</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/accessibility-widget.css">
-    <script src="assets/js/config-loader.js"></script>
+    <script>
+        // Page-specific configuration
+        window.pageConfig = {
+            title: 'Springfield City Government Portal - Accessible Services',
+            description: 'Accessible government services portal - Your gateway to city services, permits, public records, and community resources',
+            isHomePage: true
+        };
+    </script>
+    <script src="assets/js/head-loader.js"></script>
 </head>
 <body>
-    <!-- Skip to Main Content Link for Accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <!-- Combined Banner with Navigation -->
-    <div class="combined-banner">
-        <div class="banner-content">
-            <h1 class="site-title">City Government Portal</h1>
-            <p class="site-tagline">Accessible Services for All Citizens</p>
-            <div class="main-navigation" role="navigation" aria-label="Main navigation">
-                <button onclick="window.location.href='index.html'" aria-current="page">Home</button>
-                <button onclick="window.location.href='pages/accessibility.html'">Accessibility</button>
-                <button onclick="window.location.href='pages/contact.html'">Contact Us</button>
-                <button onclick="window.location.href='pages/permits.html'">Permits</button>
-                <button onclick="window.location.href='pages/pay-bills.html'">Pay Bills</button>
-                <button onclick="window.location.href='pages/report-issue.html'">Report Issue</button>
-                <button onclick="window.location.href='pages/public-records.html'">Public Records</button>
-                <button onclick="window.location.href='pages/events.html'">Events</button>
-                <button onclick="window.location.href='pages/council-meetings.html'">City Council</button>
-                <button onclick="window.location.href='pages/staff-directory.html'">Staff Directory</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Quick Action Buttons -->
-    <div class="quick-actions-bar">
-        <div class="quick-actions-container">
-            <a href="pages/permits.html" class="quick-action-btn">
-                <span class="quick-action-icon">📋</span>
-                <span class="quick-action-text">Get a Permit</span>
-            </a>
-            <a href="pages/pay-bills.html" class="quick-action-btn">
-                <span class="quick-action-icon">💳</span>
-                <span class="quick-action-text">Pay Bills</span>
-            </a>
-            <a href="pages/report-issue.html" class="quick-action-btn">
-                <span class="quick-action-icon">⚠️</span>
-                <span class="quick-action-text">Report Issue</span>
-            </a>
-            <a href="pages/public-records.html" class="quick-action-btn">
-                <span class="quick-action-icon">📄</span>
-                <span class="quick-action-text">Request Records</span>
-            </a>
-        </div>
-    </div>
+    <!-- Header will be loaded here -->
+    <div id="header"></div>
 
     <!-- Main Content -->
     <main id="main-content" role="main">
@@ -319,58 +279,12 @@
                 </ul>
             </div>
         </div>
-
-        
     </main>
 
-    <!-- Footer -->
-    <footer role="contentinfo">
-        <div class="footer-container">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h3>Contact Information</h3>
-                    <ul>
-                        <li>City Hall: (555) 123-4567</li>
-                        <li>Email: info@citygovernment.gov</li>
-                        <li>Address: 123 Main Street</li>
-                        <li>Hours: Mon-Fri, 8am-5pm</li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="pages/accessibility.html">Accessibility</a></li>
-                        <li><a href="pages/contact.html">Contact Us</a></li>
-                        <li><a href="pages/faqs.html">FAQs</a></li>
-                        <li><a href="pages/careers.html">Careers</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Services</h3>
-                    <ul>
-                        <li><a href="pages/permits.html">Permits</a></li>
-                        <li><a href="pages/pay-bills.html">Pay Bills</a></li>
-                        <li><a href="pages/report-issue.html">Report Issue</a></li>
-                        <li><a href="pages/public-records.html">Public Records</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Government</h3>
-                    <ul>
-                        <li><a href="pages/council-meetings.html">City Council</a></li>
-                        <li><a href="pages/staff-directory.html">Staff Directory</a></li>
-                        <li><a href="pages/news.html">News</a></li>
-                        <li><a href="pages/forms.html">Forms</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 City Government. All rights reserved. | <a href="pages/accessibility.html">Accessibility Statement</a></p>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer will be loaded here -->
+    <div id="footer"></div>
 
-    <!-- Accessibility Widget Script -->
-    <script src="assets/js/accessibility.js"></script>
+    <!-- Component Loader - Must come last to load header/footer -->
+    <script src="assets/js/component-loader.js"></script>
 </body>
 </html>
