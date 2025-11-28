@@ -1,30 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Parking permits, meters, enforcement, and parking information">
-    <title>Parking Services - Springfield City Government Portal</title>
-    <link rel="stylesheet" href="../assets/css/styles.css">
-    <link rel="stylesheet" href="../assets/css/accessibility-widget.css">
+    <script>
+        // Page-specific configuration
+        window.pageConfig = {
+            title: 'Parking Services - Springfield City Government Portal',
+            description: 'Parking permits, meters, enforcement, and parking information',
+            isHomePage: false
+        };
+    </script>
+    <script src="../assets/js/head-loader.js"></script>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <header role="banner">
-        <div class="header-container">
-            <h1 class="site-title">Springfield City Government Portal</h1>
-            <p class="site-tagline">Accessible Services for All Citizens</p>
-        </div>
-    </header>
-    <nav role="navigation" aria-label="Main navigation">
-        <div class="nav-container">
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="accessibility.html">Accessibility</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Header will be loaded here -->
+    <div id="header"></div>
+
     <main id="main-content" role="main">
         <nav class="breadcrumbs" aria-label="Breadcrumb">
             <a href="../index.html">Home</a> &gt; Parking Services
@@ -137,14 +127,11 @@
             <p><strong>Email:</strong> parking@citygovernment.gov</p>
         </section>
     </main>
-    <footer role="contentinfo">
-        <div class="footer-container">
-            <div class="footer-bottom">
-                <p>&copy; 2025 City Government. All rights reserved. | <a href="accessibility.html">Accessibility Statement</a></p>
-            </div>
-        </div>
-    </footer>
-    <!-- Accessibility Widget Script -->
-    <script src="../assets/js/accessibility.js"></script>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer"></div>
+
+    <!-- Component Loader - Must come last to load header/footer -->
+    <script src="../assets/js/component-loader.js"></script>
 </body>
 </html>
