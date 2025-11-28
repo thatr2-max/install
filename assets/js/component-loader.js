@@ -104,10 +104,10 @@ class ComponentLoader {
             <div class="footer-section">
                 <h3>Contact Information</h3>
                 <ul>
-                    <li>City Hall: (555) 123-4567</li>
-                    <li>Email: info@citygovernment.gov</li>
-                    <li>Address: 123 Main Street</li>
-                    <li>Hours: Mon-Fri, 8am-5pm</li>
+                    <li>City Hall: <a href="tel:" data-contact="phone">ENTER_MAIN_PHONE_NUMBER_HERE</a></li>
+                    <li>Email: <a href="mailto:" data-contact="email">ENTER_MAIN_EMAIL_HERE</a></li>
+                    <li>Address: <span data-contact="address">ENTER_CITY_HALL_ADDRESS_HERE</span>, <span data-contact="address_line2">ENTER_CITY_STATE_ZIP_HERE</span></li>
+                    <li>Hours: <span data-contact="hours">ENTER_OFFICE_HOURS_HERE</span></li>
                 </ul>
             </div>
             <div class="footer-section">

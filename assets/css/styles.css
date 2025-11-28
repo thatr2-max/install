@@ -1138,3 +1138,109 @@ footer {
     color: black;
   }
 }
+
+/* ============================================
+   Google Drive File Listings
+   ============================================ */
+
+.drive-file-list {
+  margin: 2rem 0;
+}
+
+.drive-file-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+.drive-file-item:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+.drive-file-icon {
+  font-size: 2rem;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.drive-file-info {
+  flex: 1;
+}
+
+.drive-file-name a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.drive-file-name a:hover {
+  text-decoration: underline;
+}
+
+.drive-file-meta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  color: var(--gray-dark);
+}
+
+.drive-file-date,
+.drive-file-size,
+.drive-file-type {
+  display: inline-block;
+}
+
+.drive-file-type {
+  background: var(--gray-medium);
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.drive-loading {
+  text-align: center;
+  padding: 2rem;
+  color: var(--gray-dark);
+  font-style: italic;
+}
+
+.drive-no-files {
+  text-align: center;
+  padding: 2rem;
+  color: var(--gray-dark);
+  background: var(--gray-light);
+  border-radius: 8px;
+}
+
+.drive-error,
+.drive-setup-notice {
+  background: #fff3cd;
+  border: 2px solid var(--warning);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.drive-setup-notice h3 {
+  margin-top: 0;
+  color: var(--text-color);
+}
+
+.drive-setup-notice ol {
+  margin: 1rem 0 0 1.5rem;
+}
+
+.drive-setup-notice li {
+  margin: 0.5rem 0;
+}
+
