@@ -8,6 +8,38 @@
     "default_email": "admin@citygovernment.gov",
     "note": "Change default_email to the address where ALL forms should be sent"
   },
+  "google_drive": {
+    "api_key": "YOUR_GOOGLE_API_KEY_HERE",
+    "enabled": true,
+    "folders": {
+      "meeting_agendas": "",
+      "meeting_minutes": "",
+      "meeting_packets": "",
+      "meeting_recordings": "",
+      "voting_records": "",
+      "budgets": "",
+      "financial_reports": "",
+      "audit_reports": "",
+      "ordinances": "",
+      "resolutions": "",
+      "municipal_codes": "",
+      "public_notices": "",
+      "rfps_bids": "",
+      "zoning_maps": "",
+      "comprehensive_plans": "",
+      "building_permits_public": "",
+      "street_closures": "",
+      "construction_updates": "",
+      "utility_interruptions": "",
+      "event_flyers": "",
+      "recreation_schedules": "",
+      "newsletters": "",
+      "job_postings": "",
+      "emergency_alerts": "",
+      "weather_advisories": ""
+    },
+    "note": "Get API key from https://console.cloud.google.com/ - Instructions in GOOGLE_DRIVE_SETUP.md"
+  },
   "quick_actions": {
     "permits": true,
     "pay_bills": true,
