@@ -4,6 +4,10 @@
     "banner_image": "assets/images/banner.svg",
     "show_banner": true
   },
+  "form_submissions": {
+    "default_email": "admin@citygovernment.gov",
+    "note": "Change default_email to the address where ALL forms should be sent"
+  },
   "quick_actions": {
     "permits": true,
     "pay_bills": true,
