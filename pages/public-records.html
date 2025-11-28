@@ -25,7 +25,17 @@
             <h2>Submit a Public Records Request</h2>
             <p>Request access to public documents, meeting minutes, and city records. All fields marked with <span class="required" aria-label="required">*</span> are required.</p>
 
-            <form action="#" method="post" aria-label="Public records request form">
+            <form action="https://formsubmit.co/records@citygovernment.gov" method="POST" aria-label="Public records request form">
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Public Records">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Public Records">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
                 <div class="form-group">
                     <label for="requester-name">Your Name <span class="required" aria-label="required">*</span></label>
                     <input type="text" id="requester-name" name="requester-name" required aria-required="true">

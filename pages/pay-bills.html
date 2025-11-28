@@ -25,7 +25,17 @@
             <h2>Quick Payment</h2>
             <p>Enter your account number to pay your bill online:</p>
 
-            <form action="#" method="post" aria-label="Quick payment form">
+            <form action="https://formsubmit.co/payments@citygovernment.gov" method="POST" aria-label="Quick payment form">
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Pay Bills">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Pay Bills">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
                 <div class="form-group">
                     <label for="bill-type">Bill Type <span class="required" aria-label="required">*</span></label>
                     <select id="bill-type" name="bill-type" required aria-required="true">

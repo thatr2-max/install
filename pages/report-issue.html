@@ -25,7 +25,17 @@
             <h2>Submit a Service Request</h2>
             <p>Use this form to report non-emergency issues in your neighborhood. All fields marked with <span class="required" aria-label="required">*</span> are required.</p>
 
-            <form action="#" method="post" aria-label="Issue reporting form">
+            <form action="https://formsubmit.co/issues@citygovernment.gov" method="POST" aria-label="Issue reporting form">
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Report Issue">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Report Issue">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
                 <div class="form-group">
                     <label for="issue-type">Issue Type <span class="required" aria-label="required">*</span></label>
                     <select id="issue-type" name="issue-type" required aria-required="true">
@@ -156,7 +166,17 @@
         <section class="card">
             <h2>Track Your Request</h2>
             <p>Check the status of your service request:</p>
-            <form action="#" method="get" style="max-width: 500px;">
+            <form action="https://formsubmit.co/issues@citygovernment.gov" method="POST" style="max-width: 500px;">
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Report Issue">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Report Issue">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
                 <div class="form-group">
                     <label for="request-number">Request Number</label>
                     <input type="text" id="request-number" name="request-number" placeholder="e.g., SR-2025-12345">

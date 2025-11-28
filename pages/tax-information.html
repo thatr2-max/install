@@ -91,7 +91,17 @@
             <h2>Tax Bills & Statements</h2>
             <p>View and download your tax bill online.</p>
 
-            <form action="#" method="get" style="max-width: 500px;">
+            <form action="https://formsubmit.co/tax@citygovernment.gov" method="POST" style="max-width: 500px;">
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Tax Information">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
+    <!-- FormSubmit Configuration -->
+    <input type="hidden" name="_subject" value="New submission from Tax Information">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    
                 <div class="form-group">
                     <label for="parcel">Parcel Number <span class="required" aria-label="required">*</span></label>
                     <input type="text" id="parcel" name="parcel" required aria-required="true" placeholder="123-456-789">
