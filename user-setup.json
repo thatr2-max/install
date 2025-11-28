@@ -4,6 +4,51 @@
     "banner_image": "assets/images/banner.svg",
     "show_banner": true
   },
+  "contact_info": {
+    "city_hall_address": "ENTER_CITY_HALL_ADDRESS_HERE",
+    "city_hall_address_line2": "ENTER_CITY_STATE_ZIP_HERE",
+    "main_phone": "ENTER_MAIN_PHONE_NUMBER_HERE",
+    "main_email": "ENTER_MAIN_EMAIL_HERE",
+    "office_hours": "ENTER_OFFICE_HOURS_HERE",
+    "note": "Fill in your municipality's contact information"
+  },
+  "council_members": [
+    {
+      "name": "ENTER_MAYOR_NAME_HERE",
+      "position": "Mayor",
+      "email": "ENTER_MAYOR_EMAIL_HERE",
+      "phone": "ENTER_MAYOR_PHONE_HERE",
+      "district": ""
+    },
+    {
+      "name": "ENTER_COUNCIL_MEMBER_1_NAME_HERE",
+      "position": "Council Member",
+      "email": "ENTER_COUNCIL_MEMBER_1_EMAIL_HERE",
+      "phone": "ENTER_COUNCIL_MEMBER_1_PHONE_HERE",
+      "district": "District 1"
+    },
+    {
+      "name": "ENTER_COUNCIL_MEMBER_2_NAME_HERE",
+      "position": "Council Member",
+      "email": "ENTER_COUNCIL_MEMBER_2_EMAIL_HERE",
+      "phone": "ENTER_COUNCIL_MEMBER_2_PHONE_HERE",
+      "district": "District 2"
+    },
+    {
+      "name": "ENTER_COUNCIL_MEMBER_3_NAME_HERE",
+      "position": "Council Member",
+      "email": "ENTER_COUNCIL_MEMBER_3_EMAIL_HERE",
+      "phone": "ENTER_COUNCIL_MEMBER_3_PHONE_HERE",
+      "district": "District 3"
+    },
+    {
+      "name": "ENTER_COUNCIL_MEMBER_4_NAME_HERE",
+      "position": "Council Member",
+      "email": "ENTER_COUNCIL_MEMBER_4_EMAIL_HERE",
+      "phone": "ENTER_COUNCIL_MEMBER_4_PHONE_HERE",
+      "district": "District 4"
+    }
+  ],
   "form_submissions": {
     "default_email": "admin@citygovernment.gov",
     "note": "Change default_email to the address where ALL forms should be sent"
