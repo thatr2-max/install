@@ -58,28 +58,6 @@ class ComponentLoader {
             <button onclick="window.location.href='pages/staff-directory.html'">Staff Directory</button>
         </div>
     </div>
-</div>
-
-<!-- Quick Action Buttons -->
-<div class="quick-actions-bar">
-    <div class="quick-actions-container">
-        <a href="pages/permits.html" class="quick-action-btn">
-            <span class="quick-action-icon">📋</span>
-            <span class="quick-action-text">Get a Permit</span>
-        </a>
-        <a href="pages/pay-bills.html" class="quick-action-btn">
-            <span class="quick-action-icon">💳</span>
-            <span class="quick-action-text">Pay Bills</span>
-        </a>
-        <a href="pages/report-issue.html" class="quick-action-btn">
-            <span class="quick-action-icon">⚠️</span>
-            <span class="quick-action-text">Report Issue</span>
-        </a>
-        <a href="pages/public-records.html" class="quick-action-btn">
-            <span class="quick-action-icon">📄</span>
-            <span class="quick-action-text">Request Records</span>
-        </a>
-    </div>
 </div>`;
   }
 
@@ -87,22 +65,25 @@ class ComponentLoader {
     return `<!-- Skip to Main Content Link for Accessibility -->
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<header role="banner">
-    <div class="header-container">
-        <h1 class="site-title">Springfield City Government Portal</h1>
+<!-- Combined Banner with Navigation -->
+<div class="combined-banner">
+    <div class="banner-content">
+        <h1 class="site-title">City Government Portal</h1>
         <p class="site-tagline">Accessible Services for All Citizens</p>
+        <div class="main-navigation" role="navigation" aria-label="Main navigation">
+            <button onclick="window.location.href='../index.html'">Home</button>
+            <button onclick="window.location.href='accessibility.html'">Accessibility</button>
+            <button onclick="window.location.href='contact.html'">Contact Us</button>
+            <button onclick="window.location.href='permits.html'">Permits</button>
+            <button onclick="window.location.href='pay-bills.html'">Pay Bills</button>
+            <button onclick="window.location.href='report-issue.html'">Report Issue</button>
+            <button onclick="window.location.href='public-records.html'">Public Records</button>
+            <button onclick="window.location.href='events.html'">Events</button>
+            <button onclick="window.location.href='council-meetings.html'">City Council</button>
+            <button onclick="window.location.href='staff-directory.html'">Staff Directory</button>
+        </div>
     </div>
-</header>
-
-<nav role="navigation" aria-label="Main navigation">
-    <div class="nav-container">
-        <ul>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="accessibility.html">Accessibility</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-    </div>
-</nav>`;
+</div>`;
   }
 
   getFooter() {
