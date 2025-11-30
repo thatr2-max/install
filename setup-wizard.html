@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        // Page-specific configuration
+        window.pageConfig = {
+            title: 'Site Setup Wizard - Government Portal Configuration',
+            description: 'Configure your government portal settings',
+            isHomePage: false
+        };
+    </script>
+    <script src="assets/js/head-loader.js"></script>
+    <style>
+        .wizard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .wizard-section {
+            background: white;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .wizard-section h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-field label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .form-field input,
+        .form-field textarea {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-field input:focus,
+        .form-field textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .form-field small {
+            color: #666;
+            margin-top: 0.25rem;
+            font-size: 0.875rem;
+        }
+
+        .council-member-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .council-member-card h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .remove-member-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .remove-member-btn:hover {
+            background: #c82333;
+        }
+
+        .add-member-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        .add-member-btn:hover {
+            background: #218838;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background: #0052a3;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+
+        .checkbox-field {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-field input[type="checkbox"] {
+            width: auto;
+            cursor: pointer;
+        }
+
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            padding: 1rem;
+        }
+
+        .progress-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #ddd;
+        }
+
+        .progress-step.active::before {
+            background: var(--primary-color);
+        }
+
+        .progress-step.completed::before {
+            background: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header"></div>
+
+    <main id="main-content" role="main" class="wizard-container">
+        <h1>🏛️ Government Portal Setup Wizard</h1>
+
+        <div class="alert alert-info">
+            <strong>Welcome!</strong> This wizard will help you configure your government portal. Fill in all the fields below, then download your configuration file. All information will be used throughout your website automatically.
+        </div>
+
+        <form id="setup-form">
+            <!-- Municipality Information -->
+            <section class="wizard-section">
+                <h2>1. Municipality Information</h2>
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label for="municipality-name">Municipality Name *</label>
+                        <input type="text" id="municipality-name" required
+                               placeholder="e.g., City of Springfield">
+                        <small>Full official name of your city, town, or county</small>
+                    </div>
+                    <div class="form-field">
+                        <label for="banner-image">Banner Image Path</label>
+                        <input type="text" id="banner-image"
+                               value="assets/images/banner.svg"
+                               placeholder="assets/images/banner.svg">
+                        <small>Path to your banner image file</small>
+                    </div>
+                    <div class="form-field checkbox-field">
+                        <input type="checkbox" id="show-banner" checked>
+                        <label for="show-banner">Show Banner on Homepage</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Information -->
+            <section class="wizard-section">
+                <h2>2. Contact Information</h2>
+                <p>This information will appear in the footer and contact pages throughout your site.</p>
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label for="city-hall-address">City Hall Street Address *</label>
+                        <input type="text" id="city-hall-address" required
+                               placeholder="e.g., 123 Main Street">
+                    </div>
+                    <div class="form-field">
+                        <label for="city-hall-address-line2">City, State, ZIP *</label>
+                        <input type="text" id="city-hall-address-line2" required
+                               placeholder="e.g., Springfield, IL 62701">
+                    </div>
+                    <div class="form-field">
+                        <label for="main-phone">Main Phone Number *</label>
+                        <input type="tel" id="main-phone" required
+                               placeholder="e.g., (555) 123-4567">
+                    </div>
+                    <div class="form-field">
+                        <label for="main-email">Main Email Address *</label>
+                        <input type="email" id="main-email" required
+                               placeholder="e.g., info@citygovernment.gov">
+                    </div>
+                    <div class="form-field">
+                        <label for="office-hours">Office Hours *</label>
+                        <input type="text" id="office-hours" required
+                               placeholder="e.g., Monday-Friday, 8:00 AM - 5:00 PM">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Council Members -->
+            <section class="wizard-section">
+                <h2>3. Council Members</h2>
+                <p>Add your mayor and council members. You can add or remove members as needed.</p>
+                <div id="council-members-container"></div>
+                <button type="button" class="add-member-btn" onclick="addCouncilMember()">
+                    ➕ Add Council Member
+                </button>
+            </section>
+
+            <!-- Form Submissions -->
+            <section class="wizard-section">
+                <h2>4. Form Submissions</h2>
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label for="form-email">Default Form Submission Email *</label>
+                        <input type="email" id="form-email" required
+                               placeholder="e.g., admin@citygovernment.gov">
+                        <small>All website forms will send submissions to this email address</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Google Drive Configuration -->
+            <section class="wizard-section">
+                <h2>5. Google Drive Integration (Optional)</h2>
+                <p>Configure Google Drive to automatically display documents on your website. See <strong>GOOGLE_DRIVE_SETUP.md</strong> for detailed instructions.</p>
+
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label for="google-api-key">Google Drive API Key</label>
+                        <input type="text" id="google-api-key"
+                               placeholder="Your Google API Key">
+                        <small>Get from <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a></small>
+                    </div>
+                    <div class="form-field checkbox-field">
+                        <input type="checkbox" id="google-drive-enabled" checked>
+                        <label for="google-drive-enabled">Enable Google Drive Integration</label>
+                    </div>
+                </div>
+
+                <details style="margin-top: 1.5rem;">
+                    <summary style="cursor: pointer; font-weight: 600; color: var(--primary-color);">
+                        📁 Configure Google Drive Folder IDs (Click to expand)
+                    </summary>
+                    <p style="margin-top: 1rem; color: #666;">
+                        For each folder, paste the Folder ID from Google Drive. Leave blank to disable that folder.
+                        See GOOGLE_DRIVE_SETUP.md for instructions on finding folder IDs.
+                    </p>
+                    <div id="google-drive-folders" class="form-grid" style="margin-top: 1rem;">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </details>
+            </section>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button type="button" class="btn-secondary" onclick="loadExistingConfig()">
+                    📂 Load Existing Configuration
+                </button>
+                <button type="button" class="btn-primary" onclick="generateConfig()">
+                    💾 Download Configuration File
+                </button>
+                <button type="button" class="btn-secondary" onclick="copyToClipboard()">
+                    📋 Copy to Clipboard
+                </button>
+            </div>
+
+            <div id="success-message" style="display: none;" class="alert alert-success">
+                <strong>Success!</strong> Your configuration has been downloaded.
+                Replace the existing <code>user-setup.json</code> file with the downloaded file.
+            </div>
+        </form>
+    </main>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer"></div>
+
+    <script src="assets/js/setup-wizard.js"></script>
+    <script src="assets/js/component-loader.js"></script>
+</body>
+</html>
