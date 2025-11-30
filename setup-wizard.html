@@ -296,16 +296,19 @@
                 </button>
             </section>
 
-            <!-- Form Submissions -->
+            <!-- Form Submissions / Email Configuration -->
             <section class="wizard-section">
-                <h2>4. Form Submissions</h2>
-                <div class="form-grid">
-                    <div class="form-field">
-                        <label for="form-email">Default Form Submission Email *</label>
-                        <input type="email" id="form-email" required
-                               placeholder="e.g., admin@citygovernment.gov">
-                        <small>All website forms will send submissions to this email address</small>
-                    </div>
+                <h2>4. Form Email Configuration</h2>
+                <p>Configure 1-10 email addresses to receive form submissions. Assign which forms go to each email. Each form can only be assigned to ONE email address.</p>
+
+                <div id="form-emails-container"></div>
+
+                <button type="button" class="add-member-btn" onclick="addFormEmail()" style="margin-top: 1rem;">
+                    ➕ Add Email Address
+                </button>
+
+                <div id="email-validation-error" style="display: none; color: #dc3545; font-weight: bold; margin-top: 1rem; padding: 1rem; background: #f8d7da; border-radius: 4px;">
+                    ⚠️ Warning: Some forms are not assigned to any email!
                 </div>
             </section>
 

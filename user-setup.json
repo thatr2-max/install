@@ -49,10 +49,40 @@
       "district": "District 4"
     }
   ],
-  "form_submissions": {
-    "default_email": "admin@citygovernment.gov",
-    "note": "Change default_email to the address where ALL forms should be sent"
-  },
+  "form_emails": [
+    {
+      "email": "admin@citygovernment.gov",
+      "label": "Main Admin",
+      "forms": [
+        "accessibility.html",
+        "animal-control.html",
+        "building-inspections.html",
+        "business-licenses.html",
+        "city-council.html",
+        "code-enforcement.html",
+        "contact.html",
+        "council-meetings.html",
+        "emergency-management.html",
+        "events.html",
+        "garbage-recycling.html",
+        "municipal-court.html",
+        "news.html",
+        "open-data.html",
+        "pay-bills.html",
+        "permits.html",
+        "planning-zoning.html",
+        "public-records.html",
+        "public-safety.html",
+        "report-issue.html",
+        "staff-directory.html",
+        "street-maintenance.html",
+        "tax-information.html",
+        "volunteer.html",
+        "voting-elections.html",
+        "weather-alerts.html"
+      ]
+    }
+  ],
   "google_drive": {
     "api_key": "YOUR_GOOGLE_API_KEY_HERE",
     "enabled": true,

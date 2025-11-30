@@ -14,40 +14,33 @@ Then you're ready to go!
 
 import re
 import subprocess
+import json
 from pathlib import Path
 
-# Email mapping for FormSubmit
-EMAIL_MAPPING = {
-    'accessibility.html': 'accessibility@citygovernment.gov',
-    'animal-control.html': 'animalcontrol@citygovernment.gov',
-    'building-inspections.html': 'inspections@citygovernment.gov',
-    'business-licenses.html': 'businesslicenses@citygovernment.gov',
-    'city-council.html': 'council@citygovernment.gov',
-    'code-enforcement.html': 'codeenforcement@citygovernment.gov',
-    'contact.html': 'contact@citygovernment.gov',
-    'council-meetings.html': 'council@citygovernment.gov',
-    'emergency-management.html': 'emergency@citygovernment.gov',
-    'events.html': 'events@citygovernment.gov',
-    'garbage-recycling.html': 'sanitation@citygovernment.gov',
-    'municipal-court.html': 'court@citygovernment.gov',
-    'news.html': 'news@citygovernment.gov',
-    'open-data.html': 'opendata@citygovernment.gov',
-    'pay-bills.html': 'payments@citygovernment.gov',
-    'permits.html': 'permits@citygovernment.gov',
-    'planning-zoning.html': 'planning@citygovernment.gov',
-    'public-records.html': 'records@citygovernment.gov',
-    'public-safety.html': 'safety@citygovernment.gov',
-    'report-issue.html': 'issues@citygovernment.gov',
-    'staff-directory.html': 'hr@citygovernment.gov',
-    'street-maintenance.html': 'streets@citygovernment.gov',
-    'tax-information.html': 'tax@citygovernment.gov',
-    'volunteer.html': 'volunteer@citygovernment.gov',
-    'voting-elections.html': 'elections@citygovernment.gov',
-    'weather-alerts.html': 'emergency@citygovernment.gov',
-}
+# Load email configuration from user-setup.json
+def load_email_mapping():
+    """Load form email assignments from user-setup.json"""
+    try:
+        with open('user-setup.json', 'r', encoding='utf-8') as f:
+            config = json.load(f)
 
-# Pages with forms that need form-config-loader
-FORM_PAGES = list(EMAIL_MAPPING.keys())
+        email_mapping = {}
+        form_emails = config.get('form_emails', [])
+
+        for email_config in form_emails:
+            email = email_config.get('email', 'admin@citygovernment.gov')
+            forms = email_config.get('forms', [])
+            for form in forms:
+                email_mapping[form] = email
+
+        return email_mapping
+    except Exception as e:
+        print(f"Warning: Could not load email configuration: {e}")
+        print("Using default email for all forms")
+        return {}
+
+EMAIL_MAPPING = load_email_mapping()
+FORM_PAGES = list(EMAIL_MAPPING.keys()) if EMAIL_MAPPING else []
 
 def run_git_command(command, description):
     """Run a git command and return success status"""
