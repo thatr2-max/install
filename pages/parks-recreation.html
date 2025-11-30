@@ -23,68 +23,8 @@
 
         <section class="card">
             <h2>City Parks</h2>
-            <p>The City maintains 15 parks totaling over 200 acres of green space.</p>
-
-            <div class="grid">
-                <div class="card">
-                    <h3>Central Park</h3>
-                    <p><strong>Location:</strong> 456 Park Avenue</p>
-                    <p><strong>Size:</strong> 45 acres</p>
-                    <p><strong>Amenities:</strong></p>
-                    <ul>
-                        <li>Playground (accessible)</li>
-                        <li>Walking trails (2 miles)</li>
-                        <li>Picnic shelters</li>
-                        <li>Basketball courts</li>
-                        <li>Restrooms (accessible)</li>
-                        <li>Splash pad (seasonal)</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h3>Riverside Park</h3>
-                    <p><strong>Location:</strong> 789 River Road</p>
-                    <p><strong>Size:</strong> 30 acres</p>
-                    <p><strong>Amenities:</strong></p>
-                    <ul>
-                        <li>Fishing pier (accessible)</li>
-                        <li>Boat ramp</li>
-                        <li>Nature trails</li>
-                        <li>Picnic areas</li>
-                        <li>Wildlife viewing</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h3>Community Sports Complex</h3>
-                    <p><strong>Location:</strong> 321 Athletic Drive</p>
-                    <p><strong>Size:</strong> 50 acres</p>
-                    <p><strong>Amenities:</strong></p>
-                    <ul>
-                        <li>4 baseball/softball fields</li>
-                        <li>6 soccer fields</li>
-                        <li>Tennis courts (8 courts)</li>
-                        <li>Concession stand</li>
-                        <li>Ample parking</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h3>Memorial Park</h3>
-                    <p><strong>Location:</strong> 555 Memorial Lane</p>
-                    <p><strong>Size:</strong> 20 acres</p>
-                    <p><strong>Amenities:</strong></p>
-                    <ul>
-                        <li>Veterans memorial</li>
-                        <li>Rose garden</li>
-                        <li>Amphitheater</li>
-                        <li>Meditation garden</li>
-                        <li>Accessible paths</li>
-                    </ul>
-                </div>
-            </div>
-
-            <a href="#" class="btn btn-secondary">View All Parks & Locations</a>
+            <p><em>To add your city's parks, manually update this section with park information, or upload park maps and guides to the "parks_maps" Google Drive folder.</em></p>
+            <div data-drive-folder="parks_maps"></div>
         </section>
 
         <section class="card">
@@ -178,7 +118,7 @@
 
             <h3>How to Reserve</h3>
             <ol>
-                <li>Check availability online or call (555) 123-4560</li>
+                <li>Check availability online or call <span data-contact="phone">ENTER_MAIN_PHONE_NUMBER_HERE</span></li>
                 <li>Complete rental application</li>
                 <li>Submit payment and deposit</li>
                 <li>Receive confirmation</li>
@@ -188,17 +128,11 @@
 
         <section class="card">
             <h2>Trails & Greenways</h2>
-            <p>Explore over 15 miles of trails for walking, running, and biking!</p>
-
-            <h3>Trail Map</h3>
-            <ul>
-                <li><strong>Riverwalk Trail:</strong> 5 miles, paved, accessible</li>
-                <li><strong>Forest Loop:</strong> 3 miles, natural surface</li>
-                <li><strong>Heritage Trail:</strong> 4 miles, paved, historical markers</li>
-                <li><strong>Nature Trail:</strong> 2 miles, interpretive signs</li>
-            </ul>
+            <p><em>Upload trail maps and guides to the "trails_maps" Google Drive folder to display them here.</em></p>
+            <div data-drive-folder="trails_maps"></div>
 
             <h3>Trail Amenities</h3>
+            <p><em>Update this section with your specific trail amenities:</em></p>
             <ul>
                 <li>Trailhead parking</li>
                 <li>Restrooms at major trailheads</li>
@@ -311,6 +245,8 @@
     <div id="footer"></div>
 
     <!-- Component Loader - Must come last to load header/footer -->
+    <script src="../assets/js/google-drive-loader.js"></script>
+    <script src="../assets/js/common-data-loader.js"></script>
     <script src="../assets/js/component-loader.js"></script>
 </body>
 </html>

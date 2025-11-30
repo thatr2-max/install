@@ -255,6 +255,18 @@ def main():
 
     # Commit
     commit_msg = "Initialize site with component system and form configuration"
+
+    # Delete this script before committing (it's no longer needed)
+    script_path = Path(__file__)
+    if script_path.exists():
+        print()
+        print("  Removing initialization script (no longer needed)...")
+        script_path.unlink()
+        print("  ✓ Deleted initialize-site.py")
+
+    # Re-stage to include the deletion
+    run_git_command('git add -A', 'Re-staging with script deletion')
+
     run_git_command(f'git commit -m "{commit_msg}"', 'Creating commit')
 
     # Push to remote

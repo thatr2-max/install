@@ -81,7 +81,13 @@
       "newsletters": "",
       "job_postings": "",
       "emergency_alerts": "",
-      "weather_advisories": ""
+      "weather_advisories": "",
+      "events": "",
+      "event_calendar": "",
+      "news_press_releases": "",
+      "capital_projects": "",
+      "parks_maps": "",
+      "trails_maps": ""
     },
     "note": "Get API key from https://console.cloud.google.com/ - Instructions in GOOGLE_DRIVE_SETUP.md"
   },

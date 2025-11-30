@@ -24,119 +24,14 @@
         <section class="card">
             <h2>Upcoming Events</h2>
             <p>Join us for exciting community events, public meetings, and city-sponsored activities!</p>
-
-            <article class="card" style="border-left: 4px solid #0066cc;">
-                <h3>Annual Spring Festival</h3>
-                <p><strong>Date:</strong> Saturday, April 15, 2025</p>
-                <p><strong>Time:</strong> 10:00 AM - 6:00 PM</p>
-                <p><strong>Location:</strong> Central Park, 456 Park Avenue</p>
-                <p><strong>Description:</strong> Celebrate spring with live music, food vendors, kids activities, and local artisans. Free admission!</p>
-                <ul>
-                    <li>Live performances on two stages</li>
-                    <li>Food trucks and local vendors</li>
-                    <li>Children's activities and face painting</li>
-                    <li>Pet-friendly event</li>
-                    <li>Free parking at City Hall</li>
-                </ul>
-                <p><strong>Accessibility:</strong> Wheelchair accessible, ASL interpreter available, accessible parking</p>
-                <a href="#" class="btn">More Details</a>
-            </article>
-
-            <article class="card" style="border-left: 4px solid #0066cc;">
-                <h3>City Council Meeting</h3>
-                <p><strong>Date:</strong> Tuesday, March 7, 2025</p>
-                <p><strong>Time:</strong> 7:00 PM</p>
-                <p><strong>Location:</strong> Council Chambers, City Hall</p>
-                <p><strong>Description:</strong> Regular city council meeting. Public comment period begins at 7:30 PM.</p>
-                <p><strong>Agenda Topics:</strong></p>
-                <ul>
-                    <li>Annual budget review</li>
-                    <li>Zoning ordinance amendments</li>
-                    <li>Parks improvement project</li>
-                    <li>Public safety report</li>
-                </ul>
-                <p><strong>Accessibility:</strong> Live streaming available, closed captioning, sign language interpreter</p>
-                <a href="council-meetings.html" class="btn">View Full Agenda</a>
-            </article>
-
-            <article class="card" style="border-left: 4px solid #0066cc;">
-                <h3>Community Clean-Up Day</h3>
-                <p><strong>Date:</strong> Saturday, March 25, 2025</p>
-                <p><strong>Time:</strong> 9:00 AM - 1:00 PM</p>
-                <p><strong>Location:</strong> Multiple sites across the city</p>
-                <p><strong>Description:</strong> Join your neighbors to beautify our community! Volunteers will receive free t-shirts and lunch.</p>
-                <ul>
-                    <li>Park clean-up crews</li>
-                    <li>Trail maintenance</li>
-                    <li>Graffiti removal</li>
-                    <li>Tree planting</li>
-                </ul>
-                <p><strong>Registration:</strong> Sign up online or call (555) 123-4560</p>
-                <a href="#" class="btn">Register to Volunteer</a>
-            </article>
+            <p><em>Event flyers and calendars uploaded to Google Drive will appear below. To add events, upload event flyers or calendars to the "events" folder in your configured Google Drive.</em></p>
+            <div data-drive-folder="events"></div>
         </section>
 
         <section class="card">
             <h2>Event Calendar</h2>
-            <p>Browse events by category:</p>
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0;">
-                <button class="btn btn-secondary">All Events</button>
-                <button class="btn btn-secondary">Public Meetings</button>
-                <button class="btn btn-secondary">Festivals</button>
-                <button class="btn btn-secondary">Recreation</button>
-                <button class="btn btn-secondary">Cultural Events</button>
-                <button class="btn btn-secondary">Workshops</button>
-            </div>
-
-            <table>
-                <caption class="sr-only">Upcoming community events</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Date</th>
-                        <th scope="col">Event</th>
-                        <th scope="col">Location</th>
-                        <th scope="col">Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">Mar 7</th>
-                        <td>City Council Meeting</td>
-                        <td>City Hall</td>
-                        <td>7:00 PM</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Mar 14</th>
-                        <td>Planning Commission</td>
-                        <td>City Hall</td>
-                        <td>6:00 PM</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Mar 18</th>
-                        <td>Senior Lunch & Bingo</td>
-                        <td>Community Center</td>
-                        <td>12:00 PM</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Mar 25</th>
-                        <td>Community Clean-Up Day</td>
-                        <td>Various Locations</td>
-                        <td>9:00 AM</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Apr 1</th>
-                        <td>Public Safety Town Hall</td>
-                        <td>City Hall</td>
-                        <td>6:30 PM</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Apr 15</th>
-                        <td>Spring Festival</td>
-                        <td>Central Park</td>
-                        <td>10:00 AM</td>
-                    </tr>
-                </tbody>
-            </table>
+            <p><em>To display your event calendar, upload it to the "event_calendar" Google Drive folder or manually add your calendar image/PDF here.</em></p>
+            <div data-drive-folder="event_calendar"></div>
         </section>
 
         <section class="card">
@@ -241,9 +136,9 @@
 
         <section class="card">
             <h2>Contact Events Office</h2>
-            <p><strong>Phone:</strong> (555) 123-4560</p>
+            <p><strong>Phone:</strong> <a href="tel:" data-contact="phone">ENTER_MAIN_PHONE_NUMBER_HERE</a></p>
             <p><strong>Email:</strong> events@citygovernment.gov</p>
-            <p><strong>Office Hours:</strong> Monday-Friday, 8:00 AM - 5:00 PM</p>
+            <p><strong>Office Hours:</strong> <span data-contact="hours">ENTER_OFFICE_HOURS_HERE</span></p>
         </section>
     </main>
 
@@ -252,6 +147,8 @@
 
     <!-- Component Loader - Must come last to load header/footer -->
     <script src="../assets/js/form-config-loader.js"></script>
+    <script src="../assets/js/google-drive-loader.js"></script>
+    <script src="../assets/js/common-data-loader.js"></script>
     <script src="../assets/js/component-loader.js"></script>
 </body>
 </html>
