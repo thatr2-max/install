@@ -296,22 +296,103 @@
                 </button>
             </section>
 
-            <!-- Form Submissions -->
+            <!-- Form Submissions / Email Configuration -->
             <section class="wizard-section">
-                <h2>4. Form Submissions</h2>
+                <h2>4. Form Email Configuration</h2>
+                <p>Configure 1-10 email addresses to receive form submissions. Assign which forms go to each email. Each form can only be assigned to ONE email address.</p>
+
+                <div id="form-emails-container"></div>
+
+                <button type="button" class="add-member-btn" onclick="addFormEmail()" style="margin-top: 1rem;">
+                    ➕ Add Email Address
+                </button>
+
+                <div id="email-validation-error" style="display: none; color: #dc3545; font-weight: bold; margin-top: 1rem; padding: 1rem; background: #f8d7da; border-radius: 4px;">
+                    ⚠️ Warning: Some forms are not assigned to any email!
+                </div>
+            </section>
+
+            <!-- City Parks -->
+            <section class="wizard-section">
+                <h2>5. City Parks</h2>
+                <p>Add your city's parks and recreation facilities. You can add as many parks as needed.</p>
+                <div id="parks-container"></div>
+                <button type="button" class="add-member-btn" onclick="addPark()" style="margin-top: 1rem;">
+                    ➕ Add Park
+                </button>
+            </section>
+
+            <!-- Trails -->
+            <section class="wizard-section">
+                <h2>6. Trails & Greenways</h2>
+                <p>Add trails and walking/biking paths in your community.</p>
+                <div id="trails-container"></div>
+                <button type="button" class="add-member-btn" onclick="addTrail()" style="margin-top: 1rem;">
+                    ➕ Add Trail
+                </button>
+            </section>
+
+            <!-- Community Center -->
+            <section class="wizard-section">
+                <h2>7. Community Center Information</h2>
                 <div class="form-grid">
                     <div class="form-field">
-                        <label for="form-email">Default Form Submission Email *</label>
-                        <input type="email" id="form-email" required
-                               placeholder="e.g., admin@citygovernment.gov">
-                        <small>All website forms will send submissions to this email address</small>
+                        <label for="community-center-name">Name</label>
+                        <input type="text" id="community-center-name"
+                               placeholder="e.g., Springfield Community Center">
+                    </div>
+                    <div class="form-field">
+                        <label for="community-center-address">Address</label>
+                        <input type="text" id="community-center-address"
+                               placeholder="e.g., 789 Recreation Drive">
+                    </div>
+                    <div class="form-field">
+                        <label for="community-center-phone">Phone</label>
+                        <input type="tel" id="community-center-phone"
+                               placeholder="e.g., (555) 123-7890">
+                    </div>
+                    <div class="form-field">
+                        <label for="community-center-hours">Hours</label>
+                        <input type="text" id="community-center-hours"
+                               placeholder="e.g., Mon-Fri 6AM-10PM, Sat-Sun 8AM-8PM">
                     </div>
                 </div>
+                <div class="form-field" style="margin-top: 1rem;">
+                    <label for="community-center-amenities">Amenities (one per line)</label>
+                    <textarea id="community-center-amenities" rows="6"
+                              placeholder="Indoor pool&#10;Gymnasium&#10;Fitness center&#10;Meeting rooms&#10;etc."></textarea>
+                </div>
+            </section>
+
+            <!-- Staff Directory -->
+            <section class="wizard-section">
+                <h2>8. Staff Directory</h2>
+
+                <h3>Elected Officials</h3>
+                <p>Add elected officials beyond council members (already configured above).</p>
+                <div id="officials-container"></div>
+                <button type="button" class="add-member-btn" onclick="addOfficial()" style="margin-top: 1rem;">
+                    ➕ Add Official
+                </button>
+
+                <h3 style="margin-top: 2rem;">Department Heads</h3>
+                <p>Add department heads and directors.</p>
+                <div id="dept-heads-container"></div>
+                <button type="button" class="add-member-btn" onclick="addDeptHead()" style="margin-top: 1rem;">
+                    ➕ Add Department Head
+                </button>
+
+                <h3 style="margin-top: 2rem;">Departments</h3>
+                <p>Add city departments with contact information.</p>
+                <div id="departments-container"></div>
+                <button type="button" class="add-member-btn" onclick="addDepartment()" style="margin-top: 1rem;">
+                    ➕ Add Department
+                </button>
             </section>
 
             <!-- Google Drive Configuration -->
             <section class="wizard-section">
-                <h2>5. Google Drive Integration (Optional)</h2>
+                <h2>9. Google Drive Integration (Optional)</h2>
                 <p>Configure Google Drive to automatically display documents on your website. See <strong>GOOGLE_DRIVE_SETUP.md</strong> for detailed instructions.</p>
 
                 <div class="form-grid">

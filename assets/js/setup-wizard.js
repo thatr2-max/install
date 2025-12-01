@@ -39,12 +39,49 @@ const GOOGLE_DRIVE_FOLDERS = [
 ];
 
 let councilMemberCount = 0;
+let formEmailCount = 0;
+let parkCount = 0;
+let trailCount = 0;
+let officialCount = 0;
+let deptHeadCount = 0;
+let departmentCount = 0;
+
+// All available forms that can receive submissions
+const ALL_FORMS = [
+    'accessibility.html',
+    'animal-control.html',
+    'building-inspections.html',
+    'business-licenses.html',
+    'city-council.html',
+    'code-enforcement.html',
+    'contact.html',
+    'council-meetings.html',
+    'emergency-management.html',
+    'events.html',
+    'garbage-recycling.html',
+    'municipal-court.html',
+    'news.html',
+    'open-data.html',
+    'pay-bills.html',
+    'permits.html',
+    'planning-zoning.html',
+    'public-records.html',
+    'public-safety.html',
+    'report-issue.html',
+    'staff-directory.html',
+    'street-maintenance.html',
+    'tax-information.html',
+    'volunteer.html',
+    'voting-elections.html',
+    'weather-alerts.html'
+];
 
 // Initialize the wizard when page loads
 document.addEventListener('DOMContentLoaded', () => {
     initializeGoogleDriveFolders();
     addCouncilMember('Mayor', '', true); // Add mayor by default
     addCouncilMember('Council Member', 'District 1', false); // Add one council member
+    addFormEmail(); // Add first email address by default
 });
 
 /**
@@ -129,6 +166,433 @@ function removeCouncilMember(index) {
 }
 
 /**
+ * Add a new form email configuration card
+ */
+function addFormEmail() {
+    const container = document.getElementById('form-emails-container');
+    if (!container) return;
+
+    // Check if we already have 10 emails
+    const emailCards = document.querySelectorAll('.form-email-card');
+    if (emailCards.length >= 10) {
+        alert('Maximum of 10 email addresses allowed');
+        return;
+    }
+
+    const emailDiv = document.createElement('div');
+    emailDiv.className = 'form-email-card council-member-card';
+    emailDiv.dataset.emailIndex = formEmailCount;
+
+    // Get already assigned forms
+    const assignedForms = getAssignedForms();
+    const availableForms = ALL_FORMS.filter(form => !assignedForms.includes(form));
+
+    // If this is the first email, select all forms by default
+    const isFirstEmail = emailCards.length === 0;
+
+    emailDiv.innerHTML = `
+        <h4>Email Address ${formEmailCount + 1}</h4>
+        ${formEmailCount > 0 ? `<button type="button" class="remove-member-btn" onclick="removeFormEmail(${formEmailCount})">Remove</button>` : ''}
+
+        <div class="form-grid">
+            <div class="form-field">
+                <label for="email-address-${formEmailCount}">Email Address *</label>
+                <input type="email" id="email-address-${formEmailCount}" required
+                       placeholder="e.g., admin@citygovernment.gov"
+                       onchange="updateFormAssignments()">
+            </div>
+            <div class="form-field">
+                <label for="email-label-${formEmailCount}">Label/Description</label>
+                <input type="text" id="email-label-${formEmailCount}"
+                       placeholder="e.g., Main Admin, Permits Dept">
+                <small>Optional - helps you identify this email</small>
+            </div>
+        </div>
+
+        <div class="form-field" style="margin-top: 1rem;">
+            <label>Assigned Forms (${isFirstEmail ? ALL_FORMS.length : availableForms.length} selected)</label>
+            <div style="max-height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 1rem; border-radius: 4px; background: #f8f9fa;">
+                <label style="font-weight: bold; display: block; margin-bottom: 0.5rem;">
+                    <input type="checkbox" onchange="toggleAllForms(${formEmailCount}, this.checked)" ${isFirstEmail ? 'checked' : ''}>
+                    Select All
+                </label>
+                <hr style="margin: 0.5rem 0;">
+                ${generateFormCheckboxes(formEmailCount, isFirstEmail ? ALL_FORMS : availableForms, isFirstEmail)}
+            </div>
+            <small>Select which forms should send to this email address</small>
+        </div>
+    `;
+
+    container.appendChild(emailDiv);
+    formEmailCount++;
+}
+
+/**
+ * Generate form checkboxes
+ */
+function generateFormCheckboxes(emailIndex, availableForms, selectAll = false) {
+    return ALL_FORMS.map(form => {
+        const disabled = !availableForms.includes(form);
+        const checked = selectAll && !disabled;
+        const formName = form.replace('.html', '').replace(/-/g, ' ')
+            .split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+
+        return `
+            <label style="display: block; margin: 0.25rem 0; ${disabled ? 'opacity: 0.5;' : ''}">
+                <input type="checkbox"
+                       class="form-checkbox-${emailIndex}"
+                       data-form="${form}"
+                       data-email-index="${emailIndex}"
+                       ${checked ? 'checked' : ''}
+                       ${disabled ? 'disabled' : ''}
+                       onchange="updateFormAssignments()">
+                ${formName} ${disabled ? '(already assigned)' : ''}
+            </label>
+        `;
+    }).join('');
+}
+
+/**
+ * Toggle all forms for an email
+ */
+function toggleAllForms(emailIndex, checked) {
+    const checkboxes = document.querySelectorAll(`.form-checkbox-${emailIndex}:not(:disabled)`);
+    checkboxes.forEach(cb => {
+        cb.checked = checked;
+    });
+    updateFormAssignments();
+}
+
+/**
+ * Get all currently assigned forms across all emails
+ */
+function getAssignedForms() {
+    const assigned = [];
+    const emailCards = document.querySelectorAll('.form-email-card');
+
+    emailCards.forEach(card => {
+        const emailIndex = card.dataset.emailIndex;
+        const checkboxes = card.querySelectorAll(`input[type="checkbox"][data-form]:checked`);
+        checkboxes.forEach(cb => {
+            const form = cb.dataset.form;
+            if (form && !assigned.includes(form)) {
+                assigned.push(form);
+            }
+        });
+    });
+
+    return assigned;
+}
+
+/**
+ * Update form assignments when checkboxes change
+ */
+function updateFormAssignments() {
+    const assignedForms = getAssignedForms();
+    const unassignedForms = ALL_FORMS.filter(f => !assignedForms.includes(f));
+
+    // Update validation warning
+    const warning = document.getElementById('email-validation-error');
+    if (unassignedForms.length > 0) {
+        warning.style.display = 'block';
+        warning.innerHTML = `⚠️ Warning: ${unassignedForms.length} form(s) not assigned to any email: ${unassignedForms.map(f => f.replace('.html', '')).join(', ')}`;
+    } else {
+        warning.style.display = 'none';
+    }
+
+    // Refresh all email cards to update disabled states
+    refreshFormCheckboxes();
+}
+
+/**
+ * Refresh form checkboxes to show current assignments
+ */
+function refreshFormCheckboxes() {
+    const emailCards = document.querySelectorAll('.form-email-card');
+    const assignedForms = getAssignedForms();
+
+    emailCards.forEach(card => {
+        const emailIndex = card.dataset.emailIndex;
+        const checkboxContainer = card.querySelector('div[style*="max-height"]');
+        if (!checkboxContainer) return;
+
+        // Get currently selected forms for this email
+        const selectedForms = [];
+        const checkboxes = card.querySelectorAll(`input[type="checkbox"][data-form]:checked`);
+        checkboxes.forEach(cb => {
+            if (cb.dataset.form) {
+                selectedForms.push(cb.dataset.form);
+            }
+        });
+
+        // Determine which forms are available for this email
+        const availableForms = ALL_FORMS.filter(form =>
+            selectedForms.includes(form) || !assignedForms.includes(form)
+        );
+
+        // Regenerate checkboxes
+        const label = checkboxContainer.querySelector('label');
+        const hr = checkboxContainer.querySelector('hr');
+        const existingCheckboxes = checkboxContainer.querySelectorAll('label:not(:first-child)');
+        existingCheckboxes.forEach(el => el.remove());
+
+        const newCheckboxesHTML = generateFormCheckboxes(emailIndex, availableForms, false);
+        checkboxContainer.insertAdjacentHTML('beforeend', newCheckboxesHTML);
+
+        // Restore checked state
+        selectedForms.forEach(form => {
+            const checkbox = checkboxContainer.querySelector(`input[data-form="${form}"]`);
+            if (checkbox) {
+                checkbox.checked = true;
+            }
+        });
+    });
+}
+
+/**
+ * Remove a form email configuration
+ */
+function removeFormEmail(index) {
+    const emailCard = document.querySelector(`.form-email-card[data-email-index="${index}"]`);
+    if (emailCard) {
+        emailCard.remove();
+        updateFormAssignments();
+    }
+}
+
+/**
+ * Add a park
+ */
+function addPark() {
+    const container = document.getElementById('parks-container');
+    if (!container) return;
+
+    const parkDiv = document.createElement('div');
+    parkDiv.className = 'council-member-card';
+    parkDiv.dataset.parkIndex = parkCount;
+
+    parkDiv.innerHTML = `
+        <h4>Park ${parkCount + 1}</h4>
+        <button type="button" class="remove-member-btn" onclick="removePark(${parkCount})">Remove</button>
+
+        <div class="form-grid">
+            <div class="form-field">
+                <label for="park-name-${parkCount}">Park Name</label>
+                <input type="text" id="park-name-${parkCount}" placeholder="e.g., Central Park">
+            </div>
+            <div class="form-field">
+                <label for="park-location-${parkCount}">Location/Address</label>
+                <input type="text" id="park-location-${parkCount}" placeholder="e.g., 456 Park Avenue">
+            </div>
+            <div class="form-field">
+                <label for="park-size-${parkCount}">Size (acres)</label>
+                <input type="text" id="park-size-${parkCount}" placeholder="e.g., 45">
+            </div>
+            <div class="form-field">
+                <label for="park-amenities-${parkCount}">Amenities (one per line)</label>
+                <textarea id="park-amenities-${parkCount}" rows="4" placeholder="Playground&#10;Walking trails&#10;Picnic shelters&#10;etc."></textarea>
+            </div>
+        </div>
+    `;
+
+    container.appendChild(parkDiv);
+    parkCount++;
+}
+
+function removePark(index) {
+    const card = document.querySelector(`[data-park-index="${index}"]`);
+    if (card) card.remove();
+}
+
+/**
+ * Add a trail
+ */
+function addTrail() {
+    const container = document.getElementById('trails-container');
+    if (!container) return;
+
+    const trailDiv = document.createElement('div');
+    trailDiv.className = 'council-member-card';
+    trailDiv.dataset.trailIndex = trailCount;
+
+    trailDiv.innerHTML = `
+        <h4>Trail ${trailCount + 1}</h4>
+        <button type="button" class="remove-member-btn" onclick="removeTrail(${trailCount})">Remove</button>
+
+        <div class="form-grid">
+            <div class="form-field">
+                <label for="trail-name-${trailCount}">Trail Name</label>
+                <input type="text" id="trail-name-${trailCount}" placeholder="e.g., Riverwalk Trail">
+            </div>
+            <div class="form-field">
+                <label for="trail-length-${trailCount}">Length</label>
+                <input type="text" id="trail-length-${trailCount}" placeholder="e.g., 5 miles">
+            </div>
+            <div class="form-field">
+                <label for="trail-surface-${trailCount}">Surface Type</label>
+                <input type="text" id="trail-surface-${trailCount}" placeholder="e.g., Paved, accessible">
+            </div>
+            <div class="form-field">
+                <label for="trail-features-${trailCount}">Features (one per line)</label>
+                <textarea id="trail-features-${trailCount}" rows="4" placeholder="Scenic views&#10;Wildlife viewing&#10;Accessible&#10;etc."></textarea>
+            </div>
+        </div>
+    `;
+
+    container.appendChild(trailDiv);
+    trailCount++;
+}
+
+function removeTrail(index) {
+    const card = document.querySelector(`[data-trail-index="${index}"]`);
+    if (card) card.remove();
+}
+
+/**
+ * Add an elected official
+ */
+function addOfficial() {
+    const container = document.getElementById('officials-container');
+    if (!container) return;
+
+    const officialDiv = document.createElement('div');
+    officialDiv.className = 'council-member-card';
+    officialDiv.dataset.officialIndex = officialCount;
+
+    officialDiv.innerHTML = `
+        <h4>Official ${officialCount + 1}</h4>
+        <button type="button" class="remove-member-btn" onclick="removeOfficial(${officialCount})">Remove</button>
+
+        <div class="form-grid">
+            <div class="form-field">
+                <label for="official-name-${officialCount}">Name</label>
+                <input type="text" id="official-name-${officialCount}" placeholder="e.g., John Smith">
+            </div>
+            <div class="form-field">
+                <label for="official-title-${officialCount}">Title</label>
+                <input type="text" id="official-title-${officialCount}" placeholder="e.g., City Clerk">
+            </div>
+            <div class="form-field">
+                <label for="official-email-${officialCount}">Email</label>
+                <input type="email" id="official-email-${officialCount}" placeholder="e.g., clerk@city.gov">
+            </div>
+            <div class="form-field">
+                <label for="official-phone-${officialCount}">Phone</label>
+                <input type="tel" id="official-phone-${officialCount}" placeholder="e.g., (555) 123-4567">
+            </div>
+        </div>
+    `;
+
+    container.appendChild(officialDiv);
+    officialCount++;
+}
+
+function removeOfficial(index) {
+    const card = document.querySelector(`[data-official-index="${index}"]`);
+    if (card) card.remove();
+}
+
+/**
+ * Add a department head
+ */
+function addDeptHead() {
+    const container = document.getElementById('dept-heads-container');
+    if (!container) return;
+
+    const headDiv = document.createElement('div');
+    headDiv.className = 'council-member-card';
+    headDiv.dataset.deptHeadIndex = deptHeadCount;
+
+    headDiv.innerHTML = `
+        <h4>Department Head ${deptHeadCount + 1}</h4>
+        <button type="button" class="remove-member-btn" onclick="removeDeptHead(${deptHeadCount})">Remove</button>
+
+        <div class="form-grid">
+            <div class="form-field">
+                <label for="dept-head-name-${deptHeadCount}">Name</label>
+                <input type="text" id="dept-head-name-${deptHeadCount}" placeholder="e.g., Jane Doe">
+            </div>
+            <div class="form-field">
+                <label for="dept-head-title-${deptHeadCount}">Title</label>
+                <input type="text" id="dept-head-title-${deptHeadCount}" placeholder="e.g., Police Chief">
+            </div>
+            <div class="form-field">
+                <label for="dept-head-department-${deptHeadCount}">Department</label>
+                <input type="text" id="dept-head-department-${deptHeadCount}" placeholder="e.g., Police Department">
+            </div>
+            <div class="form-field">
+                <label for="dept-head-email-${deptHeadCount}">Email</label>
+                <input type="email" id="dept-head-email-${deptHeadCount}" placeholder="e.g., chief@police.city.gov">
+            </div>
+            <div class="form-field">
+                <label for="dept-head-phone-${deptHeadCount}">Phone</label>
+                <input type="tel" id="dept-head-phone-${deptHeadCount}" placeholder="e.g., (555) 123-4567">
+            </div>
+        </div>
+    `;
+
+    container.appendChild(headDiv);
+    deptHeadCount++;
+}
+
+function removeDeptHead(index) {
+    const card = document.querySelector(`[data-dept-head-index="${index}"]`);
+    if (card) card.remove();
+}
+
+/**
+ * Add a department
+ */
+function addDepartment() {
+    const container = document.getElementById('departments-container');
+    if (!container) return;
+
+    const deptDiv = document.createElement('div');
+    deptDiv.className = 'council-member-card';
+    deptDiv.dataset.departmentIndex = departmentCount;
+
+    deptDiv.innerHTML = `
+        <h4>Department ${departmentCount + 1}</h4>
+        <button type="button" class="remove-member-btn" onclick="removeDepartment(${departmentCount})">Remove</button>
+
+        <div class="form-grid">
+            <div class="form-field">
+                <label for="department-name-${departmentCount}">Department Name</label>
+                <input type="text" id="department-name-${departmentCount}" placeholder="e.g., Public Works">
+            </div>
+            <div class="form-field">
+                <label for="department-phone-${departmentCount}">Phone</label>
+                <input type="tel" id="department-phone-${departmentCount}" placeholder="e.g., (555) 123-4530">
+            </div>
+            <div class="form-field">
+                <label for="department-email-${departmentCount}">Email</label>
+                <input type="email" id="department-email-${departmentCount}" placeholder="e.g., publicworks@city.gov">
+            </div>
+            <div class="form-field">
+                <label for="department-location-${departmentCount}">Location</label>
+                <input type="text" id="department-location-${departmentCount}" placeholder="e.g., City Hall, Room 201">
+            </div>
+            <div class="form-field">
+                <label for="department-hours-${departmentCount}">Hours</label>
+                <input type="text" id="department-hours-${departmentCount}" placeholder="e.g., Mon-Fri 8AM-5PM">
+            </div>
+            <div class="form-field">
+                <label for="department-services-${departmentCount}">Services (one per line)</label>
+                <textarea id="department-services-${departmentCount}" rows="4" placeholder="Street maintenance&#10;Water/sewer&#10;Trash collection&#10;etc."></textarea>
+            </div>
+        </div>
+    `;
+
+    container.appendChild(deptDiv);
+    departmentCount++;
+}
+
+function removeDepartment(index) {
+    const card = document.querySelector(`[data-department-index="${index}"]`);
+    if (card) card.remove();
+}
+
+/**
  * Load existing configuration from file
  */
 async function loadExistingConfig() {
@@ -153,8 +617,34 @@ async function loadExistingConfig() {
         document.getElementById('main-email').value = config.contact_info?.main_email || '';
         document.getElementById('office-hours').value = config.contact_info?.office_hours || '';
 
-        // Load form email
-        document.getElementById('form-email').value = config.form_submissions?.default_email || '';
+        // Load form emails
+        if (config.form_emails && config.form_emails.length > 0) {
+            // Clear existing emails
+            document.getElementById('form-emails-container').innerHTML = '';
+            formEmailCount = 0;
+
+            // Add each email configuration
+            config.form_emails.forEach((emailConfig, index) => {
+                addFormEmail();
+                const idx = formEmailCount - 1;
+
+                // Populate fields
+                document.getElementById(`email-address-${idx}`).value = emailConfig.email || '';
+                document.getElementById(`email-label-${idx}`).value = emailConfig.label || '';
+
+                // Select forms
+                if (emailConfig.forms && emailConfig.forms.length > 0) {
+                    emailConfig.forms.forEach(form => {
+                        const checkbox = document.querySelector(`input[data-email-index="${idx}"][data-form="${form}"]`);
+                        if (checkbox) {
+                            checkbox.checked = true;
+                        }
+                    });
+                }
+            });
+
+            updateFormAssignments();
+        }
 
         // Load Google Drive config
         document.getElementById('google-api-key').value = config.google_drive?.api_key || '';
@@ -231,6 +721,126 @@ function generateConfig() {
         }
     });
 
+    // Build form emails array
+    const formEmails = [];
+    const emailCards = document.querySelectorAll('.form-email-card');
+    emailCards.forEach(card => {
+        const idx = card.dataset.emailIndex;
+        const email = document.getElementById(`email-address-${idx}`)?.value || '';
+        const label = document.getElementById(`email-label-${idx}`)?.value || '';
+
+        if (email) {
+            const forms = [];
+            const checkboxes = card.querySelectorAll('input[type="checkbox"][data-form]:checked');
+            checkboxes.forEach(cb => {
+                if (cb.dataset.form) {
+                    forms.push(cb.dataset.form);
+                }
+            });
+
+            formEmails.push({
+                email,
+                label,
+                forms
+            });
+        }
+    });
+
+    // Build parks array
+    const parks = [];
+    const parkCards = document.querySelectorAll('[data-park-index]');
+    parkCards.forEach(card => {
+        const idx = card.dataset.parkIndex;
+        const name = document.getElementById(`park-name-${idx}`)?.value || '';
+        const location = document.getElementById(`park-location-${idx}`)?.value || '';
+        const size = document.getElementById(`park-size-${idx}`)?.value || '';
+        const amenities = document.getElementById(`park-amenities-${idx}`)?.value || '';
+
+        if (name) {
+            parks.push({
+                name,
+                location,
+                size,
+                amenities: amenities.split('\n').filter(a => a.trim())
+            });
+        }
+    });
+
+    // Build trails array
+    const trails = [];
+    const trailCards = document.querySelectorAll('[data-trail-index]');
+    trailCards.forEach(card => {
+        const idx = card.dataset.trailIndex;
+        const name = document.getElementById(`trail-name-${idx}`)?.value || '';
+        const length = document.getElementById(`trail-length-${idx}`)?.value || '';
+        const surface = document.getElementById(`trail-surface-${idx}`)?.value || '';
+        const features = document.getElementById(`trail-features-${idx}`)?.value || '';
+
+        if (name) {
+            trails.push({
+                name,
+                length,
+                surface,
+                features: features.split('\n').filter(f => f.trim())
+            });
+        }
+    });
+
+    // Build elected officials array
+    const officials = [];
+    const officialCards = document.querySelectorAll('[data-official-index]');
+    officialCards.forEach(card => {
+        const idx = card.dataset.officialIndex;
+        const name = document.getElementById(`official-name-${idx}`)?.value || '';
+        const title = document.getElementById(`official-title-${idx}`)?.value || '';
+        const email = document.getElementById(`official-email-${idx}`)?.value || '';
+        const phone = document.getElementById(`official-phone-${idx}`)?.value || '';
+
+        if (name) {
+            officials.push({ name, title, email, phone });
+        }
+    });
+
+    // Build department heads array
+    const deptHeads = [];
+    const deptHeadCards = document.querySelectorAll('[data-dept-head-index]');
+    deptHeadCards.forEach(card => {
+        const idx = card.dataset.deptHeadIndex;
+        const name = document.getElementById(`dept-head-name-${idx}`)?.value || '';
+        const title = document.getElementById(`dept-head-title-${idx}`)?.value || '';
+        const department = document.getElementById(`dept-head-department-${idx}`)?.value || '';
+        const email = document.getElementById(`dept-head-email-${idx}`)?.value || '';
+        const phone = document.getElementById(`dept-head-phone-${idx}`)?.value || '';
+
+        if (name) {
+            deptHeads.push({ name, title, department, email, phone });
+        }
+    });
+
+    // Build departments array
+    const departments = [];
+    const deptCards = document.querySelectorAll('[data-department-index]');
+    deptCards.forEach(card => {
+        const idx = card.dataset.departmentIndex;
+        const name = document.getElementById(`department-name-${idx}`)?.value || '';
+        const phone = document.getElementById(`department-phone-${idx}`)?.value || '';
+        const email = document.getElementById(`department-email-${idx}`)?.value || '';
+        const location = document.getElementById(`department-location-${idx}`)?.value || '';
+        const hours = document.getElementById(`department-hours-${idx}`)?.value || '';
+        const services = document.getElementById(`department-services-${idx}`)?.value || '';
+
+        if (name) {
+            departments.push({
+                name,
+                phone,
+                email,
+                location,
+                hours,
+                services: services.split('\n').filter(s => s.trim())
+            });
+        }
+    });
+
     // Build Google Drive folders object
     const folders = {};
     GOOGLE_DRIVE_FOLDERS.forEach(folder => {
@@ -256,9 +866,20 @@ function generateConfig() {
             note: "Fill in your municipality's contact information"
         },
         council_members: councilMembers,
-        form_submissions: {
-            default_email: document.getElementById('form-email').value,
-            note: "Change default_email to the address where ALL forms should be sent"
+        form_emails: formEmails,
+        parks: parks,
+        trails: trails,
+        community_center: {
+            name: document.getElementById('community-center-name').value,
+            address: document.getElementById('community-center-address').value,
+            phone: document.getElementById('community-center-phone').value,
+            hours: document.getElementById('community-center-hours').value,
+            amenities: document.getElementById('community-center-amenities').value.split('\n').filter(a => a.trim())
+        },
+        staff: {
+            elected_officials: officials,
+            department_heads: deptHeads,
+            departments: departments
         },
         google_drive: {
             api_key: document.getElementById('google-api-key').value || 'YOUR_GOOGLE_API_KEY_HERE',

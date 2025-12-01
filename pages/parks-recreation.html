@@ -23,7 +23,11 @@
 
         <section class="card">
             <h2>City Parks</h2>
-            <p><em>To add your city's parks, manually update this section with park information, or upload park maps and guides to the "parks_maps" Google Drive folder.</em></p>
+            <div id="parks-list">
+                <p><em>Loading parks information...</em></p>
+            </div>
+            <h3>Park Maps & Guides</h3>
+            <p><em>Additional park maps and guides uploaded to Google Drive will appear below:</em></p>
             <div data-drive-folder="parks_maps"></div>
         </section>
 
@@ -128,43 +132,19 @@
 
         <section class="card">
             <h2>Trails & Greenways</h2>
-            <p><em>Upload trail maps and guides to the "trails_maps" Google Drive folder to display them here.</em></p>
+            <div id="trails-list">
+                <p><em>Loading trails information...</em></p>
+            </div>
+            <h3>Trail Maps & Guides</h3>
+            <p><em>Trail maps and guides uploaded to Google Drive will appear below:</em></p>
             <div data-drive-folder="trails_maps"></div>
-
-            <h3>Trail Amenities</h3>
-            <p><em>Update this section with your specific trail amenities:</em></p>
-            <ul>
-                <li>Trailhead parking</li>
-                <li>Restrooms at major trailheads</li>
-                <li>Water fountains</li>
-                <li>Benches and rest areas</li>
-                <li>Mile markers</li>
-                <li>Pet waste stations</li>
-            </ul>
-
-            <a href="#" class="btn btn-secondary">Download Trail Maps (PDF)</a>
         </section>
 
         <section class="card">
             <h2>Community Center</h2>
-            <p><strong>Location:</strong> 100 Community Way</p>
-            <p><strong>Hours:</strong></p>
-            <ul>
-                <li>Monday-Friday: 6:00 AM - 10:00 PM</li>
-                <li>Saturday: 8:00 AM - 8:00 PM</li>
-                <li>Sunday: 10:00 AM - 6:00 PM</li>
-            </ul>
-
-            <h3>Facilities</h3>
-            <ul>
-                <li>Fitness center (cardio & weight equipment)</li>
-                <li>Indoor pool (lap swim & rec swim)</li>
-                <li>Gymnasium (basketball, volleyball)</li>
-                <li>Group fitness studio</li>
-                <li>Walking/running track (1/8 mile)</li>
-                <li>Multi-purpose rooms</li>
-                <li>Senior center wing</li>
-            </ul>
+            <div id="community-center-info">
+                <p><em>Loading community center information...</em></p>
+            </div>
 
             <h3>Memberships</h3>
             <table>
@@ -247,6 +227,7 @@
     <!-- Component Loader - Must come last to load header/footer -->
     <script src="../assets/js/google-drive-loader.js"></script>
     <script src="../assets/js/common-data-loader.js"></script>
+    <script src="../assets/js/parks-data-loader.js"></script>
     <script src="../assets/js/component-loader.js"></script>
 </body>
 </html>
