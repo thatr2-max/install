@@ -66,35 +66,33 @@
 
         <section class="card">
             <h2>Polling Locations</h2>
-            <p>Find your polling place based on your residential address.</p>
+            <p>All polling places are open from 7:00 AM to 7:00 PM on election day. <em>To add your city's polling locations, edit this section manually.</em></p>
 
-            <form action="https://formsubmit.co/elections@citygovernment.gov" method="POST" style="max-width: 500px;">
-    <!-- FormSubmit Configuration -->
-    <input type="hidden" name="_subject" value="New submission from Voting Elections">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_template" value="table">
-    
-    <!-- FormSubmit Configuration -->
-    <input type="hidden" name="_subject" value="New submission from Voting Elections">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_template" value="table">
-    
-                <div class="form-group">
-                    <label for="address">Enter Your Address <span class="required" aria-label="required">*</span></label>
-                    <input type="text" id="address" name="address" required aria-required="true" placeholder="123 Main St">
+            <div class="grid">
+                <div class="card">
+                    <h3>Precinct 1</h3>
+                    <p><strong>Location:</strong> City Hall</p>
+                    <p><strong>Address:</strong> 100 Main Street</p>
+                    <p><strong>Hours:</strong> 7:00 AM - 7:00 PM</p>
+                    <p><strong>Accessibility:</strong> ADA accessible, parking available</p>
                 </div>
 
-                <div class="form-group">
-                    <label for="zip">ZIP Code <span class="required" aria-label="required">*</span></label>
-                    <input type="text" id="zip" name="zip" required aria-required="true" pattern="[0-9]{5}" placeholder="12345">
+                <div class="card">
+                    <h3>Precinct 2</h3>
+                    <p><strong>Location:</strong> Community Center</p>
+                    <p><strong>Address:</strong> 500 Park Avenue</p>
+                    <p><strong>Hours:</strong> 7:00 AM - 7:00 PM</p>
+                    <p><strong>Accessibility:</strong> ADA accessible, parking available</p>
                 </div>
 
-                <button type="submit" class="btn">Find My Polling Place</button>
-            </form>
-
-            <h3>All Polling Locations</h3>
-            <p>Polling places are open from 7:00 AM to 7:00 PM on election day.</p>
-            <a href="#" class="btn btn-secondary">View All Locations</a>
+                <div class="card">
+                    <h3>Precinct 3</h3>
+                    <p><strong>Location:</strong> Public Library</p>
+                    <p><strong>Address:</strong> 200 Library Lane</p>
+                    <p><strong>Hours:</strong> 7:00 AM - 7:00 PM</p>
+                    <p><strong>Accessibility:</strong> ADA accessible, parking available</p>
+                </div>
+            </div>
         </section>
 
         <section class="card">
@@ -215,10 +213,10 @@
 
         <section class="card">
             <h2>Contact Elections Office</h2>
-            <p><strong>Address:</strong> 100 Main Street, Room 150</p>
-            <p><strong>Phone:</strong> (555) 123-4500</p>
-            <p><strong>Email:</strong> elections@citygovernment.gov</p>
-            <p><strong>Hours:</strong> Monday - Friday, 8:00 AM - 5:00 PM</p>
+            <p><strong>Address:</strong> <span data-contact="address">ENTER_CITY_HALL_ADDRESS_HERE</span></p>
+            <p><strong>Phone:</strong> <span data-contact="phone">ENTER_MAIN_PHONE_NUMBER_HERE</span></p>
+            <p><strong>Email:</strong> <span data-contact="email">ENTER_MAIN_EMAIL_HERE</span></p>
+            <p><strong>Hours:</strong> <span data-contact="hours">ENTER_OFFICE_HOURS_HERE</span></p>
         </section>
     </main>
 
@@ -227,6 +225,7 @@
 
     <!-- Component Loader - Must come last to load header/footer -->
     <script src="../assets/js/form-config-loader.js"></script>
+    <script src="../assets/js/common-data-loader.js"></script>
     <script src="../assets/js/component-loader.js"></script>
 </body>
 </html>

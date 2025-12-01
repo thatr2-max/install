@@ -25,7 +25,7 @@
             <h2>Submit a Service Request</h2>
             <p>Use this form to report non-emergency issues in your neighborhood. All fields marked with <span class="required" aria-label="required">*</span> are required.</p>
 
-            <form action="https://formsubmit.co/issues@citygovernment.gov" method="POST" aria-label="Issue reporting form">
+            <form action="https://formsubmit.co/issues@citygovernment.gov" method="POST" enctype="multipart/form-data" aria-label="Issue reporting form" onsubmit="return validatePhotoUpload()">
     <!-- FormSubmit Configuration -->
     <input type="hidden" name="_subject" value="New submission from Report Issue">
     <input type="hidden" name="_captcha" value="false">
@@ -80,6 +80,13 @@
                     <label for="reporter-phone">Phone Number</label>
                     <input type="tel" id="reporter-phone" name="reporter-phone">
                     <small>Optional</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="photos">Attach Photos</label>
+                    <input type="file" id="photos" name="attachment" accept="image/jpeg,image/jpg,image/png" multiple aria-describedby="photo-help">
+                    <small id="photo-help">Optional - Attach up to 3 photos (JPG or PNG only, max 10MB total). Photos help us better understand the issue.</small>
+                    <div id="photo-error" style="color: #dc3545; display: none; margin-top: 0.5rem;"></div>
                 </div>
 
                 <button type="submit" class="btn">Submit Report</button>
@@ -205,7 +212,7 @@
             <p>Response times vary by issue type and severity. Emergency issues are addressed immediately, while routine maintenance may take several days.</p>
 
             <h3>Can I attach photos?</h3>
-            <p>Yes! Photos help our staff better understand and address the issue. You can upload photos when submitting your report.</p>
+            <p>Yes! You can attach up to 3 photos (JPG or PNG format, max 10MB total) when submitting your report. Photos help our staff better understand and address the issue.</p>
 
             <h3>What if the issue isn't resolved?</h3>
             <p>Contact us at (555) 123-4530 with your request number, and we'll investigate the status.</p>
@@ -223,6 +230,79 @@
 
     <!-- Footer will be loaded here -->
     <div id="footer"></div>
+
+    <!-- Photo upload validation -->
+    <script>
+        function validatePhotoUpload() {
+            const fileInput = document.getElementById('photos');
+            const errorDiv = document.getElementById('photo-error');
+
+            // Clear previous errors
+            errorDiv.style.display = 'none';
+            errorDiv.textContent = '';
+
+            // If no files selected, that's fine (optional)
+            if (!fileInput.files || fileInput.files.length === 0) {
+                return true;
+            }
+
+            const maxSize = 10 * 1024 * 1024; // 10MB in bytes
+            const maxFiles = 3;
+            const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+
+            // Check number of files
+            if (fileInput.files.length > maxFiles) {
+                errorDiv.textContent = `Please select no more than ${maxFiles} photos.`;
+                errorDiv.style.display = 'block';
+                return false;
+            }
+
+            // Check each file
+            let totalSize = 0;
+            for (let i = 0; i < fileInput.files.length; i++) {
+                const file = fileInput.files[i];
+
+                // Check file type
+                if (!allowedTypes.includes(file.type.toLowerCase())) {
+                    errorDiv.textContent = `File "${file.name}" is not a JPG or PNG image. Please use only JPG or PNG files.`;
+                    errorDiv.style.display = 'block';
+                    return false;
+                }
+
+                totalSize += file.size;
+            }
+
+            // Check total size
+            if (totalSize > maxSize) {
+                const sizeMB = (totalSize / (1024 * 1024)).toFixed(1);
+                errorDiv.textContent = `Total file size (${sizeMB}MB) exceeds the 10MB limit. Please reduce the number or size of photos.`;
+                errorDiv.style.display = 'block';
+                return false;
+            }
+
+            return true;
+        }
+
+        // Add real-time validation feedback
+        document.getElementById('photos')?.addEventListener('change', function() {
+            const errorDiv = document.getElementById('photo-error');
+            const files = this.files;
+
+            if (files.length > 0) {
+                let totalSize = 0;
+                for (let i = 0; i < files.length; i++) {
+                    totalSize += files[i].size;
+                }
+                const sizeMB = (totalSize / (1024 * 1024)).toFixed(1);
+
+                if (totalSize <= 10 * 1024 * 1024) {
+                    errorDiv.style.display = 'block';
+                    errorDiv.style.color = '#28a745';
+                    errorDiv.textContent = `✓ ${files.length} photo(s) selected (${sizeMB}MB)`;
+                }
+            }
+        });
+    </script>
 
     <!-- Component Loader - Must come last to load header/footer -->
     <script src="../assets/js/form-config-loader.js"></script>
