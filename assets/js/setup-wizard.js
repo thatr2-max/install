@@ -39,8 +39,12 @@ const GOOGLE_DRIVE_FOLDERS = [
 ];
 
 let councilMemberCount = 0;
-
 let formEmailCount = 0;
+let parkCount = 0;
+let trailCount = 0;
+let officialCount = 0;
+let deptHeadCount = 0;
+let departmentCount = 0;
 
 // All available forms that can receive submissions
 const ALL_FORMS = [
@@ -354,6 +358,238 @@ function removeFormEmail(index) {
         emailCard.remove();
         updateFormAssignments();
     }
+}
+
+/**
+ * Add a park
+ */
+function addPark() {
+    const container = document.getElementById('parks-container');
+    if (!container) return;
+
+    const parkDiv = document.createElement('div');
+    parkDiv.className = 'council-member-card';
+    parkDiv.dataset.parkIndex = parkCount;
+
+    parkDiv.innerHTML = `
+        <h4>Park ${parkCount + 1}</h4>
+        <button type="button" class="remove-member-btn" onclick="removePark(${parkCount})">Remove</button>
+
+        <div class="form-grid">
+            <div class="form-field">
+                <label for="park-name-${parkCount}">Park Name</label>
+                <input type="text" id="park-name-${parkCount}" placeholder="e.g., Central Park">
+            </div>
+            <div class="form-field">
+                <label for="park-location-${parkCount}">Location/Address</label>
+                <input type="text" id="park-location-${parkCount}" placeholder="e.g., 456 Park Avenue">
+            </div>
+            <div class="form-field">
+                <label for="park-size-${parkCount}">Size (acres)</label>
+                <input type="text" id="park-size-${parkCount}" placeholder="e.g., 45">
+            </div>
+            <div class="form-field">
+                <label for="park-amenities-${parkCount}">Amenities (one per line)</label>
+                <textarea id="park-amenities-${parkCount}" rows="4" placeholder="Playground&#10;Walking trails&#10;Picnic shelters&#10;etc."></textarea>
+            </div>
+        </div>
+    `;
+
+    container.appendChild(parkDiv);
+    parkCount++;
+}
+
+function removePark(index) {
+    const card = document.querySelector(`[data-park-index="${index}"]`);
+    if (card) card.remove();
+}
+
+/**
+ * Add a trail
+ */
+function addTrail() {
+    const container = document.getElementById('trails-container');
+    if (!container) return;
+
+    const trailDiv = document.createElement('div');
+    trailDiv.className = 'council-member-card';
+    trailDiv.dataset.trailIndex = trailCount;
+
+    trailDiv.innerHTML = `
+        <h4>Trail ${trailCount + 1}</h4>
+        <button type="button" class="remove-member-btn" onclick="removeTrail(${trailCount})">Remove</button>
+
+        <div class="form-grid">
+            <div class="form-field">
+                <label for="trail-name-${trailCount}">Trail Name</label>
+                <input type="text" id="trail-name-${trailCount}" placeholder="e.g., Riverwalk Trail">
+            </div>
+            <div class="form-field">
+                <label for="trail-length-${trailCount}">Length</label>
+                <input type="text" id="trail-length-${trailCount}" placeholder="e.g., 5 miles">
+            </div>
+            <div class="form-field">
+                <label for="trail-surface-${trailCount}">Surface Type</label>
+                <input type="text" id="trail-surface-${trailCount}" placeholder="e.g., Paved, accessible">
+            </div>
+            <div class="form-field">
+                <label for="trail-features-${trailCount}">Features (one per line)</label>
+                <textarea id="trail-features-${trailCount}" rows="4" placeholder="Scenic views&#10;Wildlife viewing&#10;Accessible&#10;etc."></textarea>
+            </div>
+        </div>
+    `;
+
+    container.appendChild(trailDiv);
+    trailCount++;
+}
+
+function removeTrail(index) {
+    const card = document.querySelector(`[data-trail-index="${index}"]`);
+    if (card) card.remove();
+}
+
+/**
+ * Add an elected official
+ */
+function addOfficial() {
+    const container = document.getElementById('officials-container');
+    if (!container) return;
+
+    const officialDiv = document.createElement('div');
+    officialDiv.className = 'council-member-card';
+    officialDiv.dataset.officialIndex = officialCount;
+
+    officialDiv.innerHTML = `
+        <h4>Official ${officialCount + 1}</h4>
+        <button type="button" class="remove-member-btn" onclick="removeOfficial(${officialCount})">Remove</button>
+
+        <div class="form-grid">
+            <div class="form-field">
+                <label for="official-name-${officialCount}">Name</label>
+                <input type="text" id="official-name-${officialCount}" placeholder="e.g., John Smith">
+            </div>
+            <div class="form-field">
+                <label for="official-title-${officialCount}">Title</label>
+                <input type="text" id="official-title-${officialCount}" placeholder="e.g., City Clerk">
+            </div>
+            <div class="form-field">
+                <label for="official-email-${officialCount}">Email</label>
+                <input type="email" id="official-email-${officialCount}" placeholder="e.g., clerk@city.gov">
+            </div>
+            <div class="form-field">
+                <label for="official-phone-${officialCount}">Phone</label>
+                <input type="tel" id="official-phone-${officialCount}" placeholder="e.g., (555) 123-4567">
+            </div>
+        </div>
+    `;
+
+    container.appendChild(officialDiv);
+    officialCount++;
+}
+
+function removeOfficial(index) {
+    const card = document.querySelector(`[data-official-index="${index}"]`);
+    if (card) card.remove();
+}
+
+/**
+ * Add a department head
+ */
+function addDeptHead() {
+    const container = document.getElementById('dept-heads-container');
+    if (!container) return;
+
+    const headDiv = document.createElement('div');
+    headDiv.className = 'council-member-card';
+    headDiv.dataset.deptHeadIndex = deptHeadCount;
+
+    headDiv.innerHTML = `
+        <h4>Department Head ${deptHeadCount + 1}</h4>
+        <button type="button" class="remove-member-btn" onclick="removeDeptHead(${deptHeadCount})">Remove</button>
+
+        <div class="form-grid">
+            <div class="form-field">
+                <label for="dept-head-name-${deptHeadCount}">Name</label>
+                <input type="text" id="dept-head-name-${deptHeadCount}" placeholder="e.g., Jane Doe">
+            </div>
+            <div class="form-field">
+                <label for="dept-head-title-${deptHeadCount}">Title</label>
+                <input type="text" id="dept-head-title-${deptHeadCount}" placeholder="e.g., Police Chief">
+            </div>
+            <div class="form-field">
+                <label for="dept-head-department-${deptHeadCount}">Department</label>
+                <input type="text" id="dept-head-department-${deptHeadCount}" placeholder="e.g., Police Department">
+            </div>
+            <div class="form-field">
+                <label for="dept-head-email-${deptHeadCount}">Email</label>
+                <input type="email" id="dept-head-email-${deptHeadCount}" placeholder="e.g., chief@police.city.gov">
+            </div>
+            <div class="form-field">
+                <label for="dept-head-phone-${deptHeadCount}">Phone</label>
+                <input type="tel" id="dept-head-phone-${deptHeadCount}" placeholder="e.g., (555) 123-4567">
+            </div>
+        </div>
+    `;
+
+    container.appendChild(headDiv);
+    deptHeadCount++;
+}
+
+function removeDeptHead(index) {
+    const card = document.querySelector(`[data-dept-head-index="${index}"]`);
+    if (card) card.remove();
+}
+
+/**
+ * Add a department
+ */
+function addDepartment() {
+    const container = document.getElementById('departments-container');
+    if (!container) return;
+
+    const deptDiv = document.createElement('div');
+    deptDiv.className = 'council-member-card';
+    deptDiv.dataset.departmentIndex = departmentCount;
+
+    deptDiv.innerHTML = `
+        <h4>Department ${departmentCount + 1}</h4>
+        <button type="button" class="remove-member-btn" onclick="removeDepartment(${departmentCount})">Remove</button>
+
+        <div class="form-grid">
+            <div class="form-field">
+                <label for="department-name-${departmentCount}">Department Name</label>
+                <input type="text" id="department-name-${departmentCount}" placeholder="e.g., Public Works">
+            </div>
+            <div class="form-field">
+                <label for="department-phone-${departmentCount}">Phone</label>
+                <input type="tel" id="department-phone-${departmentCount}" placeholder="e.g., (555) 123-4530">
+            </div>
+            <div class="form-field">
+                <label for="department-email-${departmentCount}">Email</label>
+                <input type="email" id="department-email-${departmentCount}" placeholder="e.g., publicworks@city.gov">
+            </div>
+            <div class="form-field">
+                <label for="department-location-${departmentCount}">Location</label>
+                <input type="text" id="department-location-${departmentCount}" placeholder="e.g., City Hall, Room 201">
+            </div>
+            <div class="form-field">
+                <label for="department-hours-${departmentCount}">Hours</label>
+                <input type="text" id="department-hours-${departmentCount}" placeholder="e.g., Mon-Fri 8AM-5PM">
+            </div>
+            <div class="form-field">
+                <label for="department-services-${departmentCount}">Services (one per line)</label>
+                <textarea id="department-services-${departmentCount}" rows="4" placeholder="Street maintenance&#10;Water/sewer&#10;Trash collection&#10;etc."></textarea>
+            </div>
+        </div>
+    `;
+
+    container.appendChild(deptDiv);
+    departmentCount++;
+}
+
+function removeDepartment(index) {
+    const card = document.querySelector(`[data-department-index="${index}"]`);
+    if (card) card.remove();
 }
 
 /**
