@@ -746,6 +746,101 @@ function generateConfig() {
         }
     });
 
+    // Build parks array
+    const parks = [];
+    const parkCards = document.querySelectorAll('[data-park-index]');
+    parkCards.forEach(card => {
+        const idx = card.dataset.parkIndex;
+        const name = document.getElementById(`park-name-${idx}`)?.value || '';
+        const location = document.getElementById(`park-location-${idx}`)?.value || '';
+        const size = document.getElementById(`park-size-${idx}`)?.value || '';
+        const amenities = document.getElementById(`park-amenities-${idx}`)?.value || '';
+
+        if (name) {
+            parks.push({
+                name,
+                location,
+                size,
+                amenities: amenities.split('\n').filter(a => a.trim())
+            });
+        }
+    });
+
+    // Build trails array
+    const trails = [];
+    const trailCards = document.querySelectorAll('[data-trail-index]');
+    trailCards.forEach(card => {
+        const idx = card.dataset.trailIndex;
+        const name = document.getElementById(`trail-name-${idx}`)?.value || '';
+        const length = document.getElementById(`trail-length-${idx}`)?.value || '';
+        const surface = document.getElementById(`trail-surface-${idx}`)?.value || '';
+        const features = document.getElementById(`trail-features-${idx}`)?.value || '';
+
+        if (name) {
+            trails.push({
+                name,
+                length,
+                surface,
+                features: features.split('\n').filter(f => f.trim())
+            });
+        }
+    });
+
+    // Build elected officials array
+    const officials = [];
+    const officialCards = document.querySelectorAll('[data-official-index]');
+    officialCards.forEach(card => {
+        const idx = card.dataset.officialIndex;
+        const name = document.getElementById(`official-name-${idx}`)?.value || '';
+        const title = document.getElementById(`official-title-${idx}`)?.value || '';
+        const email = document.getElementById(`official-email-${idx}`)?.value || '';
+        const phone = document.getElementById(`official-phone-${idx}`)?.value || '';
+
+        if (name) {
+            officials.push({ name, title, email, phone });
+        }
+    });
+
+    // Build department heads array
+    const deptHeads = [];
+    const deptHeadCards = document.querySelectorAll('[data-dept-head-index]');
+    deptHeadCards.forEach(card => {
+        const idx = card.dataset.deptHeadIndex;
+        const name = document.getElementById(`dept-head-name-${idx}`)?.value || '';
+        const title = document.getElementById(`dept-head-title-${idx}`)?.value || '';
+        const department = document.getElementById(`dept-head-department-${idx}`)?.value || '';
+        const email = document.getElementById(`dept-head-email-${idx}`)?.value || '';
+        const phone = document.getElementById(`dept-head-phone-${idx}`)?.value || '';
+
+        if (name) {
+            deptHeads.push({ name, title, department, email, phone });
+        }
+    });
+
+    // Build departments array
+    const departments = [];
+    const deptCards = document.querySelectorAll('[data-department-index]');
+    deptCards.forEach(card => {
+        const idx = card.dataset.departmentIndex;
+        const name = document.getElementById(`department-name-${idx}`)?.value || '';
+        const phone = document.getElementById(`department-phone-${idx}`)?.value || '';
+        const email = document.getElementById(`department-email-${idx}`)?.value || '';
+        const location = document.getElementById(`department-location-${idx}`)?.value || '';
+        const hours = document.getElementById(`department-hours-${idx}`)?.value || '';
+        const services = document.getElementById(`department-services-${idx}`)?.value || '';
+
+        if (name) {
+            departments.push({
+                name,
+                phone,
+                email,
+                location,
+                hours,
+                services: services.split('\n').filter(s => s.trim())
+            });
+        }
+    });
+
     // Build Google Drive folders object
     const folders = {};
     GOOGLE_DRIVE_FOLDERS.forEach(folder => {
@@ -772,6 +867,20 @@ function generateConfig() {
         },
         council_members: councilMembers,
         form_emails: formEmails,
+        parks: parks,
+        trails: trails,
+        community_center: {
+            name: document.getElementById('community-center-name').value,
+            address: document.getElementById('community-center-address').value,
+            phone: document.getElementById('community-center-phone').value,
+            hours: document.getElementById('community-center-hours').value,
+            amenities: document.getElementById('community-center-amenities').value.split('\n').filter(a => a.trim())
+        },
+        staff: {
+            elected_officials: officials,
+            department_heads: deptHeads,
+            departments: departments
+        },
         google_drive: {
             api_key: document.getElementById('google-api-key').value || 'YOUR_GOOGLE_API_KEY_HERE',
             enabled: document.getElementById('google-drive-enabled').checked,

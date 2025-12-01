@@ -83,6 +83,77 @@
       ]
     }
   ],
+  "parks": [
+    {
+      "name": "ENTER_PARK_NAME_HERE",
+      "location": "ENTER_PARK_LOCATION_HERE",
+      "size": "ENTER_SIZE_IN_ACRES_HERE",
+      "amenities": [
+        "Playground",
+        "Basketball court",
+        "Picnic shelter",
+        "Walking trails"
+      ]
+    }
+  ],
+  "trails": [
+    {
+      "name": "ENTER_TRAIL_NAME_HERE",
+      "length": "ENTER_LENGTH_HERE",
+      "surface": "ENTER_SURFACE_TYPE_HERE",
+      "features": [
+        "Paved path",
+        "Scenic views",
+        "Wheelchair accessible"
+      ]
+    }
+  ],
+  "community_center": {
+    "name": "ENTER_COMMUNITY_CENTER_NAME_HERE",
+    "address": "ENTER_COMMUNITY_CENTER_ADDRESS_HERE",
+    "phone": "ENTER_COMMUNITY_CENTER_PHONE_HERE",
+    "hours": "ENTER_COMMUNITY_CENTER_HOURS_HERE",
+    "amenities": [
+      "Indoor pool",
+      "Gymnasium",
+      "Fitness center",
+      "Meeting rooms",
+      "Game room"
+    ]
+  },
+  "staff": {
+    "elected_officials": [
+      {
+        "name": "ENTER_OFFICIAL_NAME_HERE",
+        "title": "ENTER_OFFICIAL_TITLE_HERE",
+        "email": "ENTER_OFFICIAL_EMAIL_HERE",
+        "phone": "ENTER_OFFICIAL_PHONE_HERE"
+      }
+    ],
+    "department_heads": [
+      {
+        "name": "ENTER_DEPT_HEAD_NAME_HERE",
+        "title": "ENTER_DEPT_HEAD_TITLE_HERE",
+        "department": "ENTER_DEPARTMENT_HERE",
+        "email": "ENTER_DEPT_HEAD_EMAIL_HERE",
+        "phone": "ENTER_DEPT_HEAD_PHONE_HERE"
+      }
+    ],
+    "departments": [
+      {
+        "name": "ENTER_DEPARTMENT_NAME_HERE",
+        "phone": "ENTER_DEPARTMENT_PHONE_HERE",
+        "email": "ENTER_DEPARTMENT_EMAIL_HERE",
+        "location": "ENTER_DEPARTMENT_LOCATION_HERE",
+        "hours": "ENTER_DEPARTMENT_HOURS_HERE",
+        "services": [
+          "Service 1",
+          "Service 2",
+          "Service 3"
+        ]
+      }
+    ]
+  },
   "google_drive": {
     "api_key": "YOUR_GOOGLE_API_KEY_HERE",
     "enabled": true,
