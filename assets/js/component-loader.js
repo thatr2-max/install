@@ -54,7 +54,7 @@ class ComponentLoader {
 <!-- Combined Banner with Navigation -->
 <div class="combined-banner">
     <div class="banner-content">
-        <h1 class="site-title" style="color: #D4E6F1;">City Government Portal</h1>
+        <h1 class="site-title" style="color: #D4E6F1 !important;">City Government Portal</h1>
         <p class="site-tagline">Accessible Services for All Citizens</p>
         <div class="main-navigation" role="navigation" aria-label="Main navigation">
             <button onclick="window.location.href='index.html'" aria-current="page">Home</button>
@@ -78,7 +78,7 @@ class ComponentLoader {
 <!-- Combined Banner with Navigation -->
 <div class="combined-banner">
     <div class="banner-content">
-        <h1 class="site-title" style="color: #D4E6F1;">City Government Portal</h1>
+        <h1 class="site-title" style="color: #D4E6F1 !important;">City Government Portal</h1>
         <p class="site-tagline">Accessible Services for All Citizens</p>
         <div class="main-navigation" role="navigation" aria-label="Main navigation">
             <button onclick="window.location.href='../index.html'">Home</button>
