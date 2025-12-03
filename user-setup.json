@@ -188,7 +188,8 @@
       "news_press_releases": "",
       "capital_projects": "",
       "parks_maps": "",
-      "trails_maps": ""
+      "trails_maps": "",
+      "boards_commissions": ""
     },
     "note": "Get API key from https://console.cloud.google.com/ - Instructions in GOOGLE_DRIVE_SETUP.md"
   },
