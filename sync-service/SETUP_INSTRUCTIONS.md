@@ -2,6 +2,24 @@
 
 Complete setup guide for the sync service that monitors Google Drive and auto-generates static HTML files.
 
+## Multi-Tenant vs Single-Tenant
+
+This sync service comes in two flavors:
+
+- **Single-Tenant**: One database for one municipality (use `schema.sql`, `db_manager.py`, `sync_worker.py`)
+- **Multi-Tenant**: One database managing multiple municipalities (use `schema_multitenant.sql`, `db_manager_multitenant.py`, `sync_worker_multitenant.py`)
+
+**Choose Multi-Tenant if**:
+- You're managing websites for multiple municipalities
+- You want to reduce infrastructure overhead
+- You need centralized management and monitoring
+
+**Choose Single-Tenant if**:
+- You're only managing one municipality
+- You need complete database isolation per client
+
+This guide covers both setups. Multi-tenant specific instructions are marked with **[MULTI-TENANT]**.
+
 ---
 
 ## Prerequisites
@@ -10,7 +28,7 @@ Complete setup guide for the sync service that monitors Google Drive and auto-ge
 - Python 3.10 or higher
 - PostgreSQL 13 or higher
 - Google Cloud Platform account with Drive API enabled
-- Service account credentials for Google Drive API
+- Service account credentials for Google Drive API (one per municipality)
 
 ---
 
@@ -44,11 +62,29 @@ CREATE DATABASE gov_portal_sync;
 CREATE USER sync_user WITH PASSWORD 'your_secure_password_here';
 GRANT ALL PRIVILEGES ON DATABASE gov_portal_sync TO sync_user;
 \q
+```
 
-# Initialize database schema
+### Single-Tenant Schema
+
+```bash
+# Initialize single-tenant database schema
 cd /home/user/install/sync-service
 sudo -u postgres psql -d gov_portal_sync -f database/schema.sql
 ```
+
+### Multi-Tenant Schema **[MULTI-TENANT]**
+
+```bash
+# Initialize multi-tenant database schema
+cd /home/user/install/sync-service
+sudo -u postgres psql -d gov_portal_sync -f database/schema_multitenant.sql
+```
+
+The multi-tenant schema includes:
+- `tenants` table for storing municipality configurations
+- All tables have `tenant_id` foreign keys for isolation
+- Built-in views for monitoring per-tenant sync status
+- Automatic initialization of default folders for new tenants
 
 ---
 
@@ -112,7 +148,48 @@ sudo -u postgres psql -d gov_portal_sync -f database/schema.sql
 
 ---
 
-## Step 4: Configure Folder IDs in Database
+## Step 4: Add Municipalities (Tenants) **[MULTI-TENANT]**
+
+**Skip this step if using single-tenant setup.**
+
+For multi-tenant setups, use the provided script to add municipalities:
+
+```bash
+cd /home/user/install/sync-service
+source venv/bin/activate
+
+# Add your first municipality
+python add_tenant.py
+
+# Follow the interactive prompts:
+# - Tenant key: e.g., 'springfield'
+# - Name: e.g., 'City of Springfield'
+# - Domain: e.g., 'springfield.gov' (optional)
+# - Output path: e.g., '/var/www/springfield'
+# - Service account file: path to Google credentials JSON
+
+# Add additional municipalities
+python add_tenant.py  # Run again for each municipality
+
+# List all tenants
+python add_tenant.py list
+```
+
+The script will:
+1. Create the tenant in the database
+2. Initialize default folders (meeting_agendas, meeting_minutes, etc.)
+3. Configure output paths and service accounts
+
+**Each municipality should have**:
+- Its own Google service account credentials file
+- Its own output directory for generated HTML
+- Unique tenant key (used as identifier)
+
+---
+
+## Step 5: Configure Folder IDs in Database
+
+### Single-Tenant
 
 ```bash
 # Connect to database
@@ -133,9 +210,48 @@ SELECT folder_name, drive_folder_id, enabled FROM folder_config;
 \q
 ```
 
+### Multi-Tenant **[MULTI-TENANT]**
+
+```bash
+# Connect to database
+psql -U sync_user -d gov_portal_sync
+
+# First, find your tenant ID
+SELECT id, tenant_key, name FROM tenants;
+
+# Update folder IDs for a specific tenant (replace TENANT_ID and YOUR_FOLDER_ID)
+UPDATE folder_config
+SET drive_folder_id = 'YOUR_FOLDER_ID'
+WHERE tenant_id = 'TENANT_ID' AND folder_name = 'meeting_agendas';
+
+UPDATE folder_config
+SET drive_folder_id = 'YOUR_FOLDER_ID'
+WHERE tenant_id = 'TENANT_ID' AND folder_name = 'meeting_minutes';
+
+-- Repeat for all folders for this tenant
+
+# Disable folders you don't want to sync
+UPDATE folder_config
+SET enabled = FALSE
+WHERE tenant_id = 'TENANT_ID' AND folder_name = 'some_folder';
+
+# View folder configurations for a tenant
+SELECT folder_name, drive_folder_id, enabled
+FROM folder_config
+WHERE tenant_id = 'TENANT_ID';
+
+# Or view for all tenants
+SELECT t.tenant_key, fc.folder_name, fc.drive_folder_id, fc.enabled
+FROM folder_config fc
+JOIN tenants t ON fc.tenant_id = t.id
+ORDER BY t.tenant_key, fc.folder_name;
+
+\q
+```
+
 ---
 
-## Step 5: Install Python Dependencies
+## Step 6: Install Python Dependencies
 
 ```bash
 cd /home/user/install/sync-service
@@ -149,11 +265,14 @@ source venv/bin/activate
 # Install dependencies
 pip install --upgrade pip
 pip install -r requirements.txt
+
+# Make add_tenant.py executable (multi-tenant only)
+chmod +x add_tenant.py
 ```
 
 ---
 
-## Step 6: Configure Environment Variables
+## Step 7: Configure Environment Variables
 
 ```bash
 cd /home/user/install/sync-service
@@ -193,14 +312,18 @@ chmod 600 .env
 
 ---
 
-## Step 7: Test the Sync Service
+## Step 8: Test the Sync Service
 
 ```bash
 # Activate virtual environment
 source venv/bin/activate
 
 # Run a test sync
+# For single-tenant:
 python sync_worker.py
+
+# For multi-tenant:
+python sync_worker_multitenant.py
 
 # Check logs
 tail -f logs/sync.log
@@ -208,9 +331,16 @@ tail -f logs/sync.log
 # Press Ctrl+C to stop
 ```
 
+Verify the test worked:
+- Check that files were fetched from Google Drive
+- Check that database records were created
+- Check that HTML files were generated in the output path(s)
+
 ---
 
-## Step 8: Set Up as System Service
+## Step 9: Set Up as System Service
+
+### Single-Tenant Service
 
 ```bash
 # Create systemd service file
@@ -254,11 +384,59 @@ sudo systemctl status gov-portal-sync
 sudo journalctl -u gov-portal-sync -f
 ```
 
+### Multi-Tenant Service **[MULTI-TENANT]**
+
+```bash
+# Create systemd service file for multi-tenant sync
+sudo tee /etc/systemd/system/gov-portal-sync.service > /dev/null << 'EOF'
+[Unit]
+Description=Government Portal Multi-Tenant Sync Service
+After=network.target postgresql.service
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/home/user/install/sync-service
+Environment="PATH=/home/user/install/sync-service/venv/bin"
+ExecStart=/home/user/install/sync-service/venv/bin/python sync_worker_multitenant.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# Set ownership for all tenant output directories
+sudo chown -R www-data:www-data /home/user/install/sync-service
+# Also ensure www-data can write to each tenant's output path
+# Example for multiple tenants:
+# sudo chown -R www-data:www-data /var/www/springfield
+# sudo chown -R www-data:www-data /var/www/riverside
+
+# Reload systemd
+sudo systemctl daemon-reload
+
+# Enable service to start on boot
+sudo systemctl enable gov-portal-sync
+
+# Start the service
+sudo systemctl start gov-portal-sync
+
+# Check status
+sudo systemctl status gov-portal-sync
+
+# View logs (you'll see entries prefixed with tenant keys)
+sudo journalctl -u gov-portal-sync -f
+```
+
 ---
 
-## Step 9: Verify Setup
+## Step 10: Verify Setup
 
-### Check Database
+### Check Database - Single-Tenant
 
 ```bash
 psql -U sync_user -d gov_portal_sync
@@ -278,6 +456,41 @@ LIMIT 20;
 
 -- Check for errors
 SELECT * FROM error_files;
+
+\q
+```
+
+### Check Database - Multi-Tenant **[MULTI-TENANT]**
+
+```bash
+psql -U sync_user -d gov_portal_sync
+
+-- View all tenants and their sync status
+SELECT * FROM tenant_sync_status;
+
+-- View sync status per tenant
+SELECT tenant_key, folder_name, COUNT(*) as file_count, MAX(last_updated) as last_sync
+FROM sync_data sd
+JOIN tenants t ON sd.tenant_id = t.id
+WHERE status = 'active'
+GROUP BY tenant_key, folder_name
+ORDER BY tenant_key, folder_name;
+
+-- View recent logs with tenant info
+SELECT t.tenant_key, sl.timestamp, sl.operation, sl.folder_name, sl.status, sl.message
+FROM sync_log sl
+JOIN tenants t ON sl.tenant_id = t.id
+ORDER BY sl.timestamp DESC
+LIMIT 20;
+
+-- Check for errors per tenant
+SELECT t.tenant_key, ef.*
+FROM error_files ef
+JOIN tenants t ON ef.tenant_id = t.id
+ORDER BY t.tenant_key, ef.last_attempt;
+
+-- View files synced per tenant
+SELECT * FROM active_files_by_tenant;
 
 \q
 ```
@@ -536,11 +749,78 @@ For issues or questions:
 
 ---
 
+## Multi-Tenant Management **[MULTI-TENANT]**
+
+### Adding New Municipalities
+
+```bash
+cd /home/user/install/sync-service
+source venv/bin/activate
+python add_tenant.py
+```
+
+### Disabling a Tenant Temporarily
+
+```bash
+psql -U sync_user -d gov_portal_sync
+
+-- Disable sync for a tenant
+UPDATE tenants SET sync_enabled = FALSE WHERE tenant_key = 'springfield';
+
+-- Re-enable later
+UPDATE tenants SET sync_enabled = TRUE WHERE tenant_key = 'springfield';
+```
+
+### Viewing Tenant Statistics
+
+```bash
+psql -U sync_user -d gov_portal_sync
+
+-- Overall tenant status
+SELECT tenant_key, name, sync_enabled, last_synced,
+       (SELECT COUNT(*) FROM sync_data WHERE tenant_id = t.id) as total_files
+FROM tenants t
+ORDER BY tenant_key;
+
+-- Use the built-in view
+SELECT * FROM tenant_sync_status;
+```
+
+### Managing Tenant Folders
+
+```bash
+# Each tenant has isolated folders
+# To add a custom folder for a specific tenant:
+
+psql -U sync_user -d gov_portal_sync
+
+INSERT INTO folder_config (tenant_id, folder_name, drive_folder_id, html_template)
+VALUES (
+    (SELECT id FROM tenants WHERE tenant_key = 'springfield'),
+    'custom_folder_name',
+    'GOOGLE_DRIVE_FOLDER_ID',
+    'document_card'
+);
+```
+
+---
+
 ## Summary of Key Files
 
+### Single-Tenant Files
 - **Service Code**: `/home/user/install/sync-service/sync_worker.py`
+- **Database Manager**: `/home/user/install/sync-service/database/db_manager.py`
+- **Schema**: `/home/user/install/sync-service/database/schema.sql`
+
+### Multi-Tenant Files
+- **Service Code**: `/home/user/install/sync-service/sync_worker_multitenant.py`
+- **Database Manager**: `/home/user/install/sync-service/database/db_manager_multitenant.py`
+- **Schema**: `/home/user/install/sync-service/database/schema_multitenant.sql`
+- **Tenant Management**: `/home/user/install/sync-service/add_tenant.py`
+
+### Shared Files
 - **Configuration**: `/home/user/install/sync-service/.env`
-- **Credentials**: `/home/user/install/sync-service/credentials/service-account.json`
+- **Credentials**: `/home/user/install/sync-service/credentials/service-account.json` (single-tenant) or per-tenant paths (multi-tenant)
 - **Logs**: `/home/user/install/sync-service/logs/sync.log`
-- **Generated HTML**: `/home/user/install/pages/generated/`
+- **Generated HTML**: `/home/user/install/pages/generated/` (single-tenant) or per-tenant output paths (multi-tenant)
 - **Systemd Service**: `/etc/systemd/system/gov-portal-sync.service`
