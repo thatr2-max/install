@@ -2,19 +2,24 @@
 
 Server-side sync service that monitors Google Drive folders, parses structured data, stores it in PostgreSQL, and auto-generates static HTML cards for the government portal.
 
+**Now with multi-tenant support** - manage multiple municipal websites from a single service instance!
+
 ## Features
 
 - ✅ **Event-driven monitoring** of Google Drive folders using service account
+- ✅ **Multi-tenant architecture** - one database for multiple municipalities
 - ✅ **Automatic file parsing** for spreadsheets, documents, PDFs, markdown, and videos
-- ✅ **PostgreSQL storage** with full transaction support
+- ✅ **PostgreSQL storage** with full transaction support and tenant isolation
 - ✅ **Auto-generated HTML** cards matching existing portal design
 - ✅ **Comprehensive logging** with timestamps, operations, and status tracking
 - ✅ **Error handling** with automatic retry logic and exponential backoff
 - ✅ **Systemd service** integration for continuous operation
 - ✅ **Monitoring dashboard** for real-time status checks
+- ✅ **Easy tenant management** with interactive CLI tools
 
 ## Architecture
 
+### Single-Tenant
 ```
 Google Drive Folders
         ↓
@@ -27,7 +32,19 @@ Google Drive Folders
                                       Government Portal
 ```
 
+### Multi-Tenant
+```
+Municipality A (Google Drive) ↘
+Municipality B (Google Drive) → Multi-Tenant Sync Worker → PostgreSQL (Tenant Isolation)
+Municipality C (Google Drive) ↗                                    ↓
+                                                    HTML Generators (Per-Tenant Output Paths)
+                                                                   ↓
+                                        Municipal Portals: /var/www/springfield/, /var/www/riverside/, etc.
+```
+
 ## Quick Start
+
+### Single-Tenant Setup
 
 1. **Prerequisites**: Python 3.10+, PostgreSQL 13+, Google service account
 
@@ -55,28 +72,62 @@ Google Drive Folders
    python sync_worker.py
    ```
 
+### Multi-Tenant Setup
+
+1. **Prerequisites**: Python 3.10+, PostgreSQL 13+, Google service accounts (one per municipality)
+
+2. **Install**: Same as single-tenant
+
+3. **Initialize Multi-Tenant Database**:
+   ```bash
+   sudo -u postgres psql -d gov_portal_sync -f database/schema_multitenant.sql
+   ```
+
+4. **Add Municipalities**:
+   ```bash
+   python add_tenant.py
+   # Follow prompts for each municipality:
+   # - Tenant key (e.g., 'springfield')
+   # - Municipality name
+   # - Output path (e.g., '/var/www/springfield')
+   # - Service account file path
+   ```
+
+5. **Configure Drive Folder IDs** (per tenant in database)
+
+6. **Run**:
+   ```bash
+   python sync_worker_multitenant.py
+   ```
+
 ## Directory Structure
 
 ```
 sync-service/
-├── config.py                 # Configuration settings
-├── sync_worker.py           # Main sync service
-├── monitor.py               # Monitoring dashboard
-├── requirements.txt         # Python dependencies
-├── .env.example            # Environment variables template
-├── SETUP_INSTRUCTIONS.md   # Complete setup guide
+├── config.py                        # Configuration settings
+├── sync_worker.py                   # Single-tenant sync service
+├── sync_worker_multitenant.py       # Multi-tenant sync service ⭐ NEW
+├── add_tenant.py                    # Tenant management CLI ⭐ NEW
+├── monitor.py                       # Monitoring dashboard
+├── requirements.txt                 # Python dependencies
+├── .env.example                     # Environment variables template
+├── README.md                        # This file
+├── SETUP_INSTRUCTIONS.md            # Complete setup guide (single + multi-tenant)
 ├── database/
-│   ├── schema.sql          # PostgreSQL schema
-│   └── db_manager.py       # Database operations
+│   ├── schema.sql                   # Single-tenant PostgreSQL schema
+│   ├── schema_multitenant.sql       # Multi-tenant PostgreSQL schema ⭐ NEW
+│   ├── db_manager.py                # Single-tenant database operations
+│   └── db_manager_multitenant.py    # Multi-tenant database operations ⭐ NEW
 ├── parsers/
-│   └── file_parser.py      # File type parsers
+│   └── file_parser.py               # File type parsers
 ├── generators/
-│   └── html_generator.py   # HTML card generator
+│   └── html_generator.py            # HTML card generator
 ├── credentials/
-│   └── service-account.json # Google service account key
+│   └── service-account.json         # Google service account key (single-tenant)
+│   └── {municipality}-sa.json       # Per-municipality service accounts (multi-tenant)
 └── logs/
-    ├── sync.log            # Application logs
-    └── error.log           # Error logs
+    ├── sync.log                     # Application logs
+    └── error.log                    # Error logs
 ```
 
 ## Configuration
@@ -106,6 +157,57 @@ SET drive_folder_id = 'YOUR_FOLDER_ID'
 WHERE folder_name = 'meeting_agendas';
 ```
 
+## Multi-Tenant Management
+
+### Adding Municipalities
+
+Use the interactive CLI tool:
+```bash
+python add_tenant.py
+
+# Prompts for:
+# - Tenant key (identifier, e.g., 'springfield')
+# - Municipality name (display name)
+# - Website domain (optional)
+# - Output path for HTML files
+# - Google service account credentials file
+```
+
+### Listing All Tenants
+
+```bash
+python add_tenant.py list
+```
+
+Shows all tenants with their sync status, last sync time, and configuration.
+
+### Managing Tenants via Database
+
+```sql
+-- View all tenants
+SELECT * FROM tenants;
+
+-- Disable a tenant temporarily
+UPDATE tenants SET sync_enabled = FALSE WHERE tenant_key = 'springfield';
+
+-- Re-enable a tenant
+UPDATE tenants SET sync_enabled = TRUE WHERE tenant_key = 'springfield';
+
+-- View tenant sync statistics
+SELECT * FROM tenant_sync_status;
+
+-- View files per tenant
+SELECT * FROM active_files_by_tenant;
+```
+
+### Per-Tenant Configuration
+
+Each tenant has:
+- **Isolated data**: All sync_data, logs, and errors are tenant-specific
+- **Separate output path**: HTML files generated to tenant's directory
+- **Own service account**: Each municipality uses its own Google credentials
+- **Independent folder configs**: Different Drive folders per tenant
+
 ## Monitoring
 
 ### Dashboard
@@ -116,7 +218,7 @@ python monitor.py
 ```
 
 Shows:
-- Sync status per folder
+- Sync status per folder (or per tenant in multi-tenant mode)
 - File counts and errors
 - Recent activity
 - Log file status
