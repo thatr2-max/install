@@ -396,7 +396,7 @@ a:hover {
 /* Make card links fill entire card */
 .card h3 a {
   text-decoration: none;
-  color: var(--primary-color);
+  color: #333;
 }
 
 .card h3 a::before {
