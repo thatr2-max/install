@@ -54,14 +54,13 @@ class ComponentLoader {
 <!-- Combined Banner with Navigation -->
 <div class="combined-banner">
     <div class="banner-content">
-        <h1 class="site-title">City Government Portal</h1>
+        <h1 class="site-title" style="color: #D4E6F1 !important;">City Government Portal</h1>
         <p class="site-tagline">Accessible Services for All Citizens</p>
         <div class="main-navigation" role="navigation" aria-label="Main navigation">
             <button onclick="window.location.href='index.html'" aria-current="page">Home</button>
             <button onclick="window.location.href='pages/accessibility.html'">Accessibility</button>
             <button onclick="window.location.href='pages/contact.html'">Contact Us</button>
             <button onclick="window.location.href='pages/permits.html'">Permits</button>
-            <button onclick="window.location.href='pages/pay-bills.html'">Pay Bills</button>
             <button onclick="window.location.href='pages/report-issue.html'">Report Issue</button>
             <button onclick="window.location.href='pages/public-records.html'">Public Records</button>
             <button onclick="window.location.href='pages/events.html'">Events</button>
@@ -79,14 +78,13 @@ class ComponentLoader {
 <!-- Combined Banner with Navigation -->
 <div class="combined-banner">
     <div class="banner-content">
-        <h1 class="site-title">City Government Portal</h1>
+        <h1 class="site-title" style="color: #D4E6F1 !important;">City Government Portal</h1>
         <p class="site-tagline">Accessible Services for All Citizens</p>
         <div class="main-navigation" role="navigation" aria-label="Main navigation">
             <button onclick="window.location.href='../index.html'">Home</button>
             <button onclick="window.location.href='accessibility.html'">Accessibility</button>
             <button onclick="window.location.href='contact.html'">Contact Us</button>
             <button onclick="window.location.href='permits.html'">Permits</button>
-            <button onclick="window.location.href='pay-bills.html'">Pay Bills</button>
             <button onclick="window.location.href='report-issue.html'">Report Issue</button>
             <button onclick="window.location.href='public-records.html'">Public Records</button>
             <button onclick="window.location.href='events.html'">Events</button>
@@ -123,7 +121,6 @@ class ComponentLoader {
                 <h3>Services</h3>
                 <ul>
                     <li><a href="pages/permits.html" class="footer-link-permits">Permits</a></li>
-                    <li><a href="pages/pay-bills.html" class="footer-link-pay-bills">Pay Bills</a></li>
                     <li><a href="pages/report-issue.html" class="footer-link-report-issue">Report Issue</a></li>
                     <li><a href="pages/public-records.html" class="footer-link-public-records">Public Records</a></li>
                 </ul>
