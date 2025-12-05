@@ -353,41 +353,49 @@ a:hover {
   background-color: #2d3748;
 }
 
-/* Cards/Sections - Centered Design with Bordered List Items */
+/* Cards/Sections - Default Styling */
 .card {
   background: white;
-  border: 2px solid #000;
-  border-radius: 16px;
+  border: 2px solid black;
+  border-radius: 12px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.07),
+              0 10px 20px rgba(0,0,0,0.06),
+              0 2px 4px rgba(0,0,0,0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 }
 
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%);
+  pointer-events: none;
+}
+
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 12px rgba(0,0,0,0.1),
+              0 16px 32px rgba(0,0,0,0.08),
+              0 4px 8px rgba(0,0,0,0.06);
 }
 
 .card h2,
 .card h3 {
   margin-top: 0;
   position: relative;
-  text-align: center;
-  padding-bottom: 12px;
-  border-bottom: 2px solid #000;
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
-  font-weight: 800;
-  line-height: 1.2;
 }
 
 /* Make card links fill entire card */
 .card h3 a {
   text-decoration: none;
-  color: #000 !important;
-  display: block;
+  color: #333 !important;
 }
 
 .card h3 a::before {
@@ -400,8 +408,40 @@ a:hover {
   z-index: 1;
 }
 
-/* Card description/paragraph */
-.card p {
+/* HOME PAGE ONLY - Centered Design with Bordered List Items */
+.home-page .card {
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
+}
+
+.home-page .card::before {
+  display: none;
+}
+
+.home-page .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+}
+
+.home-page .card h2,
+.home-page .card h3 {
+  text-align: center;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #000;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.home-page .card h3 a {
+  color: #000 !important;
+  display: block;
+}
+
+/* Card description/paragraph - HOME PAGE ONLY */
+.home-page .card p {
   text-align: center;
   font-size: 0.95rem;
   color: #333;
@@ -410,8 +450,8 @@ a:hover {
   line-height: 1.5;
 }
 
-/* Card list styling - pill/button design */
-.card ul {
+/* Card list styling - pill/button design - HOME PAGE ONLY */
+.home-page .card ul {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -421,7 +461,7 @@ a:hover {
   margin: 0;
 }
 
-.card li {
+.home-page .card li {
   width: 100%;
   max-width: 280px;
   text-align: center;
@@ -828,21 +868,21 @@ a:hover {
     min-height: 70px;
   }
 
-  /* Card mobile styles */
-  .card {
+  /* Card mobile styles - HOME PAGE ONLY */
+  .home-page .card {
     padding: 1rem;
   }
 
-  .card h2,
-  .card h3 {
+  .home-page .card h2,
+  .home-page .card h3 {
     font-size: 1.2rem;
   }
 
-  .card p {
+  .home-page .card p {
     font-size: 0.9rem;
   }
 
-  .card li {
+  .home-page .card li {
     font-size: 0.85rem;
     padding: 8px 12px;
   }
