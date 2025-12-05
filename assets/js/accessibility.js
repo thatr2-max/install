@@ -15,15 +15,13 @@ class AccessibilityWidget {
     this.attachEventListeners();
   }
 
-  loadSettings() {
+ loadSettings() {
     const defaults = {
       fontSize: 'normal',
-      contrast: 'normal',
-      lineSpacing: 'normal',
+      lineHeight: 'normal',
       letterSpacing: 'normal',
+      saturation: 'normal',
       dyslexicFont: false,
-      hideImages: false,
-      reduceMotion: false,
       highlightLinks: false
     };
 
@@ -63,31 +61,37 @@ class AccessibilityWidget {
           <div class="accessibility-group">
             <h3>Text Size</h3>
             <div class="accessibility-buttons">
-              <button data-setting="fontSize" data-value="small" aria-label="Small text">A</button>
               <button data-setting="fontSize" data-value="normal" aria-label="Normal text" class="active">A</button>
               <button data-setting="fontSize" data-value="large" aria-label="Large text">A</button>
               <button data-setting="fontSize" data-value="xlarge" aria-label="Extra large text">A</button>
             </div>
           </div>
 
-          <div class="accessibility-group">
-            <h3>Contrast</h3>
+         <div class="accessibility-group">
+            <h3>Saturation</h3>
             <div class="accessibility-buttons">
-              <button data-setting="contrast" data-value="normal" class="active">Normal</button>
-              <button data-setting="contrast" data-value="high">High Contrast</button>
-              <button data-setting="contrast" data-value="dark">Dark Mode</button>
+              <button data-setting="saturation" data-value="normal" class="active">Normal</button>
+              <button data-setting="saturation" data-value="reduced">Reduced</button>
+              <button data-setting="saturation" data-value="grayscale">Grayscale</button>
             </div>
           </div>
 
           <div class="accessibility-group">
-            <h3>Spacing</h3>
+            <h3>Line Height</h3>
             <div class="accessibility-buttons">
-              <button data-setting="lineSpacing" data-value="normal" class="active">Normal</button>
-              <button data-setting="lineSpacing" data-value="increased">Increase Line Height</button>
+              <button data-setting="lineHeight" data-value="normal" class="active">Normal</button>
+              <button data-setting="lineHeight" data-value="comfortable">Comfortable</button>
+              <button data-setting="lineHeight" data-value="spacious">Spacious</button>
             </div>
+          </div>
+
+        <div class="accessibility-group">
+            <h3>Letter Spacing</h3>
             <div class="accessibility-buttons">
               <button data-setting="letterSpacing" data-value="normal" class="active">Normal</button>
-              <button data-setting="letterSpacing" data-value="increased">Increase Letter Spacing</button>
+              <button data-setting="letterSpacing" data-value="light">Light</button>
+              <button data-setting="letterSpacing" data-value="moderate">Moderate</button>
+              <button data-setting="letterSpacing" data-value="heavy">Heavy</button>
             </div>
           </div>
 
@@ -100,14 +104,6 @@ class AccessibilityWidget {
             <label class="accessibility-checkbox">
               <input type="checkbox" data-setting="highlightLinks">
               <span>Highlight Links</span>
-            </label>
-            <label class="accessibility-checkbox">
-              <input type="checkbox" data-setting="hideImages">
-              <span>Hide Images</span>
-            </label>
-            <label class="accessibility-checkbox">
-              <input type="checkbox" data-setting="reduceMotion">
-              <span>Reduce Motion</span>
             </label>
           </div>
 
@@ -202,16 +198,16 @@ class AccessibilityWidget {
     this.applySettings();
   }
 
-  applySettings() {
+applySettings() {
     const html = document.documentElement;
 
     // Remove all accessibility classes
     html.classList.remove(
       'a11y-font-small', 'a11y-font-large', 'a11y-font-xlarge',
-      'a11y-contrast-high', 'a11y-contrast-dark',
-      'a11y-line-spacing-increased', 'a11y-letter-spacing-increased',
-      'a11y-dyslexic-font', 'a11y-hide-images', 'a11y-reduce-motion',
-      'a11y-highlight-links'
+      'a11y-line-height-comfortable', 'a11y-line-height-spacious',
+      'a11y-letter-spacing-light', 'a11y-letter-spacing-moderate', 'a11y-letter-spacing-heavy',
+      'a11y-saturation-reduced', 'a11y-saturation-grayscale',
+      'a11y-dyslexic-font', 'a11y-highlight-links'
     );
 
     // Apply font size
@@ -219,23 +215,23 @@ class AccessibilityWidget {
       html.classList.add(`a11y-font-${this.settings.fontSize}`);
     }
 
-    // Apply contrast
-    if (this.settings.contrast !== 'normal') {
-      html.classList.add(`a11y-contrast-${this.settings.contrast}`);
+    // Apply line height
+    if (this.settings.lineHeight !== 'normal') {
+      html.classList.add(`a11y-line-height-${this.settings.lineHeight}`);
     }
 
-    // Apply spacing
-    if (this.settings.lineSpacing === 'increased') {
-      html.classList.add('a11y-line-spacing-increased');
+    // Apply letter spacing
+    if (this.settings.letterSpacing !== 'normal') {
+      html.classList.add(`a11y-letter-spacing-${this.settings.letterSpacing}`);
     }
-    if (this.settings.letterSpacing === 'increased') {
-      html.classList.add('a11y-letter-spacing-increased');
+
+    // Apply saturation
+    if (this.settings.saturation !== 'normal') {
+      html.classList.add(`a11y-saturation-${this.settings.saturation}`);
     }
 
     // Apply boolean settings
     if (this.settings.dyslexicFont) html.classList.add('a11y-dyslexic-font');
-    if (this.settings.hideImages) html.classList.add('a11y-hide-images');
-    if (this.settings.reduceMotion) html.classList.add('a11y-reduce-motion');
     if (this.settings.highlightLinks) html.classList.add('a11y-highlight-links');
 
     // Update checkbox states
@@ -260,12 +256,10 @@ class AccessibilityWidget {
     if (confirm('Reset all accessibility settings to defaults?')) {
       this.settings = {
         fontSize: 'normal',
-        contrast: 'normal',
-        lineSpacing: 'normal',
+        lineHeight: 'normal',
         letterSpacing: 'normal',
+        saturation: 'normal',
         dyslexicFont: false,
-        hideImages: false,
-        reduceMotion: false,
         highlightLinks: false
       };
       this.saveSettings();
