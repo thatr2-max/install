@@ -430,15 +430,9 @@ a:hover {
   border-radius: 12px;
   font-size: 0.9rem;
   font-weight: 600;
-  transition: all 0.2s ease;
   background-color: #f8f9fa;
   position: relative;
-  z-index: 2;
-}
-
-.card li:hover {
-  background-color: #e9ecef;
-  transform: scale(1.02);
+  pointer-events: none;
 }
 
 /* Grid Layout */
