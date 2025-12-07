@@ -157,7 +157,7 @@ class SyncWorker:
 
             # Generate HTML file for this folder
             files_data = self.db.get_files_by_folder(folder_name)
-            self.html_generator.save_folder_html(folder_name, files_data)
+            self.html_generator.save_component_html(folder_name, files_data)
 
             # Update folder check time
             self.db.update_folder_check_time(folder_name)

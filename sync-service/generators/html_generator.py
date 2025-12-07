@@ -165,6 +165,37 @@ class HTMLGenerator:
         '''
         return html.strip()
 
+    def generate_component_html(
+        self,
+        folder_name: str,
+        files_data: List[Dict[str, Any]]
+    ) -> str:
+        """
+        Generate component HTML (just cards, no page wrapper) for a folder
+
+        Args:
+            folder_name: Name of the folder
+            files_data: List of file data dicts
+
+        Returns:
+            HTML string containing just the cards
+        """
+        cards_html = []
+        for file_data in files_data:
+            try:
+                data = json.loads(file_data['data']) if isinstance(file_data['data'], str) else file_data['data']
+                card = self.generate_card(data)
+                cards_html.append(card)
+            except Exception as e:
+                logger.error(f"Error generating card for {file_data.get('file_name')}: {e}")
+                cards_html.append(self._generate_error_card(file_data.get('file_name', 'Unknown')))
+
+        if cards_html:
+            # Return just the cards wrapped in a grid div
+            return f'<div class="grid">\n{chr(10).join(cards_html)}\n</div>'
+        else:
+            return '<p><em>No files available at this time.</em></p>'
+
     def generate_folder_html(
         self,
         folder_name: str,
@@ -218,6 +249,35 @@ class HTMLGenerator:
 </html>'''
 
         return html
+
+    def save_component_html(
+        self,
+        folder_name: str,
+        files_data: List[Dict[str, Any]]
+    ) -> bool:
+        """
+        Generate and save component HTML file (just cards) for a folder
+
+        Args:
+            folder_name: Name of the folder
+            files_data: List of file data dicts
+
+        Returns:
+            True if successful
+        """
+        try:
+            html = self.generate_component_html(folder_name, files_data)
+            output_file = self.output_dir / f"{folder_name}.html"
+
+            with open(output_file, 'w', encoding='utf-8') as f:
+                f.write(html)
+
+            logger.info(f"Generated component HTML file: {output_file}")
+            return True
+
+        except Exception as e:
+            logger.error(f"Failed to save component HTML for folder {folder_name}: {e}")
+            return False
 
     def save_folder_html(
         self,

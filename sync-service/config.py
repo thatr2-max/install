@@ -9,7 +9,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = BASE_DIR.parent
 LOG_DIR = BASE_DIR / 'logs'
-HTML_OUTPUT_DIR = PROJECT_ROOT / 'pages' / 'generated'
+HTML_OUTPUT_DIR = PROJECT_ROOT / 'components'
 
 # Create directories if they don't exist
 LOG_DIR.mkdir(exist_ok=True)

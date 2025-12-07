@@ -25,13 +25,35 @@
             <h2>Upcoming Events</h2>
             <p>Join us for exciting community events, public meetings, and city-sponsored activities!</p>
             <p><em>Event flyers and calendars uploaded to Google Drive will appear below. To add events, upload event flyers or calendars to the "events" folder in your configured Google Drive.</em></p>
-            <div data-drive-folder="events"></div>
+            <div id="events-content">
+                <p>Loading...</p>
+            </div>
+            <script>
+            fetch('../components/events.html')
+                .then(r => r.text())
+                .then(html => document.getElementById('events-content').innerHTML = html)
+                .catch(error => {
+                    console.error('Error loading events:', error);
+                    document.getElementById('events-content').innerHTML = '<p>Unable to load content.</p>';
+                });
+            </script>
         </section>
 
         <section class="card">
             <h2>Event Calendar</h2>
             <p><em>To display your event calendar, upload it to the "event_calendar" Google Drive folder or manually add your calendar image/PDF here.</em></p>
-            <div data-drive-folder="event_calendar"></div>
+            <div id="event-calendar-content">
+                <p>Loading...</p>
+            </div>
+            <script>
+            fetch('../components/event_calendar.html')
+                .then(r => r.text())
+                .then(html => document.getElementById('event-calendar-content').innerHTML = html)
+                .catch(error => {
+                    console.error('Error loading event calendar:', error);
+                    document.getElementById('event-calendar-content').innerHTML = '<p>Unable to load content.</p>';
+                });
+            </script>
         </section>
 
         <section class="card">

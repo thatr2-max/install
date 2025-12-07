@@ -23,7 +23,18 @@
         <section class="card">
             <h2>Current Boards & Commissions</h2>
             <p><em>Add your city's boards and commissions by editing this section, or upload board information documents to the "boards_commissions" Google Drive folder.</em></p>
-            <div data-drive-folder="boards_commissions"></div>
+            <div id="boards-commissions-content">
+                <p>Loading...</p>
+            </div>
+            <script>
+            fetch('../components/boards_commissions.html')
+                .then(r => r.text())
+                .then(html => document.getElementById('boards-commissions-content').innerHTML = html)
+                .catch(error => {
+                    console.error('Error loading boards & commissions:', error);
+                    document.getElementById('boards-commissions-content').innerHTML = '<p>Unable to load content.</p>';
+                });
+            </script>
         </section>
         <section class="card">
             <h2>Application Process</h2>
@@ -83,8 +94,7 @@
     <div id="footer"></div>
 
     <!-- Component Loader - Must come last to load header/footer -->
-    <script src="../assets/js/google-drive-loader.js"></script>
-    <script src="../assets/js/common-data-loader.js"></script>
+    <script src="../assets/js/sync-loader.js"></script>
     <script src="../assets/js/component-loader.js"></script>
 </body>
 </html>
