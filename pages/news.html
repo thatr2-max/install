@@ -49,19 +49,52 @@
         <section class="card">
             <h2>Latest News & Press Releases</h2>
             <p><em>Press releases and news articles uploaded to Google Drive will appear below. To add news, upload PDFs or documents to the "news_press_releases" folder in your configured Google Drive.</em></p>
-            <div data-drive-folder="news_press_releases"></div>
+            <div id="news-press-releases-content">
+                <p>Loading...</p>
+            </div>
+            <script>
+            fetch('../components/news_press_releases.html')
+                .then(r => r.text())
+                .then(html => document.getElementById('news-press-releases-content').innerHTML = html)
+                .catch(error => {
+                    console.error('Error loading news & press releases:', error);
+                    document.getElementById('news-press-releases-content').innerHTML = '<p>Unable to load content.</p>';
+                });
+            </script>
         </section>
 
         <section class="card">
             <h2>Public Notices</h2>
             <p><em>Official legal notices uploaded to Google Drive will appear below. To add notices, upload PDFs to the "public_notices" folder in your configured Google Drive.</em></p>
-            <div data-drive-folder="public_notices"></div>
+            <div id="public-notices-content">
+                <p>Loading...</p>
+            </div>
+            <script>
+            fetch('../components/public_notices.html')
+                .then(r => r.text())
+                .then(html => document.getElementById('public-notices-content').innerHTML = html)
+                .catch(error => {
+                    console.error('Error loading public notices:', error);
+                    document.getElementById('public-notices-content').innerHTML = '<p>Unable to load content.</p>';
+                });
+            </script>
         </section>
 
         <section class="card">
             <h2>Capital Projects Updates</h2>
             <p><em>Project updates and status reports uploaded to Google Drive will appear below. To add project updates, upload PDFs to the "capital_projects" folder in your configured Google Drive.</em></p>
-            <div data-drive-folder="capital_projects"></div>
+            <div id="capital-projects-content">
+                <p>Loading...</p>
+            </div>
+            <script>
+            fetch('../components/capital_projects.html')
+                .then(r => r.text())
+                .then(html => document.getElementById('capital-projects-content').innerHTML = html)
+                .catch(error => {
+                    console.error('Error loading capital projects:', error);
+                    document.getElementById('capital-projects-content').innerHTML = '<p>Unable to load content.</p>';
+                });
+            </script>
         </section>
 
         <section class="card">
