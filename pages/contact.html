@@ -10,6 +10,7 @@
         };
     </script>
     <script src="../assets/js/head-loader.js"></script>
+    <script src="../assets/js/config.js"></script>
 </head>
 <body>
     <!-- Header will be loaded here -->
@@ -23,17 +24,14 @@
                 <div>
                     <h3>City Hall</h3>
                     <p><strong>Address:</strong><br>
-                    123 Main Street<br>
-                    Anytown, USA 12345</p>
-                    <p><strong>Phone:</strong> (555) 123-4567</p>
-                    <p><strong>Email:</strong> info@citygovernment.gov</p>
+                    <span data-config="street_address"></span><br>
+                    <span data-config="city"></span>, <span data-config="state_abbr"></span> <span data-config="zip_code"></span></p>
+                    <p><strong>Phone:</strong> <a href="" data-config="main_phone" data-config-attr="href" data-config-prefix="tel:" data-config-format="phone-link"><span data-config="main_phone" data-config-format="phone"></span></a></p>
+                    <p><strong>Email:</strong> <a href="" data-config="main_email" data-config-attr="href" data-config-prefix="mailto:"><span data-config="main_email"></span></a></p>
                 </div>
                 <div>
                     <h3>Office Hours</h3>
-                    <p><strong>Monday - Friday:</strong><br>
-                    8:00 AM - 5:00 PM</p>
-                    <p><strong>Saturday - Sunday:</strong><br>
-                    Closed</p>
+                    <p data-config="office_hours"></p>
                     <p><em>Closed on federal holidays</em></p>
                 </div>
             </div>
@@ -265,6 +263,7 @@
 
     <!-- Component Loader - Must come last to load header/footer -->
     <script src="../assets/js/form-config-loader.js"></script>
+    <script src="../assets/js/municipality-config.js"></script>
     <script src="../assets/js/component-loader.js"></script>
 </body>
 </html>

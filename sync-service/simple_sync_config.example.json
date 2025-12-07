@@ -1,0 +1,12 @@
+{
+  "service_account_file": "path/to/google-service-account.json",
+  "output_dir": "../components",
+  "sheets": {
+    "staff_directory": "",
+    "events": "",
+    "public_notices": "",
+    "job_postings": "",
+    "boards_commissions": "",
+    "news": ""
+  }
+}
