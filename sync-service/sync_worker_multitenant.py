@@ -221,9 +221,9 @@ class MultiTenantSyncWorker:
             # Mark deleted files
             self._mark_deleted_files(tenant_id, tenant_key, folder_name, synced_file_ids)
 
-            # Generate HTML file for this folder
+            # Generate component HTML file for this folder
             files_data = self.db.get_files_by_folder(tenant_id, folder_name)
-            html_generator.save_folder_html(folder_name, files_data)
+            html_generator.save_component_html(folder_name, files_data)
 
             # Update folder check time
             self.db.update_folder_check_time(tenant_id, folder_name)
