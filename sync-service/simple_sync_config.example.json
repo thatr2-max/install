@@ -1,7 +1,9 @@
 {
   "service_account_file": "path/to/google-service-account.json",
   "output_dir": "../components",
+  "config_output_dir": "../assets/js",
   "sheets": {
+    "municipality_config": "",
     "staff_directory": "",
     "events": "",
     "public_notices": "",

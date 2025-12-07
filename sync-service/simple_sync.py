@@ -34,6 +34,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from sheets_reader import GoogleSheetsReader
 from simple_html_generator import SimpleHTMLGenerator
+from config_generator import ConfigGenerator
 
 # Configure logging
 logging.basicConfig(
@@ -64,6 +65,9 @@ class SimpleSyncService:
         self.html_generator = SimpleHTMLGenerator(
             Path(self.config['output_dir'])
         )
+        # Config generator outputs to assets/js/
+        config_output_dir = Path(self.config.get('config_output_dir', '../assets/js'))
+        self.config_generator = ConfigGenerator(config_output_dir)
 
     def _load_config(self, config_file: str) -> Dict[str, Any]:
         """Load configuration from JSON file"""
@@ -235,12 +239,38 @@ class SimpleSyncService:
         except Exception as e:
             logger.error(f"✗ Failed to sync news: {e}")
 
+    def sync_municipality_config(self):
+        """Sync municipality config from Google Sheets and generate config.js"""
+        sheet_id = self.config['sheets'].get('municipality_config')
+
+        if not sheet_id:
+            logger.warning("No municipality_config sheet ID configured - skipping config.js generation")
+            return
+
+        logger.info("Syncing municipality config...")
+
+        try:
+            # Read config sheet
+            config_data = self.sheets_reader.read_municipality_config(sheet_id)
+
+            # Generate config.js file
+            self.config_generator.save_config_js(config_data)
+
+            # Also save as JSON for debugging
+            self.config_generator.save_config_json(config_data)
+
+            logger.info(f"✓ Municipality config synced ({len(config_data)} config values)")
+
+        except Exception as e:
+            logger.error(f"✗ Failed to sync municipality config: {e}")
+
     def sync_all(self):
         """Sync all configured sheets"""
         logger.info("=" * 60)
         logger.info("Starting Simple Sync Service")
         logger.info("=" * 60)
 
+        self.sync_municipality_config()
         self.sync_staff_directory()
         self.sync_events()
         self.sync_public_notices()

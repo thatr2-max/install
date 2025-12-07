@@ -36,6 +36,51 @@ Website Pages (fetch components)
 
 Create one Google Sheet per data type with the following columns:
 
+#### Municipality Config Sheet
+**This is the most important sheet** - it generates your `config.js` file with all municipality-specific data like phone numbers, addresses, etc.
+
+Columns: `Key`, `Value`, `Category`, `Description`
+
+**Sheet Name:** Must be exactly `Municipality Config`
+
+Example:
+| Key | Value | Category | Description |
+|-----|-------|----------|-------------|
+| municipality_name | City of Springfield | basic | Full municipality name |
+| municipality_type | City | basic | City, Town, Village, etc. |
+| state | Illinois | basic | State name |
+| clerk_name | Jane Smith | contact | City clerk name |
+| clerk_phone | 222-222-2222 | contact | Clerk phone number |
+| clerk_email | clerk@springfield.gov | contact | Clerk email |
+| main_phone | 222-222-2200 | contact | Main city hall phone |
+| main_email | info@springfield.gov | contact | Main email |
+| street_address | 123 Main Street | address | Street address |
+| city | Springfield | address | City name |
+| state_abbr | IL | address | State abbreviation |
+| zip_code | 62701 | address | ZIP code |
+| office_hours | Monday - Friday: 8:00 AM - 4:30 PM | hours | Office hours |
+| mayor_name | John Doe | officials | Mayor name |
+| mayor_email | mayor@springfield.gov | officials | Mayor email |
+| mayor_phone | 222-222-2201 | officials | Mayor phone |
+| police_phone | 911 | emergency | Police emergency |
+| police_non_emergency | 222-222-2300 | emergency | Police non-emergency |
+| fire_phone | 911 | emergency | Fire emergency |
+| staff_directory | 1abc...xyz | google_sheet | Sheet ID for staff directory |
+| events | 1def...uvw | google_sheet | Sheet ID for events |
+
+**Categories:**
+- `basic` - Basic municipality info
+- `contact` - Contact information
+- `address` - Physical address
+- `hours` - Office hours
+- `officials` - Elected officials and department heads
+- `emergency` - Emergency contact numbers
+- `google_sheet` - Google Sheet IDs (automatically added to `google_sheets` object)
+- `google_drive_folder` - Google Drive folder IDs (automatically added to `google_drive_folders` object)
+- Leave blank for general config values
+
+This sheet will auto-generate `/assets/js/config.js` which is used throughout the site.
+
 #### Staff Directory Sheet
 Columns: `Name`, `Title`, `Department`, `Email`, `Phone`, `Photo`
 
@@ -118,7 +163,9 @@ Edit `simple_sync_config.json`:
 {
   "service_account_file": "/path/to/service-account.json",
   "output_dir": "../components",
+  "config_output_dir": "../assets/js",
   "sheets": {
+    "municipality_config": "YOUR_CONFIG_SHEET_ID_HERE",
     "staff_directory": "YOUR_SHEET_ID_HERE",
     "events": "YOUR_SHEET_ID_HERE",
     "public_notices": "YOUR_SHEET_ID_HERE",
@@ -156,12 +203,13 @@ Run sync every hour:
 
 ## Municipality-Specific Data (Config File)
 
-For data like phone numbers, addresses, and clerk info, edit:
-```
-/assets/js/config.js
-```
+The `/assets/js/config.js` file contains all municipality-specific data (phone numbers, addresses, clerk info, etc.).
 
-This file contains all municipality-specific data that gets loaded into pages.
+**This file is AUTO-GENERATED from your Municipality Config Google Sheet.**
+
+DO NOT edit `config.js` manually - your changes will be overwritten on the next sync!
+
+Instead, edit the **Municipality Config** sheet and run the sync service to regenerate config.js.
 
 ### Using Config in HTML
 
@@ -191,8 +239,13 @@ The config is automatically loaded on every page by including:
 
 ## Output Files
 
-The sync service generates HTML files in `/components/`:
+The sync service generates files in two directories:
 
+**`/assets/js/`:**
+- `config.js` - Municipality configuration (auto-generated from Municipality Config sheet)
+- `config.json` - Same data as JSON (for debugging)
+
+**`/components/`:**
 - `staff_directory.html` - Staff cards
 - `staff_directory_table.html` - Staff table
 - `events.html` - Event cards

@@ -310,3 +310,48 @@ class GoogleSheetsReader:
             })
 
         return news
+
+    def read_municipality_config(self, spreadsheet_id: str) -> Dict[str, Any]:
+        """
+        Read municipality configuration sheet with expected columns:
+        Key, Value, Category (optional), Description (optional)
+
+        Args:
+            spreadsheet_id: The ID of the config spreadsheet
+
+        Returns:
+            Dict of configuration key-value pairs
+        """
+        data = self.read_sheet(spreadsheet_id, 'Municipality Config')
+
+        config = {}
+        google_drive_folders = {}
+        google_sheets = {}
+
+        for row in data:
+            # Skip empty rows
+            key = row.get('Key', '').strip()
+            if not key:
+                continue
+
+            value = row.get('Value', '').strip()
+            category = row.get('Category', '').strip().lower()
+
+            # Organize by category
+            if category == 'google_drive_folder':
+                # Store in google_drive_folders sub-dict
+                google_drive_folders[key] = value
+            elif category == 'google_sheet':
+                # Store in google_sheets sub-dict
+                google_sheets[key] = value
+            else:
+                # Regular config value
+                config[key] = value
+
+        # Add the nested dicts if they have values
+        if google_drive_folders:
+            config['google_drive_folders'] = google_drive_folders
+        if google_sheets:
+            config['google_sheets'] = google_sheets
+
+        return config
