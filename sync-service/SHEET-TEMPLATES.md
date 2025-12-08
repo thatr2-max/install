@@ -1,10 +1,16 @@
 # Google Sheets Templates
 
-Copy these templates into your Google Sheets. Each section is a separate sheet.
+**IMPORTANT:** Each template below is a **SEPARATE Google spreadsheet** (separate file in Google Drive).
 
-## 1. Municipality Config Sheet
+You'll create 7 different Google spreadsheet files, one for each type of data.
 
-**Sheet Tab Name:** `Municipality Config`
+---
+
+## 1. Municipality Config
+
+**Create a new Google spreadsheet named:** `Municipality Config`
+
+**Column Headers (Row 1):**
 
 | Key | Value | Category | Description |
 |-----|-------|----------|-------------|
@@ -49,9 +55,11 @@ Copy these templates into your Google Sheets. Each section is a separate sheet.
 
 ---
 
-## 2. Staff Directory Sheet
+## 2. Staff Directory
 
-**Sheet Tab Name:** `Staff Directory`
+**Create a new Google spreadsheet named:** `Staff Directory`
+
+**Column Headers (Row 1):**
 
 | Name | Title | Department | Email | Phone | Photo |
 |------|-------|------------|-------|-------|-------|
@@ -69,9 +77,11 @@ Copy these templates into your Google Sheets. Each section is a separate sheet.
 
 ---
 
-## 3. Events Sheet
+## 3. Events
 
-**Sheet Tab Name:** `Events`
+**Create a new Google spreadsheet named:** `Events`
+
+**Column Headers (Row 1):**
 
 | Event Name | Date | Time | Location | Description | Link |
 |------------|------|------|----------|-------------|------|
@@ -87,9 +97,11 @@ Copy these templates into your Google Sheets. Each section is a separate sheet.
 
 ---
 
-## 4. Public Notices Sheet
+## 4. Public Notices
 
-**Sheet Tab Name:** `Public Notices`
+**Create a new Google spreadsheet named:** `Public Notices`
+
+**Column Headers (Row 1):**
 
 | Title | Date Posted | Description | Link | Category |
 |-------|-------------|-------------|------|----------|
@@ -104,9 +116,13 @@ Copy these templates into your Google Sheets. Each section is a separate sheet.
 
 ---
 
-## 5. Job Postings Sheet
+## 5. Job Postings
 
-**Sheet Tab Name:** `Job Postings`
+**Create a new Google spreadsheet named:** `Job Postings`
+
+**Column Headers (Row 1):**
+
+
 
 | Job Title | Department | Type | Salary Range | Posted Date | Deadline | Description | Link |
 |-----------|------------|------|--------------|-------------|----------|-------------|------|
@@ -120,9 +136,13 @@ Copy these templates into your Google Sheets. Each section is a separate sheet.
 
 ---
 
-## 6. Boards & Commissions Sheet
+## 6. Boards & Commissions
 
-**Sheet Tab Name:** `Boards & Commissions`
+**Create a new Google spreadsheet named:** `Boards & Commissions`
+
+**Column Headers (Row 1):**
+
+
 
 | Name | Description | Meeting Schedule | Contact | Link |
 |------|-------------|------------------|---------|------|
@@ -137,9 +157,13 @@ Copy these templates into your Google Sheets. Each section is a separate sheet.
 
 ---
 
-## 7. News Sheet
+## 7. News
 
-**Sheet Tab Name:** `News`
+**Create a new Google spreadsheet named:** `News`
+
+**Column Headers (Row 1):**
+
+
 
 | Title | Date | Summary | Link | Category |
 |-------|------|---------|------|----------|

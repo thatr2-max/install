@@ -34,16 +34,18 @@ Website Pages (fetch components)
 
 ### 1. Create Google Sheets
 
-Create one Google Sheet per data type with the following columns:
+**IMPORTANT:** Create 7 separate Google spreadsheet FILES (not tabs within one file).
 
-#### Municipality Config Sheet
+Each spreadsheet below is a completely separate file in your Google Drive:
+
+#### 1. Municipality Config
 **This is the most important sheet** - it generates your `config.js` file with all municipality-specific data like phone numbers, addresses, etc.
 
-Columns: `Key`, `Value`, `Category`, `Description`
+**Create a new spreadsheet file named:** `Municipality Config`
 
-**Sheet Name:** Must be exactly `Municipality Config`
+**Columns (in row 1):** `Key` | `Value` | `Category` | `Description`
 
-Example:
+Example data:
 | Key | Value | Category | Description |
 |-----|-------|----------|-------------|
 | municipality_name | City of Springfield | basic | Full municipality name |
@@ -81,53 +83,71 @@ Example:
 
 This sheet will auto-generate `/assets/js/config.js` which is used throughout the site.
 
-#### Staff Directory Sheet
-Columns: `Name`, `Title`, `Department`, `Email`, `Phone`, `Photo`
+#### 2. Staff Directory
 
-Example:
+**Create a new spreadsheet file named:** `Staff Directory`
+
+**Columns (in row 1):** `Name` | `Title` | `Department` | `Email` | `Phone` | `Photo`
+
+Example data:
 | Name | Title | Department | Email | Phone | Photo |
 |------|-------|------------|-------|-------|-------|
 | Jane Smith | City Clerk | Administration | clerk@city.gov | 222-222-2222 | |
 | John Doe | Mayor | Executive | mayor@city.gov | 222-222-2201 | |
 
-#### Events Sheet
-Columns: `Event Name`, `Date`, `Time`, `Location`, `Description`, `Link`
+#### 3. Events
 
-Example:
+**Create a new spreadsheet file named:** `Events`
+
+**Columns (in row 1):** `Event Name` | `Date` | `Time` | `Location` | `Description` | `Link`
+
+Example data:
 | Event Name | Date | Time | Location | Description | Link |
 |------------|------|------|----------|-------------|------|
 | City Council Meeting | 2025-12-15 | 7:00 PM | City Hall | Monthly meeting | |
 | Community Cleanup | 2025-12-20 | 9:00 AM | Main Street Park | Join us! | |
 
-#### Public Notices Sheet
-Columns: `Title`, `Date Posted`, `Description`, `Link`, `Category`
+#### 4. Public Notices
 
-Example:
+**Create a new spreadsheet file named:** `Public Notices`
+
+**Columns (in row 1):** `Title` | `Date Posted` | `Description` | `Link` | `Category`
+
+Example data:
 | Title | Date Posted | Description | Link | Category |
 |-------|-------------|-------------|------|----------|
 | Public Hearing Notice | 2025-12-10 | Zoning change... | | Zoning |
 | Road Closure | 2025-12-12 | Main St closed... | | Public Works |
 
-#### Job Postings Sheet
-Columns: `Job Title`, `Department`, `Type`, `Salary Range`, `Posted Date`, `Deadline`, `Description`, `Link`
+#### 5. Job Postings
 
-Example:
+**Create a new spreadsheet file named:** `Job Postings`
+
+**Columns (in row 1):** `Job Title` | `Department` | `Type` | `Salary Range` | `Posted Date` | `Deadline` | `Description` | `Link`
+
+Example data:
 | Job Title | Department | Type | Salary Range | Posted Date | Deadline | Description | Link |
 |-----------|------------|------|--------------|-------------|----------|-------------|------|
 | Police Officer | Police | Full-time | $45,000-$60,000 | 2025-12-01 | 2025-12-31 | Join our team | |
 
-#### Boards & Commissions Sheet
-Columns: `Name`, `Description`, `Meeting Schedule`, `Contact`, `Link`
+#### 6. Boards & Commissions
 
-Example:
+**Create a new spreadsheet file named:** `Boards & Commissions`
+
+**Columns (in row 1):** `Name` | `Description` | `Meeting Schedule` | `Contact` | `Link`
+
+Example data:
 | Name | Description | Meeting Schedule | Contact | Link |
 |------|-------------|------------------|---------|------|
 | Planning Commission | Reviews zoning | 2nd Tuesday, 6PM | planning@city.gov | |
 
-#### News Sheet
-Columns: `Title`, `Date`, `Summary`, `Link`, `Category`
+#### 7. News
 
-Example:
+**Create a new spreadsheet file named:** `News`
+
+**Columns (in row 1):** `Title` | `Date` | `Summary` | `Link` | `Category`
+
+Example data:
 | Title | Date | Summary | Link | Category |
 |-------|------|---------|------|----------|
 | New Park Opens | 2025-12-01 | Main Street Park... | | Parks |
