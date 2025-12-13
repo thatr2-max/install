@@ -136,7 +136,7 @@ class GoogleSheetsReader:
         Returns:
             List of staff member dicts
         """
-        data = self.read_sheet(spreadsheet_id, 'Staff Directory')
+        data = self.read_sheet(spreadsheet_id, 'Sheet1')
 
         # Normalize and validate data
         staff = []
@@ -168,7 +168,7 @@ class GoogleSheetsReader:
         Returns:
             List of event dicts
         """
-        data = self.read_sheet(spreadsheet_id, 'Events')
+        data = self.read_sheet(spreadsheet_id, 'Sheet1')
 
         events = []
         for row in data:
@@ -199,7 +199,7 @@ class GoogleSheetsReader:
         Returns:
             List of notice dicts
         """
-        data = self.read_sheet(spreadsheet_id, 'Public Notices')
+        data = self.read_sheet(spreadsheet_id, 'Sheet1')
 
         notices = []
         for row in data:
@@ -229,7 +229,7 @@ class GoogleSheetsReader:
         Returns:
             List of job posting dicts
         """
-        data = self.read_sheet(spreadsheet_id, 'Job Postings')
+        data = self.read_sheet(spreadsheet_id, 'Sheet1')
 
         jobs = []
         for row in data:
@@ -262,7 +262,7 @@ class GoogleSheetsReader:
         Returns:
             List of board/commission dicts
         """
-        data = self.read_sheet(spreadsheet_id, 'Boards & Commissions')
+        data = self.read_sheet(spreadsheet_id, 'Sheet1')
 
         boards = []
         for row in data:
@@ -292,7 +292,7 @@ class GoogleSheetsReader:
         Returns:
             List of news article dicts
         """
-        data = self.read_sheet(spreadsheet_id, 'News')
+        data = self.read_sheet(spreadsheet_id, 'Sheet1')
 
         news = []
         for row in data:
@@ -322,7 +322,7 @@ class GoogleSheetsReader:
         Returns:
             Dict of configuration key-value pairs
         """
-        data = self.read_sheet(spreadsheet_id, 'Municipality Config')
+        data = self.read_sheet(spreadsheet_id, 'Sheet1')
 
         config = {}
         google_drive_folders = {}
