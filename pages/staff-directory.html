@@ -39,31 +39,20 @@
         </section>
 
         <section class="card">
-            <h2>Council Members</h2>
-            <div id="council-members-container">
-                <p><em>Loading council members...</em></p>
+            <h2>Staff Directory</h2>
+            <p>Contact city government staff, department heads, and elected officials.</p>
+            <div id="staff-directory-content">
+                <p><em>Loading staff directory...</em></p>
             </div>
-        </section>
-
-        <section class="card">
-            <h2>Other Elected Officials</h2>
-            <div id="elected-officials-list">
-                <p><em>Loading elected officials...</em></p>
-            </div>
-        </section>
-
-        <section class="card">
-            <h2>Department Heads</h2>
-            <div id="department-heads-list">
-                <p><em>Loading department heads...</em></p>
-            </div>
-        </section>
-
-        <section class="card">
-            <h2>Departments</h2>
-            <div id="departments-list" class="grid">
-                <p><em>Loading departments...</em></p>
-            </div>
+            <script>
+            fetch('../components/staff_directory.html')
+                .then(r => r.text())
+                .then(html => document.getElementById('staff-directory-content').innerHTML = html)
+                .catch(error => {
+                    console.error('Error loading staff directory:', error);
+                    document.getElementById('staff-directory-content').innerHTML = '<p>Unable to load staff directory. Run the sync service to generate content from Google Sheets.</p>';
+                });
+            </script>
         </section>
 
         <section class="card">
@@ -81,7 +70,6 @@
     <!-- Component Loader - Must come last to load header/footer -->
     <script src="../assets/js/form-config-loader.js"></script>
     <script src="../assets/js/common-data-loader.js"></script>
-    <script src="../assets/js/staff-data-loader.js"></script>
     <script src="../assets/js/component-loader.js"></script>
 </body>
 </html>
