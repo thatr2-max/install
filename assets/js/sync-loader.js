@@ -22,8 +22,8 @@
         // Show loading state
         target.innerHTML = '<p class="loading"><em>Loading...</em></p>';
 
-        // Fetch the generated HTML file
-        const filePath = `generated/${folderName}.html`;
+        // Fetch the generated HTML file from components directory
+        const filePath = `../components/${folderName}.html`;
 
         fetch(filePath)
             .then(response => {

@@ -22,19 +22,10 @@
         </section>
         <section class="card">
             <h2>Current Boards & Commissions</h2>
-            <p><em>Add your city's boards and commissions by editing this section, or upload board information documents to the "boards_commissions" Google Drive folder.</em></p>
-            <div id="boards-commissions-content">
-                <p>Loading...</p>
+            <p><em>Boards and commissions from your Google Sheets will appear below. Update the "boards_commissions" sheet to add or modify information.</em></p>
+            <div data-drive-folder="boards_commissions">
+                <p><em>Loading boards & commissions...</em></p>
             </div>
-            <script>
-            fetch('../components/boards_commissions.html')
-                .then(r => r.text())
-                .then(html => document.getElementById('boards-commissions-content').innerHTML = html)
-                .catch(error => {
-                    console.error('Error loading boards & commissions:', error);
-                    document.getElementById('boards-commissions-content').innerHTML = '<p>Unable to load content.</p>';
-                });
-            </script>
         </section>
         <section class="card">
             <h2>Application Process</h2>
