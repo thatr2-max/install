@@ -24,36 +24,18 @@
         <section class="card">
             <h2>Upcoming Events</h2>
             <p>Join us for exciting community events, public meetings, and city-sponsored activities!</p>
-            <p><em>Event flyers and calendars uploaded to Google Drive will appear below. To add events, upload event flyers or calendars to the "events" folder in your configured Google Drive.</em></p>
-            <div id="events-content">
-                <p>Loading...</p>
+            <p><em>Events from your Google Sheets will appear below. Update the "events" sheet to add or modify events.</em></p>
+            <div data-drive-folder="events">
+                <p><em>Loading events...</em></p>
             </div>
-            <script>
-            fetch('../components/events.html')
-                .then(r => r.text())
-                .then(html => document.getElementById('events-content').innerHTML = html)
-                .catch(error => {
-                    console.error('Error loading events:', error);
-                    document.getElementById('events-content').innerHTML = '<p>Unable to load content.</p>';
-                });
-            </script>
         </section>
 
         <section class="card">
             <h2>Event Calendar</h2>
-            <p><em>To display your event calendar, upload it to the "event_calendar" Google Drive folder or manually add your calendar image/PDF here.</em></p>
-            <div id="event-calendar-content">
-                <p>Loading...</p>
+            <p><em>To display your event calendar, upload it to the "event_calendar" Google Drive folder.</em></p>
+            <div data-drive-folder="event_calendar">
+                <p><em>Loading calendar...</em></p>
             </div>
-            <script>
-            fetch('../components/event_calendar.html')
-                .then(r => r.text())
-                .then(html => document.getElementById('event-calendar-content').innerHTML = html)
-                .catch(error => {
-                    console.error('Error loading event calendar:', error);
-                    document.getElementById('event-calendar-content').innerHTML = '<p>Unable to load content.</p>';
-                });
-            </script>
         </section>
 
         <section class="card">
@@ -169,6 +151,7 @@
 
     <!-- Component Loader - Must come last to load header/footer -->
     <script src="../assets/js/form-config-loader.js"></script>
+    <script src="../assets/js/sync-loader.js"></script>
     <script src="../assets/js/component-loader.js"></script>
 </body>
 </html>

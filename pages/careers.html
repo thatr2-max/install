@@ -69,19 +69,10 @@
 
         <section class="card">
             <h2>Current Job Openings</h2>
-            <p><em>Job postings uploaded to Google Drive will appear below. To add job listings, upload PDFs to the "job_postings" folder in your configured Google Drive, or manually add job cards here.</em></p>
-            <div id="job-postings-content">
-                <p>Loading...</p>
+            <p><em>Job postings from your Google Sheets will appear below. Update the "job_postings" sheet to add or modify listings.</em></p>
+            <div data-drive-folder="job_postings">
+                <p><em>Loading job postings...</em></p>
             </div>
-            <script>
-            fetch('../components/job_postings.html')
-                .then(r => r.text())
-                .then(html => document.getElementById('job-postings-content').innerHTML = html)
-                .catch(error => {
-                    console.error('Error loading job postings:', error);
-                    document.getElementById('job-postings-content').innerHTML = '<p>Unable to load job postings.</p>';
-                });
-            </script>
         </section>
 
         <section class="card">
@@ -220,7 +211,7 @@
     <div id="footer"></div>
 
     <!-- Component Loader - Must come last to load header/footer -->
-    <script src="../assets/js/google-drive-loader.js"></script>
+    <script src="../assets/js/sync-loader.js"></script>
     <script src="../assets/js/component-loader.js"></script>
 </body>
 </html>

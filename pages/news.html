@@ -48,36 +48,18 @@
 
         <section class="card">
             <h2>Latest News & Press Releases</h2>
-            <p><em>Press releases and news articles uploaded to Google Drive will appear below. To add news, upload PDFs or documents to the "news_press_releases" folder in your configured Google Drive.</em></p>
-            <div id="news-press-releases-content">
-                <p>Loading...</p>
+            <p><em>News and press releases from your Google Sheets will appear below. Update the "news" sheet to add or modify articles.</em></p>
+            <div data-drive-folder="news_press_releases">
+                <p><em>Loading news...</em></p>
             </div>
-            <script>
-            fetch('../components/news_press_releases.html')
-                .then(r => r.text())
-                .then(html => document.getElementById('news-press-releases-content').innerHTML = html)
-                .catch(error => {
-                    console.error('Error loading news & press releases:', error);
-                    document.getElementById('news-press-releases-content').innerHTML = '<p>Unable to load content.</p>';
-                });
-            </script>
         </section>
 
         <section class="card">
             <h2>Public Notices</h2>
-            <p><em>Official legal notices uploaded to Google Drive will appear below. To add notices, upload PDFs to the "public_notices" folder in your configured Google Drive.</em></p>
-            <div id="public-notices-content">
-                <p>Loading...</p>
+            <p><em>Public notices from your Google Sheets will appear below. Update the "public_notices" sheet to add or modify notices.</em></p>
+            <div data-drive-folder="public_notices">
+                <p><em>Loading public notices...</em></p>
             </div>
-            <script>
-            fetch('../components/public_notices.html')
-                .then(r => r.text())
-                .then(html => document.getElementById('public-notices-content').innerHTML = html)
-                .catch(error => {
-                    console.error('Error loading public notices:', error);
-                    document.getElementById('public-notices-content').innerHTML = '<p>Unable to load content.</p>';
-                });
-            </script>
         </section>
 
         <section class="card">
@@ -124,6 +106,7 @@
 
     <!-- Component Loader - Must come last to load header/footer -->
     <script src="../assets/js/form-config-loader.js"></script>
+    <script src="../assets/js/sync-loader.js"></script>
     <script src="../assets/js/component-loader.js"></script>
 </body>
 </html>
